@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- TITLE --}}
-    <title>{{ config('app.name', 'Laravel') }}&mdash;</title>
+    <title>{{ config('app.name', 'Laravel') }}&mdash;@yield('title')</title>
 
     {{-- FAVICON --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}">
@@ -28,6 +28,7 @@
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 <body>
+    @include('sweetalert::alert')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
