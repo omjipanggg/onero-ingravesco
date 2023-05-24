@@ -1,0 +1,10 @@
+body {}
+a.dotted {
+	text-decoration: none;
+}
+a.dotted:focus,
+a.dotted:hover {
+	outline: none;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+}
