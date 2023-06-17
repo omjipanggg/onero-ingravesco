@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Spotify, SpotifySeed;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        // $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -23,6 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('pages.homepage.index');
+    }
+
+    public function ngodengIndex()
+    {
+        // Alert::success('Sukses', 'Anda berhasil masuk.')->autoClose(false);
+        return view('ngodeng.index');
+    }
+
+    public function search(Request $request) {
+        dd($request->all());
     }
 }

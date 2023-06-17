@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTH
 Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// HOME
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
+Route::post('search', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
+Route::get('ngodeng', [App\Http\Controllers\HomeController::class, 'ngodengIndex'])->name('home.ngodengIndex');
+
+// NGODENG
+Route::get('ngodeng/dashboard', [App\Http\Controllers\NgodengController::class, 'index'])->name('ngodeng.index');
