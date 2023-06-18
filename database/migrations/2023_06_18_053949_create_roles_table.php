@@ -21,11 +21,9 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Role::create([
-            ['name' => 'Administrator'],
-            ['name' => 'User'],
-            ['name' => 'Partner']
-        ]);
+        Role::create(['name' => 'Administrator']);
+        Role::create(['name' => 'User']);
+        Role::create(['name' => 'Partner']);
     }
 
     /**
