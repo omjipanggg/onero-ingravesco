@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container">
-    <a class="navbar-brand" href="{{ route('home.index') }}"><i class="bi bi-fuel-pump"></i>NG</a>
+    <a class="navbar-brand" href="{{ route('home.ngodengIndex') }}"><i class="bi bi-fuel-pump"></i>NG</a>
     {{-- <button class="btn-no-outline navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation"> --}}
       <button class="hamburger hamburger--squeeze p-0 btn-no-outline navbar-toggler" type="button" role="button" id="navbarSideCollapse" aria-label="Toggle navigation">
         <div class="hamburger-box">
@@ -12,7 +12,7 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('home.index') }}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('home.ngodengIndex') }}">Home</a>
         </li>
         {{--
         <li class="nav-item dropdown">
@@ -31,20 +31,18 @@
             <a href="{{ route('login') }}" class="nav-link">Auth<i class="bi bi-box-arrow-in-right ms-2"></i></a>
           </li>
         @else
-          <li class="nav-item">
-            <a href="{{ route('ngodeng.dashboard') }}" class="nav-link">Dashboard</a>
-          </li>
           <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{ Auth::user()->email }}
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ '@' . strtolower(strtok(Auth::user()->name, " ")) }}
               </a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a href="{{ route('ngodeng.index') }}" class="dropdown-item">Dashboard</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                       @csrf
                   </form>
-              </div>
+              </ul>
           </li>
         @endguest
       </ul>

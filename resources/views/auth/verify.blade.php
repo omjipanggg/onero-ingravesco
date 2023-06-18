@@ -6,10 +6,10 @@
     <a href="{{ route('home.index') }}" class="position-absolute btn-auth-back"><i class="bi bi-arrow-left-circle"></i></a>
     <div class="d-flex flex-wrap align-items-center justify-content-center flex-column">
         <div class="group wrap-verify">
-                <div class="alert alert-success py-2" role="alert">
-                    <i class="bi bi-check-circle me-2"></i><b>{{ __('Done!') }}</b> Please check your email address.
-                </div>
             @if (session('resent'))
+                <div class="alert alert-success py-2" role="alert">
+                    <i class="bi bi-check-circle me-2"></i><b>{{ __('Sent!') }}</b> Please check your email address.
+                </div>
             @endif
 
             <div class="text-center">

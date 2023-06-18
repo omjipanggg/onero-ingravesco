@@ -2,5 +2,5 @@
 @section('title', 'Home')
 
 @section('content')
-@include('ngodeng.carousel')
+@include('pages.ngodeng.carousel')
 @endsection

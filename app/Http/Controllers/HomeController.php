@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function ngodengIndex()
     {
         // Alert::success('Sukses', 'Anda berhasil masuk.')->autoClose(false);
-        return view('ngodeng.index');
+        return view('pages.ngodeng.index');
     }
 
     public function search(Request $request) {

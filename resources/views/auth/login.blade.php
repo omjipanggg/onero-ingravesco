@@ -20,14 +20,14 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-floating mb-2">
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" required="" name="email" value="{{ old('email') }}" autocomplete="off" placeholder="Email address" autofocus="">
+              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" required="" name="email" value="{{ old('email') }}" autocomplete="off" placeholder="Email address">
               <label for="email">Email address</label>
             </div>
 
             <div class="form-floating mb-2 @error('password') error @enderror">
               <input id="password" type="password" class="form-control @error('password') is-invalid @enderror password" name="password" placeholder="Password" autocomplete="current-password">
               <label for="password">Password</label>
-              <button class="position-absolute btn btn-transparent btn-login" type="submit"><i class="bi bi-arrow-right-circle"></i></button>
+              {{-- <button class="position-absolute btn btn-eye" type="submit"><i class="bi bi-arrow-right-circle"></i></button> --}}
             </div>
 
             {{--
@@ -38,9 +38,12 @@
             @enderror
             --}}
 
-            <div class="group d-flex flex-wrap align-items-center gap-1">
-                <input type="checkbox" value="remember-me" id="checkPassword" onchange="showChar(event)">
-                <label for="checkPassword">Show password</label>
+            <div class="d-flex flex-wrap align-items-start justify-content-between">
+                <div class="group d-flex flex-wrap align-items-center gap-1 password-container">
+                    <input type="checkbox" value="remember-me" id="checkPassword" onchange="showChar(event)">
+                    <label for="checkPassword" class="pointered"><i class="bi bi-eye"></i></label>
+                </div>
+                <button type="submit" class="btn btn-color btn-sm px-3 btn-shadow">{{ __('Login') }}<i class="bi bi-key ms-3"></i></button>
             </div>
         </form>
         @guest

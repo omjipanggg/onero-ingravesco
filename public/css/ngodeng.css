@@ -13,12 +13,16 @@ body {
 body {
   padding-top: 56px;
 }
+*, *::before, *::after {
+  /*outline: 1px solid var(--purple-color);*/
+}
 
 .btn-no-outline:active,
 .btn-no-outline:focus {
 	outline: 0!important;
 }
 
+/* HAMBURGER */
 .hamburger.is-active .hamburger-inner::before, .hamburger.is-active .hamburger-inner::before, .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::after, .hamburger-inner::after,
 .hamburger-inner::before, .hamburger-inner::before, .hamburger-inner,
@@ -46,6 +50,12 @@ body {
 	opacity: .7;
 }
 
+.hamburger-box {
+	display: inline-flex;
+	justify-content: flex-end;
+}
+
+/* NAVBAR——OFFCANVAS */
 .offcanvas-collapse {
 	z-index: 1;
 }
@@ -53,6 +63,7 @@ body {
 .dropdown-item:focus, .dropdown-item:hover {
     color: var(--dark-grey-color);
     background-color: var(--bs-warning);
+    /*font-weight: 500;*/
 }
 
 a.dotted {

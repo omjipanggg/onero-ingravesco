@@ -4,26 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class NgodengController extends Controller
+class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified']);
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $context = [
-        ];
-        return view('pages.ngodeng.dashboard', $context);
+        return view('pages.admin.index');
     }
 
     /**

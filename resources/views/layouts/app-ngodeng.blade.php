@@ -58,8 +58,8 @@
 </head>
 <body>
     @include('sweetalert::alert')
-    @include('ngodeng.header')
+    @include('pages.ngodeng.header')
     @yield('content')
-    @include('ngodeng.footer')
+    @include('pages.ngodeng.footer')
 </body>
 </html>

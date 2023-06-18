@@ -4,6 +4,7 @@
 	--base-active-color: hsla(204deg, 31%, 42%, 1);
 	--primary-color: hsla(207deg, 43%, 49%, 1);
 	--primary-bright-color: hsla(0deg, 0%, 97%, 1);
+	--shadow-color: hsla(0deg, 8%, 10%, 1);
 	--text-color: hsla(0deg, 0%, 10%, 1);
 	--text-danger-color: #842029;
 }
@@ -13,18 +14,54 @@ body {
 	font-size: 13px;
 }
 
-.btn.dotted {
-	font-size: 13px;
-	text-decoration-style: dotted;
+.btn-shadow {
+	box-shadow: -3px 5px var(--shadow-color);
 }
+
+.btn-shadow:focus,
+.btn-shadow:active {
+	box-shadow: -3px 3px var(--shadow-color);
+	transform: translateY(2px);
+}
+
 a.dotted {
 	color: steelblue;
 	text-decoration: none;
 }
+
 a.dotted:focus,
 a.dotted:hover {
 	text-decoration: underline;
 	text-decoration-style: dotted;
+}
+
+.pointered {
+	cursor: pointer;
+}
+
+.btn.dotted {
+	font-size: 13px;
+	text-decoration-style: dotted;
+}
+
+.btn-color {
+	background-color: var(--base-color);
+	color: var(--primary-bright-color);
+}
+.btn-color:focus,
+.btn-color:hover {
+	background-color: var(--base-active-color);
+	color: var(--primary-bright-color);
+}
+.btn-outline-color {
+	background-color: var(--primary-bright-color);
+	border: 1px solid var(--base-color);
+	color: var(--base-color);
+}
+.btn-outline-color:focus,
+.btn-outline-color:hover {
+	background-color: var(--base-active-color);
+	color: var(--primary-bright-color);
 }
 
 /* AUTHENTICATION */
@@ -41,8 +78,9 @@ a.dotted:hover {
 	transform: translateX(-50%);
 }
 .linen a {
-	padding: 0 1rem;
+	padding: .5rem 1rem;
 }
+
 /*
 .linen::before {
 	content: "";
@@ -91,34 +129,32 @@ a.dotted:hover {
 	top: .75rem;
 	left: 1rem;
 }
-.btn-login {
+.btn-eye {
 	top: 50%;
 	right: -1.572px;
 	transform: translateY(-50%);
 }
 
-.error .btn-login {
+.error .btn-eye {
 	right: 1.375rem!important;
 	color: var(--bs-danger);
 }
 
-.btn-color {
-	background-color: var(--base-color);
-	color: var(--primary-bright-color);
-}
-.btn-color:focus,
-.btn-color:hover {
-	background-color: var(--base-active-color);
-	color: var(--primary-bright-color);
-}
-.btn-outline-color {
-	background-color: var(--primary-bright-color);
-	border: 1px solid var(--base-color);
-	color: var(--base-color);
-}
-.btn-outline-color:focus,
-.btn-outline-color:hover {
-	background-color: var(--base-active-color);
-	color: var(--primary-bright-color);
+.password-container input[type=checkbox] {
+	display: none;
 }
 
+.password-container input[type=checkbox]:checked + label {
+	box-shadow: 3px 3px var(--shadow-color);
+	transform: translateY(2px);
+	background-color: var(--base-active-color);
+}
+
+.password-container label {
+	box-shadow: 3px 5px var(--shadow-color);
+	color: var(--primary-bright-color);
+	background-color: var(--base-color);
+	border: 1px solid transparent;
+	border-radius: .25rem;
+	padding: .25rem .5rem;
+}

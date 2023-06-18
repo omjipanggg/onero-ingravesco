@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controllers
+use App\Http\Controllers\HomeController as Home;
+use App\Http\Controllers\AdminController as Admin;
+use App\Http\Controllers\NgodengController as Ngodeng;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +22,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 // HOME
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
-Route::post('search', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
-Route::get('ngodeng', [App\Http\Controllers\HomeController::class, 'ngodengIndex'])->name('home.ngodengIndex');
+Route::get('/', [Home::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
+Route::post('search', [Home::class, 'search'])->name('home.search');
+Route::get('ngodeng', [Home::class, 'ngodengIndex'])->name('home.ngodengIndex');
+
+// ADMIN
+Route::get('dashboard', [Admin::class, 'index'])->name('admin.index');
 
 // NGODENG
-Route::get('ngodeng/dashboard', [App\Http\Controllers\NgodengController::class, 'index'])->name('ngodeng.index');
+Route::get('ngodeng/dashboard', [Ngodeng::class, 'index'])->name('ngodeng.index');
