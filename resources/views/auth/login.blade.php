@@ -20,7 +20,7 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-floating mb-2">
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" required="" name="email" value="{{ old('email') }}" autocomplete="off" placeholder="Email address">
+              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" required="" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email address">
               <label for="email">Email address</label>
             </div>
 

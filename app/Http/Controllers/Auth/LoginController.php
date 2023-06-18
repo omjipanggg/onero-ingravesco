@@ -31,7 +31,7 @@ class LoginController extends Controller
     {
         if (auth()->user()->hasRole(1)) {
             return route('admin.index');
-        } else if (auth()->user()->hasRole(4)) {
+        } else if (auth()->user()->hasRole(3)) {
             return route('ngodeng.index');
         } else {
             return route('home.index');
