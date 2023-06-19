@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	$('#loader').fadeOut();
 });
 
 function showChar(event) {

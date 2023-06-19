@@ -18,4 +18,5 @@ $(document).ready(function() {
 		$(this).toggleClass("active");
 	});
 
+    $('#loader').fadeOut();
 });
