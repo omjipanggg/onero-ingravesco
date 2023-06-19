@@ -19,12 +19,12 @@
 
         <form action="{{ route('login') }}" method="POST">
             @csrf
-            <div class="form-floating mb-2">
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" required="" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email address">
+            <div class="form-floating mb-3">
+              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" required="" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email address" autofocus="">
               <label for="email">Email address</label>
             </div>
 
-            <div class="form-floating mb-2 @error('password') error @enderror">
+            <div class="form-floating mb-3 @error('password') error @enderror">
               <input id="password" type="password" class="form-control @error('password') is-invalid @enderror password" name="password" placeholder="Password" autocomplete="current-password">
               <label for="password">Password</label>
               {{-- <button class="position-absolute btn btn-eye" type="submit"><i class="bi bi-arrow-right-circle"></i></button> --}}

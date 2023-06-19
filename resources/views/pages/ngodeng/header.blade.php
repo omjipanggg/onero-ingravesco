@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container">
-    <a class="navbar-brand" href="{{ route('home.ngodengIndex') }}"><i class="bi bi-fuel-pump"></i>NG</a>
+    <a class="navbar-brand" href="{{ route('home.ngodengIndex') }}"><i class="bi bi-regex"></i>NDG</a>
     {{-- <button class="btn-no-outline navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation"> --}}
       <button class="hamburger hamburger--squeeze p-0 btn-no-outline navbar-toggler" type="button" role="button" id="navbarSideCollapse" aria-label="Toggle navigation">
         <div class="hamburger-box">

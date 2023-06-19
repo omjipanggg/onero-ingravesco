@@ -73,4 +73,17 @@ class NgodengController extends Controller
     {
         //
     }
+
+    public function products() {
+        return view('pages.ngodeng.section-products');
+    }
+
+    public function sales() {
+        return view('pages.ngodeng.section-sales');
+    }
+
+    public function alternate() {
+        return view('pages.ngodeng.section-index');
+    }
+
 }

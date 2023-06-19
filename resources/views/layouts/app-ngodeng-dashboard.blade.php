@@ -35,8 +35,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hamburgers.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/ngodeng.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/ngodeng-media.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ngodeng-panel.css') }}">
 
     {{-- SCRIPTS --}}
     {{-- ONLINE
@@ -53,15 +52,68 @@
     <script src="{{ asset('js/bootstrap-5.3.0.bundle.min.js') }}" defer=""></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}" defer=""></script>
     <script src="{{ asset('js/mixitup.min.js') }}" defer=""></script>
-    <script src="{{ asset('js/ngodeng.js') }}" defer=""></script>
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
-<body>
+<body id="body-pd">
     @include('components.loader')
     @include('sweetalert::alert')
-    @include('pages.ngodeng.header')
     @yield('content')
-    @include('pages.ngodeng.footer')
+    <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+            const toggle = document.getElementById(toggleId),
+                     nav = document.getElementById(navId),
+                  bodypd = document.getElementById(bodyId),
+                headerpd = document.getElementById(headerId)
+
+            if (toggle && nav && bodypd && headerpd) {
+                toggle.addEventListener('click', () => {
+                    nav.classList.toggle('show')
+                    toggle.classList.toggle('bx-x')
+                    toggle.classList.toggle('is-active')
+                    bodypd.classList.toggle('body-pd')
+                    headerpd.classList.toggle('body-pd')
+                });
+            }
+        }
+
+        showNavbar('header-toggle','nav-bar','body-pd','header')
+
+        const linkColor = document.querySelectorAll('.nav_link')
+
+        function colorLink() {
+            if (linkColor) {
+                linkColor.forEach((item) => {
+                    item.classList.remove('active')
+                })
+                this.classList.add('active')
+            }
+        }
+        linkColor.forEach((item) => {
+            item.addEventListener('click', colorLink)
+            item.addEventListener('click', function(event) {
+                event.preventDefault()
+                let title = this.dataset.title
+                let url = this.getAttribute('href')
+                $.ajax({
+                    url: url,
+                    beforeSend: () => {
+                        $('#loader').fadeIn()
+                    },
+                    success: (response) => {
+                        document.title = 'NGODENG—' + title
+                        $('#content-placeholder .data').html(response)
+                    },
+                    complete: (result) => {
+                        $('#loader').fadeOut()
+                    }
+                })
+            })
+        })
+
+        $('#loader').fadeOut()
+    })
+    </script>
 </body>
 </html>

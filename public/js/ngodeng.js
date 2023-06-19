@@ -8,8 +8,14 @@ $(document).ready(function() {
 		} else {
 			$('.offcanvas-collapse').children().wrapAll('<div class="container"></div>');
 		}
-	})
+	});
 	$('.hamburger').click(function() {
 		$(this).toggleClass('is-active');
-	})
+	});
+
+	$("#sidebarCollapse").on("click", function() {
+		$("#sidebar").toggleClass("active");
+		$(this).toggleClass("active");
+	});
+
 });

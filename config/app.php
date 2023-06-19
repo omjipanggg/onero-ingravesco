@@ -184,8 +184,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'ActivityLog' => App\Helpers\ActivityLog::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
 ];

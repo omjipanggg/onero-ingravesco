@@ -31,3 +31,6 @@ Route::get('dashboard', [Admin::class, 'index'])->name('admin.index');
 
 // NGODENG
 Route::get('ngodeng/dashboard', [Ngodeng::class, 'index'])->name('ngodeng.index');
+Route::get('ngodeng/dashboard/alternate', [Ngodeng::class, 'alternate'])->name('ngodeng.alternate');
+Route::get('ngodeng/dashboard/products', [Ngodeng::class, 'products'])->name('ngodeng.products');
+Route::get('ngodeng/dashboard/sales', [Ngodeng::class, 'sales'])->name('ngodeng.sales');
