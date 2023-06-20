@@ -17,7 +17,7 @@
             {{ __('or ') }}
             <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                 @csrf
-                <button type="submit" class="btn btn-link p-0 m-0 align-baseline dotted">{{ __('click here') }}</button>
+                <button type="submit" class="btn btn-link p-0 m-0 align-baseline dotted" onclick="showLoading()">{{ __('click here') }}</button>
             </form>
             {{ __(' to request another.') }}
             </div>
