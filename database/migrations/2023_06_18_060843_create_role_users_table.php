@@ -23,7 +23,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        User::findOrFail('3e77f9a9-fa67-43c4-84a0-6253090b17fc')->roles()->attach(1);
+        User::where('id', '3e77f9a9-fa67-43c4-84a0-6253090b17fc')->roles()->attach(1);
     }
 
     /**
