@@ -1,6 +1,28 @@
 $(document).ready(function() {
 	$('#loader').fadeOut();
+
 });
+
+function clock() {
+    const month = [ "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October",
+                    "November", "December" ];
+
+    function harold(standIn) {
+        if (standIn < 10) {
+            standIn = '0' + standIn;
+        } return standIn;
+    }
+
+    let time = new Date(),
+        theDate = harold(time.getDate()) + ' ' + (month[time.getMonth()]) + ' ' + time.getFullYear(), hours = time.getHours(),
+        minutes = time.getMinutes(), seconds = time.getSeconds();
+
+    document.querySelector('#clock').innerHTML = theDate + ' ' + harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+}
+
+const setClock = document.body.querySelector('#clock');
+if (setClock) { setInterval(clock, 1000); }
 
 function showChar(event) {
     [...document.body.querySelectorAll('.password')].map((item) => {

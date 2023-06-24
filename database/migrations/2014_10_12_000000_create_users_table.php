@@ -26,6 +26,14 @@ return new class extends Migration
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->softDeletes();
         });
+
+        User::create([
+            'id' => '3e77f9a9-fa67-43c4-84a0-6253090b17fc',
+            'name' => 'Admin',
+            'email' => 'omjipanggg@gmail.com',
+            'email_verified_at' => Carbon::today(),
+            'password' => Hash::make('nimda123')
+        ]);
     }
 
     /**

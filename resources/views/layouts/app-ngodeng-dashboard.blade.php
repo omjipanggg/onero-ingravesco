@@ -13,7 +13,7 @@
     <title>NGODENG&mdash;@yield('title')</title>
 
     {{-- FAVICON --}}
-    <link rel="icon" href="{{ asset('favicon3.ico') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
 
     {{-- FONTS
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hamburgers.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/select2-bootstrap-5-theme.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/ngodeng-panel.css') }}">
 
     {{-- SCRIPTS --}}
@@ -51,69 +55,22 @@
     <script src="{{ asset('js/jquery.easing.min.js') }}" defer=""></script>
     <script src="{{ asset('js/bootstrap-5.3.0.bundle.min.js') }}" defer=""></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/dataTables.responsive.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/responsive.bootstrap5.js') }}" defer=""></script>
+    <script src="{{ asset('js/dataTables.editor.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/select2.min.js') }}" defer=""></script>
     <script src="{{ asset('js/mixitup.min.js') }}" defer=""></script>
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 <body id="body-pd">
     @include('components.loader')
+    @include('components.modal')
     @include('sweetalert::alert')
+    @include('pages.ngodeng.sidebar')
     @yield('content')
-    <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        const showNavbar = (toggleId, navId, bodyId, headerId) => {
-            const toggle = document.getElementById(toggleId),
-                     nav = document.getElementById(navId),
-                  bodypd = document.getElementById(bodyId),
-                headerpd = document.getElementById(headerId)
-
-            if (toggle && nav && bodypd && headerpd) {
-                toggle.addEventListener('click', () => {
-                    nav.classList.toggle('show')
-                    toggle.classList.toggle('bx-x')
-                    toggle.classList.toggle('is-active')
-                    bodypd.classList.toggle('body-pd')
-                    headerpd.classList.toggle('body-pd')
-                });
-            }
-        }
-
-        showNavbar('header-toggle','nav-bar','body-pd','header')
-
-        const linkColor = document.querySelectorAll('.nav_link')
-
-        function colorLink() {
-            if (linkColor) {
-                linkColor.forEach((item) => {
-                    item.classList.remove('active')
-                })
-                this.classList.add('active')
-            }
-        }
-        linkColor.forEach((item) => {
-            item.addEventListener('click', colorLink)
-            item.addEventListener('click', function(event) {
-                event.preventDefault()
-                let title = this.dataset.title
-                let url = this.getAttribute('href')
-                $.ajax({
-                    url: url,
-                    beforeSend: () => {
-                        $('#loader').fadeIn()
-                    },
-                    success: (response) => {
-                        document.title = 'NGODENG—' + title
-                        $('#content-placeholder .data').html(response)
-                    },
-                    complete: (result) => {
-                        $('#loader').fadeOut()
-                    }
-                })
-            })
-        })
-
-        $('#loader').fadeOut()
-    })
-    </script>
+    @include('pages.ngodeng.scripts')
 </body>
 </html>

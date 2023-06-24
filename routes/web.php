@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController as Home;
 use App\Http\Controllers\AdminController as Admin;
 use App\Http\Controllers\NgodengController as Ngodeng;
+use App\Http\Controllers\ProductController as Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,21 @@ Route::get('/', [Home::class, 'index'])->name('home.index')->middleware(['auth',
 Route::post('search', [Home::class, 'search'])->name('home.search');
 Route::get('ngodeng', [Home::class, 'ngodengIndex'])->name('home.ngodengIndex');
 
+Route::get('preview/image/{directory}/{id}', [Home::class, 'previewImage'])->name('home.previewImage');
+Route::get('preview/files/{directory}/{id}', [Home::class, 'previewOnModal'])->name('home.previewOnModal');
+
 // ADMIN
 Route::get('dashboard', [Admin::class, 'index'])->name('admin.index');
 
 // NGODENG
 Route::get('ngodeng/dashboard', [Ngodeng::class, 'index'])->name('ngodeng.index');
-Route::get('ngodeng/dashboard/alternate', [Ngodeng::class, 'alternate'])->name('ngodeng.alternate');
 Route::get('ngodeng/dashboard/products', [Ngodeng::class, 'products'])->name('ngodeng.products');
 Route::get('ngodeng/dashboard/sales', [Ngodeng::class, 'sales'])->name('ngodeng.sales');
+
+// PRODUCT——FORM
+Route::get('product', [Product::class, 'index'])->name('product.index');
+Route::get('product/create', [Product::class, 'create'])->name('product.create');
+Route::post('product/store', [Product::class, 'store'])->name('product.store');
+Route::get('product/edit/{id}', [Product::class, 'edit'])->name('product.edit');
+Route::put('product/update/{id}', [Product::class, 'update'])->name('product.update');
+Route::delete('product/delete/{id}', [Product::class, 'destroy'])->name('product.delete');

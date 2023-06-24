@@ -4,10 +4,13 @@
     --header-height: 3rem;
     --header-color: hsla(252deg, 52%, 84%, 1);
     --first-color: hsla(252deg, 52%, 49%, 1);
-    --first-color-light: #AFA5D9;
+    --first-darker-color: hsla(252deg, 52%, 34%, 0.8);
+    --first-light-color: #AFA5D9;
+    --pink-color: #ff41ba;
     --white-color: #F7F6FB;
+    --turbid-color: #DBD2FF;
     --body-font: 'Nunito', sans-serif;
-    --normal-font-size: 1rem;
+    --normal-font-size: 14px;
     --nav-width: 70px;
     --z-fixed: 99
 }
@@ -15,8 +18,24 @@
 *,
 ::before,
 ::after {
-    /*outline: 1px solid red;*/
-    box-sizing: border-box;
+    /*outline: 1px solid var(--pink-color);*/
+    box-sizing: border-box
+}
+
+*::selection {
+    background-color: var(--first-color);
+    color: var(--white-color)
+}
+::-webkit-scrollbar {
+    width: .25rem;
+    background-color: var(--turbid-color)
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--first-color);
+    transition: all 300ms ease-in-out
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--first-darker-color)
 }
 
 body {
@@ -33,8 +52,86 @@ button, a {
     outline: none!important;
 }
 
+a {
+    text-decoration: none;
+}
+
+a.dotted {
+    color: var(--first-color);
+}
+
+a.dotted:focus,
+a.dotted:hover {
+    color: var(--first-darker-color);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.label-select label {
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    font-size: 11px;
+    z-index: 1061;
+    background-color: white;
+    padding: 0 .5rem;
+}
+
+.select2-selection {
+    padding-top: 24px!important;
+    padding-bottom: 10px!important;
+}
+
+.dataTable {
+    width: inherit!important;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.dataTable td {
+    white-space: nowrap;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+}
+
+.form-control {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.base-for-label label,
+.base-for-label span {
+    position: absolute;
+    font-size: 1rem;
+    top: 20%;
+    left: .537rem;
+    background-color: white;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    z-index: 91;
+    transition: all 120ms ease-in-out;
+}
+
+.base-for-label .form-control {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.base-for-label.focused label,
+.base-for-label.focused span {
+    top: -9px;
+    left: .537rem;
+    font-size: 11px;
+}
+
+.modal {
+    z-index: 1059!important;
+    width: 100%;
+}
+
 .text-pinky {
-    color: #ff41ba;
+    color: var(--pink-color);
 }
 
 #loader {
@@ -53,6 +150,21 @@ button, a {
     background-color: transparent;
     transform: translate(-50%, -50%);
     transform-origin: 0 0;
+}
+
+img { pointer-events: none; }
+img.w-99 {
+    width: 99.89px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: .375rem;
+}
+
+img.swal2-image {
+    margin: 20px auto 0!important;
+}
+
+button.swal2-close:focus {
+    box-shadow: none;
 }
 
 /* HAMBURGER */
@@ -103,8 +215,44 @@ button, a {
     justify-content: flex-start;
 }
 
-a {
-    text-decoration: none;
+.btn-color {
+    background-color: var(--first-color);
+    color: var(--white-color);
+    border: 1px solid var(--first-darker-color);
+}
+
+.btn-color:focus,
+.btn-color:hover {
+    outline: none;
+    box-shadow: none;
+    color: var(--white-color);
+    background-color: var(--first-darker-color);
+}
+
+.btn-outline-color {
+    background-color: var(--white-color);
+    border: 1px solid var(--first-color);
+    color: var(--first-color);
+}
+
+.btn-outline-color:focus,
+.btn-outline-color:hover {
+    background-color: var(--first-color);
+    color: var(--white-color);
+}
+
+.active > .page-link,
+.page-link.active {
+    background-color: var(--first-color);
+    border-color: var(--first-darker-color);
+}
+
+.page-link:focus {
+    box-shadow: none;
+}
+
+.w-20 {
+    width: 96px;
 }
 
 .header {
@@ -191,7 +339,7 @@ a {
 .nav_lower,
 .nav_link {
     position: relative;
-    color: var(--first-color-light);
+    color: var(--first-light-color);
     transition: all 320ms ease-in-out;
 }
 
@@ -204,7 +352,7 @@ a {
     font-size: 1.25rem;
 }
 
-.show {
+.show-pd {
     left: 0;
 }
 
@@ -271,7 +419,7 @@ a {
         padding: 0 1rem 0 0;
     }
 
-    .show {
+    .show-pd {
         width: calc(var(--nav-width) + 156px);
     }
 

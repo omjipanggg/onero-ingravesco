@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class RestrictedArea
+class WithPartners
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class RestrictedArea
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->hasRole(1)) {
+        if (Auth::check() && Auth::user()->hasRole([1, 4])) {
             return $next($request);
         } else {
             Alert::error('Unatuhorized', 'Too bad, you are not allowed.');

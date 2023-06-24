@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_users', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->cascadeOnUpdate()->constrained();
-            $table->foreignId('role_id')->cascadeOnUpdate()->constrained();
-            $table->dateTime('expire_date')->default('2049-12-31 23:59:59');
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->char('created_by', 36)->default('3e77f9a9-fa67-43c4-84a0-6253090b17fc')->nullable();
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->char('updated_by', 36)->default('3e77f9a9-fa67-43c4-84a0-6253090b17fc')->nullable();
             $table->softDeletes();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('categories');
     }
 };

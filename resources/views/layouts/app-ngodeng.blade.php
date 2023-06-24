@@ -13,7 +13,7 @@
     <title>NGODENG&mdash;@yield('title')</title>
 
     {{-- FAVICON --}}
-    <link rel="icon" href="{{ asset('favicon3.ico') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
 
     {{-- FONTS
     <link rel="preconnect" href="https://fonts.googleapis.com">

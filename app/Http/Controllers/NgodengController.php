@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Product;
+
 class NgodengController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class NgodengController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'verified', 'partners']);
     }
 
     /**
@@ -39,7 +41,7 @@ class NgodengController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -75,15 +77,15 @@ class NgodengController extends Controller
     }
 
     public function products() {
-        return view('pages.ngodeng.section-products');
+        $context = [
+            'products' => Product::with(['categories' => function($query) {
+                $query->orderBy('categories.name');
+            }])->orderBy('name')->get()
+        ];
+        return view('pages.ngodeng.products', $context);
     }
 
     public function sales() {
-        return view('pages.ngodeng.section-sales');
+        return view('pages.ngodeng.sales');
     }
-
-    public function alternate() {
-        return view('pages.ngodeng.section-index');
-    }
-
 }

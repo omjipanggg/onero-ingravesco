@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_users', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->cascadeOnUpdate()->constrained();
-            $table->foreignId('role_id')->cascadeOnUpdate()->constrained();
-            $table->dateTime('expire_date')->default('2049-12-31 23:59:59');
+            $table->foreignUuid('product_id')->cascadeOnUpdate()->constrained();
+            $table->foreignId('category_id')->cascadeOnUpdate()->constrained('categories');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->softDeletes();
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_roles');
+        //
     }
 };

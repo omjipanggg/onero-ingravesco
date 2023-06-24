@@ -35,13 +35,8 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         ActivityLog::logging('Login');
-        if (Auth::user()->hasRole(1)) {
-            return route('admin.index');
-        } else if (Auth::user()->hasRole(3)) {
-            return route('ngodeng.index');
-        } else {
-            return route('home.index');
-        }
+        // if (Auth::user()->hasRole(1)) { return route('admin.index'); }
+        return route('home.index');
     }
 
     /**
@@ -59,7 +54,7 @@ class LoginController extends Controller
             ActivityLog::logging('Logout');
             session()->flush();
             Auth::logout();
-            Alert::success('Status: 200', 'Your session has ended.');
+            Alert::success('Code: 200', 'Your session has ended.');
         }
         return $this->loggedOut($request) ?: redirect()->route('login');
     }

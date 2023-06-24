@@ -51,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function hasRole($id) {
-        return $this->roles()->where('role_id', $id)->exists();
+        if (!is_array($id)) { $id = [$id]; }
+        return $this->roles()->whereIn('role_id', $id)->exists();
     }
 }

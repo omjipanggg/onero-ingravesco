@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spotify, SpotifySeed;
 
@@ -30,11 +32,49 @@ class HomeController extends Controller
 
     public function ngodengIndex()
     {
-        // Alert::success('Sukses', 'Anda berhasil masuk.')->autoClose(false);
         return view('pages.ngodeng.index');
     }
 
     public function search(Request $request) {
         dd($request->all());
+    }
+
+    public function validateModal(Request $request, $table)
+    {
+        $validator = Validator::make($request->all(), ['name' => 'required']);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function previewOnModal($directory, $file)
+    {
+        $path = storage_path('app\\public\\' . $directory . '\\' . $image);
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+        abort(404);
+    }
+    public function previewImage($directory, $image)
+    {
+        // $path = public_path('storage\\' . $directory . '\\' . $image);
+        $path = storage_path('app\\public\\' . $directory . '\\' . $image);
+
+        $response = ['code' => 301];
+
+        if (file_exists($path)) {
+            $response = [
+                'code' => 200,
+                'url' => asset('storage/' . $directory . '/' . $image)
+            ];
+        }
+
+        return response()->json($response);
     }
 }
