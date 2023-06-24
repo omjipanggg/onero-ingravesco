@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 use App\Models\Role;
@@ -21,9 +22,11 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Role::create(['name' => 'Administrator']);
-        Role::create(['name' => 'User']);
-        Role::create(['name' => 'Partner']);
+        DB::table('roles')->insert([
+            ['name' => 'Administrator'],
+            ['name' => 'User'],
+            ['name' => 'Partner']
+        ]);
     }
 
     /**

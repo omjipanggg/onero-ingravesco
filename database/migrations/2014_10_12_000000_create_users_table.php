@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
@@ -27,8 +28,8 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        User::create([
-            'id' => '3e77f9a9-fa67-43c4-84a0-6253090b17fc',
+        DB::table('users')->insert([
+            'id' => '54e9e828-8f25-4910-a4fc-b6676deafaed',
             'name' => 'Admin',
             'email' => 'omjipanggg@gmail.com',
             'email_verified_at' => Carbon::today(),
