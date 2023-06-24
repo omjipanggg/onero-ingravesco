@@ -112,7 +112,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $filename = Str::slug($request->name, '-') . '.' . $request->file('image')->getClientOriginalExtension();
-            if ($product->image != 'nomedia.webp') {
+            if ($product->image != 'default.png') {
                 unlink(storage_path('app\\public\\ngodeng\\products\\' . $product->image));
             }
             $product->image = $filename;

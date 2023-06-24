@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->unsignedBigInteger('price')->default(0)->nullable();
-            $table->string('image')->default('nomedia.webp')->nullable();
+            $table->string('image')->default('default.png')->nullable();
             $table->string('description')->nullable();
             $table->unsignedTinyInteger('active')->default(0)->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

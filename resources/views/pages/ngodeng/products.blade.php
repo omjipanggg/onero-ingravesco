@@ -35,7 +35,7 @@
 										<td>{{ Str::headline($element->name) }}</td>
 										<td>@money($element->price)</td>
 										<td>
-											@if ($element->image === 'nomedia.webp')
+											@if ($element->image === 'default.png')
 											-
 											@else
 											<a href="#" data-route="{{ route('home.previewImage', ['ngodeng\\products', $element->image]) }}" class="dotted img-preview">{{ $element->image }}</a>

@@ -36,8 +36,8 @@
 	</div>
 
 	@php($image = 'storage/ngodeng/products/' . $record->image)
-	@if($record->image == 'nomedia.webp')
-		@php($image = 'img/nomedia.webp')
+	@if($record->image == 'default.png')
+		@php($image = 'img/default.png')
 	@endif
 
 	<img src="{{ asset($image) }}" alt="{{ Str::headline($record->name) }}" class="img-fluid w-99 mb-2" id="imgOnModal">

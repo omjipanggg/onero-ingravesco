@@ -26,8 +26,12 @@
 		<label for="descriptionModal">Description</label>
 	</div>
 
-	<div class="group d-flex flex-wrap justify-content-start align-items-center gap-2">
-		<label for="fileInputModal" class="btn btn-color">Picture<i class="bi bi-cloud-upload ms-2"></i></label>
+
+	<div class="group d-flex flex-wrap flex-column align-items-start justify-content-start">
+		{{-- <label for="fileInputModal" class="btn btn-color">Picture<i class="bi bi-cloud-upload ms-2"></i></label> --}}
+		<label for="fileInputModal" class="pointer">
+			<img src="{{ asset('img/default.png') }}" alt="Default" class="img-fluid w-99" id="imgOnModal">
+		</label>
 		<input type="file" name="image" class="form-control d-none" id="fileInputModal" accept=".jpg, .jpeg, .png">
 		<small class="small form-text" id="fileNameModal">No file chosen</small>
 	</div>

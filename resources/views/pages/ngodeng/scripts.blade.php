@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                             image: 'img-fluid'
                         },
                         imageAlt: 'Image',
-                        imageUrl: '{{ asset('img/nomedia.webp') }}',
+                        imageUrl: '{{ asset('img/default.png') }}',
                         imageWidth: 375,
                         showCloseButton: false,
                         showCancelButton: true,

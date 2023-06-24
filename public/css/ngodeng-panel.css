@@ -155,7 +155,8 @@ a.dotted:hover {
 img { pointer-events: none; }
 img.w-99 {
     width: 99.89px;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+    border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: .375rem;
 }
 
@@ -165,6 +166,10 @@ img.swal2-image {
 
 button.swal2-close:focus {
     box-shadow: none;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 /* HAMBURGER */
