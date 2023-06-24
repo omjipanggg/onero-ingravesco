@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 use App\Models\User;
@@ -23,7 +24,10 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        User::where('id', '3e77f9a9-fa67-43c4-84a0-6253090b17fc')->roles()->attach(1);
+        DB::table('role_users')->insert([
+            'user_id' => '3e77f9a9-fa67-43c4-84a0-6253090b17fc',
+            'role_id' => 1, 'expire_date' => '2049-12-31 23:59:59'
+        ]);
     }
 
     /**
