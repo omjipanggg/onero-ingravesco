@@ -9,6 +9,6 @@
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
     </ul>
     --}}
-    <p class="mt-3 text-muted text-center border-top py-5">{{ config('app.name') }} &copy; {{ date('Y') }}</p>
+    <p class="m-0 mt-3 text-muted text-center border-top py-5">{{ config('app.name') }} &copy; {{ date('Y') }}</p>
   </footer>
 </div>

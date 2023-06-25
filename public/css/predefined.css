@@ -9,9 +9,16 @@
 }
 
 body {
-	font-family: 'Silkscreen', sans-serif;
-	letter-spacing: -2px;
+	/*letter-spacing: -2px;*/
+	font-family: 'Silkscreen', 'Open Sans', sans-serif;
 	font-size: 13px;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: var(--turbid-color);
+    background-color: var(--bs-orange);
+    /*font-weight: 500;*/
 }
 
 .btn-shadow {
@@ -26,6 +33,10 @@ body {
 
 .text-pinky {
 	color: #ff41ba;
+}
+
+ul.square {
+	list-style-type: square;
 }
 
 a.dotted {
@@ -197,4 +208,14 @@ a.dotted:hover {
 	box-shadow: none;
 	transform: translateY(4px);
 	box-shadow: 0px 3px var(--base-active-color);
+}
+
+.img-hero-container {
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .275)!important;
+}
+
+@media all and (max-width: 991.98px) {
+	.img-hero-container {
+		box-shadow: none!important;
+	}
 }

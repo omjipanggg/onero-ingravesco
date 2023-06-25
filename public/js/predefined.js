@@ -1,6 +1,24 @@
 $(document).ready(function() {
 	$('#loader').fadeOut();
 
+  /*
+  if (document.querySelector('#toast-resent')) {
+      const Toast = Swal.mixin({
+        timer: 2478,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Resent!',
+        text: 'Please check again.'
+      })
+  }
+  */
 });
 
 function clock() {

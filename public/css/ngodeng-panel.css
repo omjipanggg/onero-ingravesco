@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+/*@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");*/
 
 :root {
     --header-height: 3rem;
@@ -6,10 +6,12 @@
     --first-color: hsla(252deg, 52%, 49%, 1);
     --first-darker-color: hsla(252deg, 52%, 34%, 0.8);
     --first-light-color: #AFA5D9;
+    --box-shadow-color: hsla(252deg, 98%, 76%, .25);
+    --input-border-color: hsla(252deg, 98%, 76%, 1);
     --pink-color: #ff41ba;
     --white-color: #F7F6FB;
     --turbid-color: #DBD2FF;
-    --body-font: 'Nunito', sans-serif;
+    --body-font: 'Nunito', 'Open Sans', sans-serif;
     --normal-font-size: 14px;
     --nav-width: 70px;
     --z-fixed: 99
@@ -67,6 +69,16 @@ a.dotted:hover {
     text-decoration-style: dotted;
 }
 
+.bg-color {
+    background-color: var(--first-color);
+    color: var(--white-color);
+}
+
+.bg-outline-color {
+    background-color: var(--turbid-color);
+    color: var(--first-darker-color);
+}
+
 .label-select label {
     position: absolute;
     top: 8px;
@@ -80,6 +92,18 @@ a.dotted:hover {
 .select2-selection {
     padding-top: 24px!important;
     padding-bottom: 10px!important;
+}
+
+.select2-container__ngodeng
+.select2-selection__choice[title='ngodeng']
+button {
+    display: none;
+}
+
+.dashboard .card-body {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .dataTable {
@@ -98,6 +122,13 @@ a.dotted:hover {
 .form-control {
     padding-top: .5rem;
     padding-bottom: .5rem;
+}
+
+.form-control:focus,
+.select2-container--bootstrap-5.select2-container--focus .select2-selection,
+.select2-container--bootstrap-5.select2-container--open .select2-selection {
+    border-color: var(--input-border-color);
+    box-shadow: 0 0 0 .25rem var(--box-shadow-color);
 }
 
 .base-for-label label,
@@ -170,6 +201,10 @@ button.swal2-close:focus {
 
 .pointer {
     cursor: pointer;
+}
+
+ul.square {
+    list-style-type: square;
 }
 
 /* HAMBURGER */
@@ -269,7 +304,7 @@ button.swal2-close:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 2rem;
     background-color: var(--header-color);
     z-index: var(--z-fixed);
     transition: all 520ms ease-in-out;
@@ -389,6 +424,9 @@ button.swal2-close:focus {
 	text-align: justify;
 }
 
+.card-container {
+}
+
 @media screen and (min-width: 767.98px) {
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -399,7 +437,7 @@ button.swal2-close:focus {
 
     .header {
         height: calc(var(--header-height) + 1rem);
-        padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+        padding: 0 3rem 0 calc(var(--nav-width) + 3rem);
     }
 
     .nav_64 {

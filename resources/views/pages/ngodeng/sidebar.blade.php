@@ -1,12 +1,13 @@
-<header class="header" id="header">
+<header class="header flex-wrap" id="header">
   <button class="hamburger hamburger--squeeze p-0 btn-no-outline header_toggle" type="button" role="button" id="header-toggle" aria-label="Toggle navigation">
     <div class="hamburger-box">
       <div class="hamburger-inner"></div>
     </div>
   </button>
-    {{-- <div class="header_toggle"><i class='bi bi-chevron-bar-right' id="header-toggle"></i></div> --}}
-    {{-- <div class="header_img"><img src="{{ asset('img/ngodeng/firman.png') }}" alt="Logo"></div> --}}
-    <span class="text-purple fw-bold">{{ Auth::user()->name }}</span>
+
+  <span id="clock">{{ date('d F Y H:i:s') }}</span>
+  <span class="text-purple fw-bold">{{ Auth::user()->name }}</span>
+  {{-- <div class="header_img"><img src="{{ asset('img/ngodeng/firman.png') }}" alt="Logo"></div> --}}
 </header>
 <div class="left-navbar" id="nav-bar">
     <nav class="nav">

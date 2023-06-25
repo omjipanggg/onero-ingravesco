@@ -3,6 +3,10 @@
 namespace App\Models;
 
 use App\Traits\HasUuids;
+
+// use App\Notifications\VerifyEmailNotification;
+// use App\Jobs\VerifyEmailJob;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,4 +58,9 @@ class User extends Authenticatable implements MustVerifyEmail
         if (!is_array($id)) { $id = [$id]; }
         return $this->roles()->whereIn('role_id', $id)->exists();
     }
+
+    // public function sendEmailVerificationNotification() {
+        // $this->notify(new VerifyEmailNotification);
+        // VerifyEmailJob::dispatch($this);
+    // }
 }

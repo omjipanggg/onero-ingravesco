@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Helpers\ActivityLog;
@@ -52,9 +53,9 @@ class LoginController extends Controller
     protected function logout(Request $request) {
         if (Auth::check()) {
             ActivityLog::logging('Logout');
-            session()->flush();
+            Session::flush();
             Auth::logout();
-            Alert::success('Code: 200', 'Your session has ended.');
+            Alert::success('Mazeltov!', 'Your session has ended.');
         }
         return $this->loggedOut($request) ?: redirect()->route('login');
     }

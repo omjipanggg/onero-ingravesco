@@ -4,7 +4,7 @@
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col p-0">
+			<div class="col">
 				<div class="card">
 					<div class="card-header">
 						<a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.create') }}" data-bs-toggle="modal" data-bs-type="Create" data-bs-table="Product" class="btn btn-color">Add New Product<i class="bi bi-box-arrow-up-right ms-2"></i></a>
@@ -31,9 +31,9 @@
 									@foreach ($products as $element)
 									<tr>
 										<td><a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.edit', $element->id) }}" data-bs-toggle="modal" data-bs-type="Edit" data-bs-table="Product" class="dotted"><i class="bi bi-pencil"></i></a></td>
-										<td><a href="{{ route('product.delete', $element->id) }}" class="dotted btn-delete" data-id="{{ $element->id }}"><i class="bi bi-trash"></i></a></td>
+										<td><a href="{{ route('product.delete', $element->id) }}" class="dotted btn-delete" data-id="{{ $element->id }}" data-name="{{ Str::headline($element->name) }}"><i class="bi bi-trash"></i></a></td>
 										<td>{{ Str::headline($element->name) }}</td>
-										<td>@money($element->price)</td>
+										<td data-hidden-data="{{ $element->price }}">@money($element->price)</td>
 										<td>
 											@if ($element->image === 'default.png')
 											-
@@ -48,9 +48,9 @@
 											@endforeach
 										</td>
 										@if ($element->active)
-										<td><span class="badge text-bg-danger"><i class="bi bi-x-circle me-1"></i>inactive</span></td>
-										@else
 										<td><span class="badge text-bg-success"><i class="bi bi-check-circle me-1"></i>active</span></td>
+										@else
+										<td><span class="badge text-bg-danger"><i class="bi bi-x-circle me-1"></i>inactive</span></td>
 										@endif
 									</tr>
 									@endforeach
@@ -70,7 +70,11 @@
 							</table>
 						</div>
 					</div>
-					<div class="card-footer">Footer</div>
+					<div class="card-footer">
+						<p class="m-0">
+							<i class="bi bi-info-circle me-2"></i>These records are shown after being filtered.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

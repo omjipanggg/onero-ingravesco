@@ -8,7 +8,8 @@
         <div class="group wrap-verify">
             @if (session('resent'))
                 <div class="alert alert-success py-2" role="alert">
-                    <i class="bi bi-check-circle me-2"></i><b>{{ __('Sent!') }}</b> Please check your email address.
+                    <i class="bi bi-check-circle me-2"></i><b>{{ __('Resent!') }}</b> Kindly check again.
+                    {{-- <span id="toast-resent"></span> --}}
                 </div>
             @endif
 
@@ -23,5 +24,17 @@
             </div>
         </div>
     </div>
+
+    @if (Route::has('logout'))
+    <div class="text-center linen">
+        <a href="{{ route('logout') }}" class="dotted turbided" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+
+    </div>
+
+    @endif
+
 </main>
 @endsection

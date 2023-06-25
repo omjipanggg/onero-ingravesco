@@ -2,12 +2,55 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <div class="container-fluid" id="content-placeholder">
-    	<div class="row">
-    		<div class="col p-0">
-		        <h4>Main Components</h4>
-		        <p class="text-justify m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, eius sed dolorem fugiat dignissimos necessitatibus maxime hic, doloribus expedita quia quod assumenda amet tempora perspiciatis repellendus voluptatum suscipit neque rem similique, obcaecati ducimus culpa illo modi dolorum! Nisi reiciendis, blanditiis sed natus laudantium officia repudiandae voluptatem dicta possimus quo maiores illo sunt! Eligendi maiores odit ex voluptatem eius recusandae, amet ea non. Distinctio blanditiis perspiciatis sed eos totam perferendis labore quam recusandae magni excepturi amet tenetur fugit rem corporis consequatur, veritatis impedit id delectus, placeat quis dolor eius? Provident odio possimus blanditiis ratione mollitia quod eaque, facere, unde reprehenderit quo aut adipisci itaque aspernatur, illo repellat accusantium harum maxime ipsum qui, odit voluptate totam. Aliquid, ipsum laudantium aut id illum. Amet alias id vero, consequuntur? Vero quidem recusandae vel unde, ratione sit, inventore debitis sequi, molestiae voluptatibus, voluptatem suscipit tenetur tempora quas ea reiciendis ullam atque! Fuga libero cupiditate itaque, deleniti, aut repellendus est? Aliquid veritatis sit repudiandae, quisquam dicta, aliquam quia voluptatum omnis corporis, soluta deleniti hic nisi natus eius! Aut, distinctio quibusdam commodi consequuntur nulla vitae tempora labore ducimus reprehenderit, dolore dolor earum, ipsum. Id, suscipit, obcaecati corrupti doloremque culpa natus distinctio consequatur eaque sed et a fugiat.</p>
-    		</div>
+    <div class="container-fluid dashboard mt-4" id="content-placeholder">
+    	<div class="d-flex flex-wrap align-items-strecth justify-content-between gap-3">
+			<div class="card flex-fill">
+				<div class="card-header bg-color">
+					<i class="bi bi-database me-2"></i>Products
+				</div>
+				<div class="card-body">
+					<ul class="square px-3 m-0">
+						<li>Registered <strong>{{ $products->count() }}</strong> items</li>
+					</ul>
+				</div>
+				<div class="card-footer bg-outline-color">
+					<a href="{{ route('ngodeng.products') }}" class="card-link text-dark">Explore</a>
+				</div>
+			</div>
+			<div class="card flex-fill">
+				<div class="card-header bg-color">
+					<i class="bi bi-cart3 me-2"></i>Sales
+				</div>
+				<div class="card-body">
+					<ul class="square px-3 m-0">
+						<li><strong>0</strong> transactions last week</li>
+						<li>Made <strong>0</strong> transactions last month</li>
+					</ul>
+				</div>
+				<div class="card-footer bg-outline-color">
+					<a href="{{ route('ngodeng.sales') }}" class="card-link text-dark">Explore</a>
+				</div>
+			</div>
+			<div class="card flex-fill">
+				<div class="card-header bg-color">
+					<i class="bi bi-people me-2"></i>Users
+				</div>
+				<div class="card-body">
+					<ul class="square px-3 m-0">
+						<li>Registered <strong>{{ $users->count() }}</strong> users</li>
+					</ul>
+				</div>
+			</div>
+			<div class="card flex-fill">
+				<div class="card-header bg-color">
+					<i class="bi bi-question-circle me-2"></i>FAQ
+				</div>
+				<div class="card-body">
+					<ul class="square px-3 m-0">
+						<li>TBD</li>
+					</ul>
+				</div>
+			</div>
     	</div>
     </div>
 @endsection

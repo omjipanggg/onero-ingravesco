@@ -76,7 +76,7 @@ class ProductController extends Controller
             }
         }
 
-        ActivityLog::logging('Product added (' . $product->id . ')');
+        ActivityLog::logging('Product added—' . $product->id);
         Alert::success('Success', 'Product added successfully.');
         return back();
     }
@@ -134,7 +134,7 @@ class ProductController extends Controller
             }
         }
 
-        ActivityLog::logging('Product updated (' . $id . ')');
+        ActivityLog::logging('Product updated—' . $id);
         Alert::success('Success', 'Product updated successfully.');
         return back();
     }
@@ -146,6 +146,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $data = Product::findOrFail($id)->delete();
+        ActivityLog::logging('Product deleted—' . $id);
         // if ($request->ajax()) {
         $response = ['success' => false, 'code' => 301];
         if ($data) {
@@ -153,7 +154,6 @@ class ProductController extends Controller
         }
         return response()->json($response);
         // }
-        ActivityLog::logging('Product deleted (' . $id . ')');
         // Alert::success('Success', 'Product deleted successfully.');
         // return back();
     }

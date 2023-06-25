@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 
 class NgodengController extends Controller
 {
@@ -13,6 +15,9 @@ class NgodengController extends Controller
      *
      * @return void
      */
+
+    private $category_filter = 7;
+
     public function __construct()
     {
         $this->middleware(['auth', 'verified', 'partners']);
@@ -23,7 +28,19 @@ class NgodengController extends Controller
      */
     public function index()
     {
+        $filter = $this->category_filter;
+
+        $products = Product::whereHas('categories', function($query) use($filter) {
+                $query->where('category_id', $filter);
+            })->orderBy('name')->get();
+
+        $users = User::whereHas('roles', function($query) {
+            $query->where('role_id', 3);
+        })->get();
+
         $context = [
+            'products' => $products,
+            'users' => $users
         ];
         return view('pages.ngodeng.dashboard', $context);
     }
@@ -77,10 +94,15 @@ class NgodengController extends Controller
     }
 
     public function products() {
+        $filter = $this->category_filter;
+        $products = Product::with(['categories' => function($query) {
+            $query->orderBy('categories.name');
+        }])->whereHas('categories', function($query) use($filter) {
+            $query->where('category_id', $filter);
+        })->orderBy('name')->get();
+
         $context = [
-            'products' => Product::with(['categories' => function($query) {
-                $query->orderBy('categories.name');
-            }])->orderBy('name')->get()
+            'products' => $products
         ];
         return view('pages.ngodeng.products', $context);
     }

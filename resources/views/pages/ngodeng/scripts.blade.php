@@ -313,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
     $('.btn-delete').click(function(event) {
         event.preventDefault();
         let id = $(this).data('id');
+        let name = $(this).data('name');
         let href = $(this).attr('href');
 
         // const swalWithBootstrapButtons = Swal.mixin({
@@ -324,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         // });
 
         Swal.fire({
-            title: 'Confirmation',
+            title: name,
             text: "Are you sure to delete this record?",
             icon: 'warning',
             showCancelButton: true,
@@ -356,11 +357,14 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire('Code: 200', 'Successfully deleted.', 'success');
-                setTimeout(window.location.reload(), 1280);
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire('Code: 301', 'Action aborted.', 'error');
-            }
+                Swal.fire(
+                    'Deleted',
+                    'Data deleted successfully.',
+                    'success'
+                ).then((answer) => {
+                    window.location.reload();
+                });
+            } // else if (result.dismiss === Swal.DismissReason.cancel) { Swal.fire('Cancelled', 'Data is here.', 'error'); }
         });
     });
 

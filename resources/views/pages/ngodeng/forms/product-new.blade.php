@@ -12,10 +12,10 @@
 		</div>
 	</div>
 
-	<div class="label-select position-relative mb-2">
+	<div class="label-select position-relative mb-2 select2-container__ngodeng">
 		<select required="" name="categories[]" id="categoryModal" multiple="" class="form-select select2multipleModal" aria-label="Floating categories to be selected">
 			@foreach ($categories as $element)
-				<option value="{{ $element->id }}">{{ $element->name }}</option>
+				<option value="{{ $element->id }}" @if($element->id === 7) selected="" disabled="" @endif>{{ $element->name }}</option>
 			@endforeach
 		</select>
 		<label for="categoryModal" class="text-muted">Category</label>

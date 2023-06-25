@@ -17,10 +17,10 @@
 
     {{-- FONTS --}}
     {{--
-    --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">
+    --}}
     {{-- STYLESHEET --}}
     {{-- ONLINE --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -51,8 +51,6 @@
 <body class="turbided">
     @include('components.loader')
     @include('sweetalert::alert')
-    {{-- @include('components.navbar') --}}
     @yield('content')
-    {{-- @include('components.footer') --}}
 </body>
 </html>

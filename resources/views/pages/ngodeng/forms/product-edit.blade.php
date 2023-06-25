@@ -12,7 +12,7 @@
 		</div>
 	</div>
 
-	<div class="label-select position-relative mb-2">
+	<div class="label-select position-relative mb-2 select2-container__ngodeng">
 		<select required="" name="categories[]" id="categoryModal" multiple="" class="form-select select2multipleModal" aria-label="Floating categories to be selected">
 			@foreach ($categories as $element)
 				@php($selected = false)

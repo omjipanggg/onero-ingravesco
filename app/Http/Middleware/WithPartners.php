@@ -17,7 +17,7 @@ class WithPartners
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->hasRole([1, 4])) {
+        if (Auth::check() && Auth::user()->hasRole([1, 3])) {
             return $next($request);
         } else {
             Alert::error('Unatuhorized', 'Too bad, you are not allowed.');
