@@ -1,6 +1,12 @@
 <form action="{{ route('product.update', $record->id) }}" method="POST" enctype="multipart/form-data">
 	@method('PUT')
 	@csrf
+
+	<div class="form-check mb-2">
+	  <input class="form-check-input" type="checkbox" value="1" id="activeModal" name="active" @if($record->active) checked="" @endif>
+	  <label class="form-check-label" for="activeModal">Active</label>
+	</div>
+
 	<div class="d-flex flex-wrap gap-2 mb-2">
 		<div class="form-floating flex-fill">
 			<input type="text" class="form-control" required="" id="nameModal" name="name" autocomplete="off" placeholder="Name" value="{{ $record->name }}">

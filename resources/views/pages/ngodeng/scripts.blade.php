@@ -18,10 +18,6 @@ document.addEventListener("DOMContentLoaded", function(handler) {
 
     showNavbar('header-toggle','nav-bar','body-pd','header');
 
-    if (localStorage.getItem('data') != null) {
-        const data = JSON.parse(localStorage.getItem('data'));
-    }
-
     const linkColor = document.querySelectorAll('.nav_link');
 
     function colorLink() {
@@ -65,12 +61,10 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             //         });
             //     }
             // });
-            const data = {
-                page: title,
-                activeUri: url
-            };
-            console.log(data);
-            // localStorage.setItem('data', JSON.stringify(data));
+            // const data = {
+                // page: title,
+                // activeUri: url
+            // };
         });
     });
 
@@ -243,9 +237,11 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                     }
 
                     [...document.querySelectorAll('.numeric')].forEach((item) => {
-                        item.addEventListener('input', function() {
+                        item.addEventListener('input', function(event) {
                             let value = this.value.replace(/[^0-9]/g, '');
                             this.value = moneyFormat(value);
+                            // onkeypress='return /[0-9]/i.test(event.key)'
+                            // onkeyup='return /[0-9]/i.test(event.key)'
                         });
                     });
 
@@ -368,7 +364,334 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         });
     });
 
+    // LOADER INSTANCE FOR LOADING
     $('#loader').fadeOut();
 
+    // SHOW OR HIDE TOAST INSTANCES
+    function showToast(param) {
+        let target = document.querySelector('.toast');
+        let container = document.querySelector('#toast-container');
+        let clonedTarget = target.cloneNode(true);
+        clonedTarget.children[1].innerHTML = param;
+        container.appendChild(clonedTarget);
+        const bsToast = bootstrap.Toast.getOrCreateInstance(clonedTarget);
+        bsToast.show();
+        setTimeout(() => {
+            while (container.childNodes.length > 1) {
+                container.removeChild(container.firstChild);
+            }
+        }, 8420);
+    }
+
+    // FILTERING ITEMS USING MIXITUP I GUESS
+    document.querySelectorAll('.products .filter-item').forEach((e, i) => {
+        e.addEventListener('click', (event) => {
+            let elem = [...document.querySelectorAll('.products .filter-item')].filter((el) => {
+                e !== el ? el.classList.remove('active') : null;
+            });
+            event.target.classList.add('active');
+        })
+    });
+
+    // MIXITUP FUNCTION
+    let mixerContainer = document.querySelector('.products .card-container'), mixer;
+    if (mixerContainer) {
+        mixer = mixitup(mixerContainer, {
+            selectors: { target: '.products .mix' },
+            animation: { duration: 367 },
+        });
+    }
+
+    // SCROLL TO HREF WITH HASHTAG FUNCTION
+    $('a[href*="#"]:not([href="#"])').click(function() {
+        if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
+            let target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+                $('html, body').animate({ scrollTop: target.offset().top - 0 }, 521);
+                return false;
+            }
+        }
+    });
+
+    // SAVE CURRENT SALES TO DATABASE
+    $('#saveToDatabase').click(() => {
+        $('#triggerToDatabase').trigger('click');
+    });
+
+    // FETCH TRANSACTION BY SUBMITTED DATE
+    function fetchSalesHistory(event) {
+        let date = event.currentTarget.value;
+        $.ajax({
+            type: "GET",
+            url: "./config/daily.php",
+            data: {
+                date: date,
+            },
+            success: (response) => {
+                $('#fetchData').html(response);
+            },
+        });
+    }
+
+    // WHOLE HELL OF BIG CART FUNCTION
+    let shoppingCart = (function() {
+        cart = [];
+
+        function Item(id, name, price, count) {
+            this.id = id;
+            this.name = name;
+            this.price = price;
+            this.count = count;
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function loadCart() {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+
+        if (localStorage.getItem('cart') != null) {
+            loadCart();
+        }
+
+        let obj = {};
+
+        obj.addItemToCart = function(id, name, price, count) {
+            for (let item in cart) {
+                if (cart[item].id === id) {
+                    cart[item].count++;
+                    saveCart();
+                    return;
+                }
+            }
+            let item = new Item(id, name, Number(price), count);
+            cart.push(item);
+            saveCart();
+        }
+
+        obj.setCountForItem = function(id, count) {
+            for (let item in cart) {
+                if (cart[item].id === id) {
+                    cart[item].count = count;
+                    break;
+                }
+            }
+            saveCart();
+        }
+
+        obj.removeItemFromCart = function(id) {
+            for (let item in cart) {
+                if (cart[item].id === id) {
+                    cart[item].count--;
+                    if (cart[item].count === 0) {
+                        cart.splice(item, 1);
+                    }
+                    break;
+                }
+            }
+            saveCart();
+        }
+
+        obj.removeItemAllFromCart = function(id) {
+            for (let item in cart) {
+                if (cart[item].id === id) {
+                    cart.splice(item, 1);
+                    break;
+                }
+            }
+            saveCart();
+        }
+
+        obj.clearCart = function() {
+            cart = [];
+            saveCart();
+        }
+
+        obj.totalCount = function() {
+            let totalCount = 0;
+            for (let item in cart) {
+                totalCount += cart[item].count;
+            }
+            return totalCount;
+        }
+
+        obj.totalCart = function() {
+            let totalCart = 0;
+            for (let item in cart) {
+                totalCart += cart[item].price * cart[item].count;
+            }
+            return Number(totalCart.toFixed(2));
+        }
+
+        obj.listCart = function() {
+            let cartCopy = [];
+            for (product in cart) {
+                let temp = cart[product];
+                itemCopy = {};
+                for (index in temp) {
+                    itemCopy[index] = temp[index];
+                }
+                cartCopy.push(itemCopy)
+            }
+            return cartCopy;
+        }
+        return obj;
+    })();
+
+    // DISPLAY THE CART
+    function displayCart() {
+        let cartObj = shoppingCart.listCart();
+        if (document.querySelector('table#itemList')) {
+            $('table#itemList').DataTable().destroy();
+            $('table#itemList').dataTable({
+                data: cartObj,
+                columns: [
+                    {
+                        data: "id",
+                        render: function(data, type, row) {
+                            return '<a class="btn-remove-cart" href="#" data-id="'+ row['id'] +'"><i class="bi bi-x-square"></i></a>';
+                        }
+                    },
+                    { data: "name" },
+                    {
+                        data: "count",
+                        render: function(data, type, row) {
+                            return '<a class="btn-minus-cart me-3" href="#" data-id="'+ row['id'] +'"><i class="bi bi-dash-square"></i></a>' + data + '<a href="#" class="btn-plus-cart ms-3" data-id="'+ row['id'] +'"><i class="bi bi-plus-square"></i></a>';
+                        }
+                    },
+                    { data: "price" }
+                ],
+                language: {
+                    paginate: {
+                        previous: '<i class="bi bi-chevron-left"></i>',
+                        next: '<i class="bi bi-chevron-right"></i>'
+                    },
+                    infoFiltered: '',
+                    lengthMenu: '_MENU_',
+                    search: "",
+                    searchPlaceholder: "Search...",
+                    emptyTable: 'Cart is empty'
+                },
+                info: false,
+                searching: false,
+                paging: false,
+            });
+            $('.dataTables_length select').removeClass('form-select-sm');
+            $('.dataTables_info').css({ paddingTop: 0 });
+        }
+        $('.total-cart').html(shoppingCart.totalCart());
+        $('.total-count').html(shoppingCart.totalCount());
+    }
+
+    $('.item-on-card').click((event) => {
+        let id = event.currentTarget.dataset.id;
+        let name = event.currentTarget.dataset.name;
+        let price = event.currentTarget.dataset.price;
+        shoppingCart.addItemToCart(id, name, price, 1);
+
+        const Toast = Swal.mixin({
+            timer: 1852,
+            toast: true,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            position: `bottom-end`,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+
+        Toast.fire({
+            icon: 'success',
+            title: name +  ' added.'
+        });
+
+        // setLink();
+        displayCart();
+    });
+
+    $('.btn-clear-cart').click((event) => {
+        Swal.fire({
+            title: 'Empty Cart?',
+            text: 'Click OK to continue.',
+            icon: 'warning',
+            showCancelButton: true,
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                shoppingCart.clearCart();
+                displayCart();
+                Swal.fire('Cleared', 'Cart has been cleared.','success')
+                .then((answer) => {
+                    console.log('Clearing cart...');
+                });
+            } // else if (result.dismiss === Swal.DismissReason.cancel) { Swal.fire('Cancelled', 'Data is here.', 'error'); }
+        });
+
+        // setLink();
+        // displayCart();
+    });
+
+    $('.cart-placeholder').on('click', '.btn-minus-cart', (event) => {
+        event.preventDefault();
+        let id = event.currentTarget.dataset.id;
+        shoppingCart.removeItemFromCart(id);
+        // setLink();
+        displayCart();
+    });
+
+    $('.cart-placeholder').on('click', '.btn-plus-cart', (event) => {
+        event.preventDefault();
+        let id = event.currentTarget.dataset.id;
+        shoppingCart.addItemToCart(id, null, null, null);
+        // setLink();
+        displayCart();
+    });
+
+    $('.cart-placeholder').on('change', '.item-count', (event) => {
+        let id = event.currentTarget.dataset.id;
+        let count = Number(event.target.value);
+        shoppingCart.setCountForItem(id, count);
+        // setLink();
+        displayCart();
+    });
+
+    $('.cart-placeholder').on('click', '.btn-remove-cart', (event) => {
+        event.preventDefault();
+        let id = event.currentTarget.dataset.id;
+        shoppingCart.removeItemAllFromCart(id);
+        // setLink();
+        displayCart();
+    });
+
+    function setLink() {
+        let jason = {};
+        let thisDate = new Date();
+        jason.id = new Date(thisDate.getFullYear(), (thisDate.getMonth()-1), thisDate.getDate()).getTime();
+        jason.user = document.querySelector('.btn-print').getAttribute('data-user');
+        jason.item = JSON.parse(localStorage.getItem('cart'));
+        jason.datetime = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+        jason.count = shoppingCart.totalCount();
+        jason.subtotal = shoppingCart.totalCart();
+
+        let header = "data:text/json;charset:utf-8," + encodeURIComponent(JSON.stringify(jason));
+        let anchor = document.querySelector('#saveToLocal');
+        anchor.setAttribute('href', header);
+        anchor.setAttribute('download', "data.json");
+
+        let context = document.querySelector('#context');
+        context.value = JSON.stringify(jason);
+    }
+
+    const checkout = document.querySelector('#checkout');
+    if (checkout) {
+        // setLink();
+    }
+
+    // IDK WHY DID THIS LINE IS HERE
+    displayCart();
 });
 </script>

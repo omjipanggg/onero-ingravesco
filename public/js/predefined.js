@@ -1,25 +1,37 @@
 $(document).ready(function() {
 	$('#loader').fadeOut();
-
-  /*
-  if (document.querySelector('#toast-resent')) {
-      const Toast = Swal.mixin({
-        timer: 2478,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Resent!',
-        text: 'Please check again.'
-      })
-  }
-  */
 });
+
+let swalStack = null;
+let swalCount = 0;
+
+function swalToCart(event) {
+    event.preventDefault();
+
+    if (swalStack != null) {
+        swalStack.close();
+    }
+
+    swalCount++;
+    const Toast = Swal.mixin({
+        timer: 1852,
+        toast: true,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        position: `bottom-end`,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+    });
+
+    console.log(swalCount);
+
+    swalStack = Toast.fire({
+        icon: 'success',
+        title: 'Product added.'
+    });
+}
 
 function clock() {
     const month = [ "January", "February", "March", "April", "May", "June",

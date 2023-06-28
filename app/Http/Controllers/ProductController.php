@@ -42,7 +42,7 @@ class ProductController extends Controller
         $context = [
             'categories' => Category::orderBy('name')->get()
         ];
-        return view('pages.ngodeng.forms.product-new', $context);
+        return view('components.form.product-new', $context);
     }
 
     /**
@@ -98,7 +98,7 @@ class ProductController extends Controller
             'record' => Product::findOrFail($id),
             'categories' => Category::orderBy('name')->get()
         ];
-        return view('pages.ngodeng.forms.product-edit', $context);
+        return view('components.form.product-edit', $context);
     }
 
     /**
@@ -106,6 +106,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $active = true;
+        if (!$request->active) {
+            $active = false;
+        }
+
         $product = Product::findOrFail($id);
 
         $realMoney = Str::replace('.', '', $request->price);
@@ -122,6 +127,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $realMoney;
+        $product->active = $active;
         $product->save();
 
         $product->categories()->detach();

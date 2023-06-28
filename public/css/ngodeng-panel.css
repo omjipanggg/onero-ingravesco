@@ -11,7 +11,7 @@
     --pink-color: #ff41ba;
     --white-color: #F7F6FB;
     --turbid-color: #DBD2FF;
-    --body-font: 'Nunito', 'Open Sans', sans-serif;
+    --body-font: 'Poppins', 'Nunito', 'Open Sans', sans-serif;
     --normal-font-size: 14px;
     --nav-width: 70px;
     --z-fixed: 99
@@ -85,7 +85,7 @@ a.dotted:hover {
     left: 5px;
     font-size: 11px;
     z-index: 1061;
-    background-color: white;
+    background-color: var(--white-color);
     padding: 0 .5rem;
 }
 
@@ -137,7 +137,7 @@ button {
     font-size: 1rem;
     top: 20%;
     left: .537rem;
-    background-color: white;
+    background-color: var(--white-color);
     padding-left: .5rem;
     padding-right: .5rem;
     z-index: 91;
@@ -172,7 +172,7 @@ button {
     bottom: 0;
     right: 0;
     z-index: 2701;
-    background-color: rgba(245, 245, 245, .8);
+    background-color: var(--turbid-color);
 }
 #loader .mid {
     position: fixed;
@@ -424,7 +424,27 @@ ul.square {
 	text-align: justify;
 }
 
+/* ======================================================================== */
+/* SALES */
 .card-container {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.item-on-card {
+    box-shadow: 3px 6px var(--first-darker-color);
+    border-color: var(--first-color);
+}
+
+.item-on-card:hover {
+    background-color: var(--first-color);
+    color: var(--white-color);
+}
+
+.item-on-card:active {
+    box-shadow: 3px 3px var(--first-color);
+    transform: translateY(3px);
 }
 
 @media screen and (min-width: 767.98px) {
@@ -468,5 +488,8 @@ ul.square {
 
     .body-pd {
         padding-left: calc(var(--nav-width) + 188px);
+    }
+    .card-container {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }

@@ -5,8 +5,11 @@
     </div>
   </button>
 
-  <span id="clock">{{ date('d F Y H:i:s') }}</span>
-  <span class="text-purple fw-bold">{{ Auth::user()->name }}</span>
+  {{-- <span id="clock">{{ date('d F Y H:i:s') }}</span> --}}
+  <div class="group">
+    <a href="{{ route('ngodeng.sales') }}" class="me-2 text-purple"><i class="bi bi-cart3 me-1"></i><span class="total-count"></span></a>
+    <span class="text-purple fw-bold">{{ Auth::user()->name }}</span>
+  </div>
   {{-- <div class="header_img"><img src="{{ asset('img/ngodeng/firman.png') }}" alt="Logo"></div> --}}
 </header>
 <div class="left-navbar" id="nav-bar">

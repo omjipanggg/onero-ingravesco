@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <div class="container-fluid dashboard mt-4" id="content-placeholder">
+    <div class="container-fluid dashboard" id="content-placeholder">
     	<div class="d-flex flex-wrap align-items-strecth justify-content-between gap-3">
 			<div class="card flex-fill">
 				<div class="card-header bg-color">
@@ -14,7 +14,7 @@
 					</ul>
 				</div>
 				<div class="card-footer bg-outline-color">
-					<a href="{{ route('ngodeng.products') }}" class="card-link text-dark">Explore</a>
+					<a href="{{ route('ngodeng.products') }}" class="card-link text-dark dotted">Details</a>
 				</div>
 			</div>
 			<div class="card flex-fill">
@@ -23,12 +23,12 @@
 				</div>
 				<div class="card-body">
 					<ul class="square px-3 m-0">
-						<li><strong>0</strong> transactions last week</li>
+						<li><strong>0</strong> successful transactions last week</li>
 						<li>Made <strong>0</strong> transactions last month</li>
 					</ul>
 				</div>
 				<div class="card-footer bg-outline-color">
-					<a href="{{ route('ngodeng.sales') }}" class="card-link text-dark">Explore</a>
+					<a href="{{ route('ngodeng.sales') }}" class="card-link text-dark dotted">Details</a>
 				</div>
 			</div>
 			<div class="card flex-fill">
@@ -37,7 +37,7 @@
 				</div>
 				<div class="card-body">
 					<ul class="square px-3 m-0">
-						<li>Registered <strong>{{ $users->count() }}</strong> users</li>
+						<li><strong>{{ $users->count() }}</strong> current active users</li>
 					</ul>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 				</div>
 				<div class="card-body">
 					<ul class="square px-3 m-0">
-						<li>TBD</li>
+						<li><a href="#" onclick="event.preventDefault();">Lorem ipsum sit amet dolor</a></li>
 					</ul>
 				</div>
 			</div>

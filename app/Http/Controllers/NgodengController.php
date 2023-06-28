@@ -16,7 +16,7 @@ class NgodengController extends Controller
      * @return void
      */
 
-    private $category_filter = 7;
+    private $filter = 7;
 
     public function __construct()
     {
@@ -28,7 +28,7 @@ class NgodengController extends Controller
      */
     public function index()
     {
-        $filter = $this->category_filter;
+        $filter = $this->filter;
 
         $products = Product::whereHas('categories', function($query) use($filter) {
                 $query->where('category_id', $filter);
@@ -94,7 +94,7 @@ class NgodengController extends Controller
     }
 
     public function products() {
-        $filter = $this->category_filter;
+        $filter = $this->filter;
         $products = Product::with(['categories' => function($query) {
             $query->orderBy('categories.name');
         }])->whereHas('categories', function($query) use($filter) {
@@ -108,6 +108,15 @@ class NgodengController extends Controller
     }
 
     public function sales() {
-        return view('pages.ngodeng.sales');
+        $filter = $this->filter;
+        $products = Product::with(['categories' => function($query) {
+                $query->orderBy('categories.name');
+            }])->whereHas('categories', function($query) use($filter) {
+                $query->where('category_id', $filter);
+            })->where('active', true)->orderBy('name')->get();
+        $context = [
+            'products' => $products
+        ];
+        return view('pages.ngodeng.sales', $context);
     }
 }
