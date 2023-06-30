@@ -1,9 +1,9 @@
 :root {
 	--turbid-color: hsla(0deg, 0%, 96%, 1);
 	--base-color: hsla(207deg, 43%, 49%, 1);
+	--base-border-color: hsla(207deg, 42%, 38%, .5);
 	--base-active-color: hsla(207deg, 42%, 38%, 1);
-	--primary-color: hsla(207deg, 43%, 49%, 1);
-	--primary-bright-color: hsla(0deg, 0%, 97%, 1);
+	--base-bright-color: hsla(0deg, 0%, 97%, 1);
 	--shadow-color: hsla(0deg, 8%, 10%, 1);
 	--text-color: hsla(0deg, 0%, 10%, 1);
 }
@@ -21,6 +21,16 @@ body {
     /*font-weight: 500;*/
 }
 
+.active > .page-link,
+.page-link.active {
+    background-color: var(--base-color)!important;
+    border-color: var(--base-border-color)!important;
+}
+
+.page-link:focus {
+    box-shadow: none;
+}
+
 .btn-shadow {
 	box-shadow: -3px 5px var(--shadow-color);
 }
@@ -33,6 +43,10 @@ body {
 
 .text-pinky {
 	color: #ff41ba;
+}
+
+.text-color {
+	color: var(--base-color);
 }
 
 ul.square {
@@ -61,22 +75,22 @@ a.dotted:hover {
 
 .btn-color {
 	background-color: var(--base-color);
-	color: var(--primary-bright-color);
+	color: var(--base-bright-color);
 }
 .btn-color:focus,
 .btn-color:hover {
 	background-color: var(--base-active-color);
-	color: var(--primary-bright-color);
+	color: var(--base-bright-color);
 }
 .btn-outline-color {
-	background-color: var(--primary-bright-color);
+	background-color: var(--base-bright-color);
 	border: 1px solid var(--base-color);
 	color: var(--base-color);
 }
 .btn-outline-color:focus,
 .btn-outline-color:hover {
 	background-color: var(--base-active-color);
-	color: var(--primary-bright-color);
+	color: var(--base-bright-color);
 }
 
 #loader {
@@ -185,11 +199,25 @@ a.dotted:hover {
 
 .password-container label {
 	box-shadow: 3px 5px var(--shadow-color);
-	color: var(--primary-bright-color);
+	color: var(--base-bright-color);
 	background-color: var(--base-color);
 	border: 1px solid transparent;
 	border-radius: .25rem;
 	padding: .25rem .5rem;
+}
+
+/* DATATABLE */
+.dataTable {
+    width: inherit!important;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.dataTable td {
+    white-space: nowrap;
+    vertical-align: middle;
+    text-overflow: ellipsis;
 }
 
 /* FORM */
@@ -201,10 +229,19 @@ a.dotted:hover {
 	transform: translateY(4px);
 	box-shadow: 0px 3px #b22e3b;
 }
-.form-control {
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection,
+.select2-container--bootstrap-5.select2-container--open .select2-selection,
+.select2-selection.select2-selection--multiple,
+.form-control,
+.input-shadow {
 	box-shadow: 0px 7px var(--base-color);
 }
-.form-control:focus {
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection:focus,
+.select2-container--bootstrap-5.select2-container--open .select2-selection:focus,
+.form-control:focus,
+.input-shadow:focus {
 	box-shadow: none;
 	transform: translateY(4px);
 	box-shadow: 0px 3px var(--base-active-color);
@@ -212,6 +249,20 @@ a.dotted:hover {
 
 .img-hero-container {
 	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .275)!important;
+}
+
+.label-select label {
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    font-size: 11px;
+    z-index: 1061;
+    padding: 0 .5rem;
+}
+
+.select2-selection {
+	padding-top: 24px!important;
+	padding-bottom: 10px!important;
 }
 
 img {

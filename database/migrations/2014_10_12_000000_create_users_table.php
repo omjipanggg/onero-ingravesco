@@ -29,7 +29,7 @@ return new class extends Migration
         });
 
         DB::table('users')->insert([
-            'id' => '54e9e828-8f25-4910-a4fc-b6676deafaed',
+            'id' => '00000000-0000-0000-0000-000000000000',
             'name' => 'Admin',
             'email' => 'omjipanggg@gmail.com',
             'email_verified_at' => Carbon::today(),

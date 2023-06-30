@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -32,6 +33,9 @@ class HomeController extends Controller
 
     public function ngodengIndex()
     {
+        if (Auth::check() && Auth::user()->hasRole(3)) {
+            return redirect()->route('ngodeng.index');
+        }
         return view('pages.ngodeng.index');
     }
 

@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                 return new Promise((resolve) => {
                     $.ajax({
                         url: href,
-                        type: 'POST',
+                        type: 'DELETE',
                         dataType: 'json',
                         data: {
                             '_method': 'DELETE',
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                 ).then((answer) => {
                     window.location.reload();
                 });
-            } // else if (result.dismiss === Swal.DismissReason.cancel) { Swal.fire('Cancelled', 'Data is here.', 'error'); }
+            } // else if (result.dismiss === Swal.DismissReason.cancel) { Swal.fire('Cancelled', 'Nothing has changed.', 'error'); }
         });
     });
 
@@ -552,14 +552,14 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                     {
                         data: "id",
                         render: function(data, type, row) {
-                            return '<a class="btn-remove-cart" href="#" data-id="'+ row['id'] +'"><i class="bi bi-x-square"></i></a>';
+                            return '<a class="btn-remove-cart" href="#" data-id="'+ row['id'] +'" data-name="'+ row['name'] +'"><i class="bi bi-x-square"></i></a>';
                         }
                     },
                     { data: "name" },
                     {
                         data: "count",
                         render: function(data, type, row) {
-                            return '<a class="btn-minus-cart me-3" href="#" data-id="'+ row['id'] +'"><i class="bi bi-dash-square"></i></a>' + data + '<a href="#" class="btn-plus-cart ms-3" data-id="'+ row['id'] +'"><i class="bi bi-plus-square"></i></a>';
+                            return '<a class="btn-minus-cart me-4" href="#" data-id="'+ row['id'] +'"><i class="bi bi-dash-square"></i></a><span class="w-72 d-inline-block text-center">' + data + '</span><a href="#" class="btn-plus-cart ms-4" data-id="'+ row['id'] +'"><i class="bi bi-plus-square"></i></a>';
                         }
                     },
                     { data: "price" }
@@ -616,7 +616,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
     $('.btn-clear-cart').click((event) => {
         Swal.fire({
             title: 'Empty Cart?',
-            text: 'Click OK to continue.',
+            text: 'Press OK to continue.',
             icon: 'warning',
             showCancelButton: true,
             reverseButtons: true
@@ -662,7 +662,27 @@ document.addEventListener("DOMContentLoaded", function(handler) {
     $('.cart-placeholder').on('click', '.btn-remove-cart', (event) => {
         event.preventDefault();
         let id = event.currentTarget.dataset.id;
+        let name = event.currentTarget.dataset.name;
+
         shoppingCart.removeItemAllFromCart(id);
+
+        const Toast = Swal.mixin({
+            timer: 1852,
+            toast: true,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            position: `bottom-end`,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+
+        Toast.fire({
+            icon: 'error',
+            title: name +  ' removed.'
+        });
+
         // setLink();
         displayCart();
     });

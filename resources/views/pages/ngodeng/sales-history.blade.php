@@ -8,16 +8,12 @@
 				<div class="card-container">
 					@foreach ($products as $product)
 					<div class="card pointer item-on-card" data-id="{{ $product->id }}" data-name="{{ Str::headline($product->name) }}" data-price="{{ $product->price }}">
-						<div class="card-body p-0">
-							<img src="{{ asset('storage\\ngodeng\\products\\' . $product->image) }}" alt="{{ $product->name }}" class="card-img">
-						</div>
-						{{--
+						<img src="{{ asset('storage\\ngodeng\\products\\' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top">
 						<div class="card-body py-1 px-2">
 							<div class="card-text fw-bold">
 								{{ Str::headline($product->name) }}
 							</div>
 						</div>
-						--}}
 					</div>
 					@endforeach
 				</div>
@@ -47,15 +43,7 @@
 								</tfoot>
 							</table>
 						</div>
-						<div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-						<button class="btn btn-outline-color btn-clear-cart" type="button">Clear<i class="bi bi-cart-x ms-2"></i></button>
-						<form action="{{ route('ngodeng.store') }}" method="POST">
-							@csrf
-							<input type="hidden" name="products[]" value="0">
-							<input type="hidden" name="count[]" value="0">
-							<button type="submit" class="btn btn-color">Checkout<i class="bi bi-cart-check ms-2"></i></button>
-						</form>
-						</div>
+						<button class="btn btn-color btn-clear-cart" type="button">Clear<i class="bi bi-cart-x ms-2"></i></button>
 					</div>
 				</div>
 			</div>

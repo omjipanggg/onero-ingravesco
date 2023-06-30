@@ -36,10 +36,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hamburgers.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/select2-bootstrap-5-theme.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2-bootstrap-5-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ngodeng-panel.css') }}">
 
     {{-- SCRIPTS --}}

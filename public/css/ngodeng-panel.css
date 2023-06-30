@@ -291,6 +291,10 @@ ul.square {
     box-shadow: none;
 }
 
+.w-72 {
+    width: 20px;
+}
+
 .w-20 {
     width: 96px;
 }
@@ -420,6 +424,7 @@ ul.square {
 .text-purple {
     color: var(--first-color);
 }
+
 .text-justify {
 	text-align: justify;
 }
@@ -429,7 +434,7 @@ ul.square {
 .card-container {
       display: grid;
       grid-gap: 1rem;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 }
 
 .item-on-card {

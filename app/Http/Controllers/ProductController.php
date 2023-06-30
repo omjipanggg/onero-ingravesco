@@ -77,7 +77,7 @@ class ProductController extends Controller
         }
 
         ActivityLog::logging('Product added—' . $product->id);
-        Alert::success('Success', 'Product added successfully.');
+        Alert::success('Completed', 'Product added successfully.');
         return back();
     }
 
@@ -141,26 +141,39 @@ class ProductController extends Controller
         }
 
         ActivityLog::logging('Product updated—' . $id);
-        Alert::success('Success', 'Product updated successfully.');
+        Alert::success('Completed', 'Product updated successfully.');
         return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(Request $request, $id)
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $data = Product::findOrFail($id)->delete();
         ActivityLog::logging('Product deleted—' . $id);
-        // if ($request->ajax()) {
-        $response = ['success' => false, 'code' => 301];
-        if ($data) {
-            $response = ['success' => true, 'code' => 200];
+        Alert::success('Completed', 'Product deleted successfully.');
+
+        $data = Product::findOrFail($id);
+        $data = $data->delete();
+
+        $response = [
+            'code' => 301,
+            'success' => false
+        ];
+
+        if ($request->ajax()) {
+            if ($data) {
+                $response = [
+                    'code' => 200,
+                    'success' => true
+                ];
+            }
+            return response()->json($response);
         }
-        return response()->json($response);
-        // }
-        // Alert::success('Success', 'Product deleted successfully.');
-        // return back();
+
+        if (!$data) {
+            Alert::error('Failed', 'Product deleted.');
+        }
+        return back();
     }
 }

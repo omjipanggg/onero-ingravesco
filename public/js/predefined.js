@@ -64,3 +64,86 @@ function showChar(event) {
         }
     });
 }
+
+if (document.querySelector('table#fetchUser')) {
+    let objDataTable = $('table#fetchUser').dataTable({
+        language: {
+            paginate: {
+                previous: '<i class="bi bi-chevron-left"></i>',
+                next: '<i class="bi bi-chevron-right"></i>'
+            },
+            infoFiltered: '',
+            lengthMenu: '_MENU_',
+            search: "",
+            searchPlaceholder: "Search...",
+            emptyTable: "No records found"
+        }
+    });
+    $('.dataTables_length select').addClass('input-shadow mb-2');
+    $('.dataTables_filter').addClass('mb-2');
+    $('.dataTables_info').css({ paddingTop: 0 });
+}
+
+let modalControl = document.getElementById('modalControl');
+if (modalControl) {
+    modalControl.addEventListener('show.bs.modal', function (event) {
+        let btn = event.relatedTarget;
+        let table = btn.getAttribute('data-bs-table');
+        let type = btn.getAttribute('data-bs-type');
+        let route = btn.getAttribute('href');
+
+        modalControl.querySelector('.modal-title').textContent = table + '—' + type;
+
+        $.ajax({
+            url: route,
+            async: true,
+            type: 'GET',
+            beforeSend: () => {
+                console.log('Fetching...');
+            },
+            success: (result) => {
+                $('#modalControlPlaceholders').html(result);
+            },
+            complete: () => {
+                    [...document.querySelectorAll('.select2multipleModal')].forEach((item) => {
+                        $(item).select2({
+                            placeholder: 'Choose',
+                            tags: true,
+                            cache: true,
+                            theme: 'bootstrap-5',
+                            width: '100%',
+                            dropdownAutoWidth: true,
+                            dropdownParent: modalControl,
+                            // autoWidth: false,
+                            // closeOnSelect: false,
+                            debug: true
+                        });
+                    });
+            },
+            timeout: 6270
+        });
+    });
+}
+
+$('.btn-delete').click(function(event) {
+    event.preventDefault();
+    let name = $(this).data('name');
+    let form = $(this).data('delete-form');
+    form = document.getElementById(form);
+
+    Swal.fire({
+        title: name,
+        text: "Delete this record?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true,
+    }).then((result) => {
+        if (result.isConfirmed) { form.submit(); }
+    });
+});
+
+$(document).on('click', '#saveTrigger', (event) => {
+    $('#btnSubmitOnModal').trigger('click');
+});

@@ -10,29 +10,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Order extends Model
 {
     use HasFactory, HasUuids, SoftDeletes, UserInCharge;
 
-    protected $table = 'products';
+    protected $table = 'orders';
 
     protected $guarded = [];
 
     protected $casts = [
-        'id' => 'string',
-        'active' => 'boolean'
+    	'id' => 'string'
     ];
 
-    public function orderDetails() {
-        return $this->belongsToMany(Order::class, 'order_products')->orderByDesc('created_at')->withPivot(['quantity']);
-    }
-
-    public function categories() {
-        return $this->belongsToMany(Category::class, 'product_categories')->orderBy('categories.name');
-    }
-
-    public function hasCategory($id) {
-        return $this->categories()->where('category_id', $id)->exists();
+    public function details() {
+    	return $this->belongsToMany(Product::class, 'order_products')->orderByDesc('created_at')->withPivot(['quantity']);
     }
 
     public function creator() {
@@ -44,6 +35,6 @@ class Product extends Model
     }
 
     public function eraser() {
-        return $this->belongsTo(User::class, 'deleted_by');
+    	return $this->belongsTo(User::class, 'deleted_by');
     }
 }

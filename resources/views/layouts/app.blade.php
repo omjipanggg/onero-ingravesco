@@ -32,6 +32,10 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU=" crossorigin="anonymous"> --}}
 
     {{-- OFFLINE --}}
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2-bootstrap-5-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/predefined.css') }}">
 
@@ -45,12 +49,19 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js" defer="" integrity="sha256-2Dbg51yxfa7qZ8CSKqsNxHtph8UHdgbzxXF9ANtyJHo=" crossorigin="anonymous"></script> --}}
 
     {{-- OFFLINE --}}
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/dataTables.responsive.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/responsive.bootstrap5.js') }}" defer=""></script>
+    <script src="{{ asset('js/dataTables.editor.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/select2.min.js') }}" defer=""></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}" defer=""></script>
     <script src="{{ asset('js/predefined.js') }}" defer=""></script>
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 <body class="turbided">
+    @include('components.modal')
     @include('components.loader')
     @include('sweetalert::alert')
     @yield('content')

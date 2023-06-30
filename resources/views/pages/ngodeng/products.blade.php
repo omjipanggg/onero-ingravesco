@@ -30,7 +30,7 @@
 								<tbody>
 									@foreach ($products as $element)
 									<tr>
-										<td><a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.edit', $element->id) }}" data-bs-toggle="modal" data-bs-type="Edit" data-bs-table="Product" class="dotted"><i class="bi bi-pencil"></i></a></td>
+										<td><a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.edit', $element->id) }}" data-bs-toggle="modal" data-bs-type="Edit" data-bs-table="Product" class="dotted"><i class="bi bi-pencil-square"></i></a></td>
 										<td><a href="{{ route('product.delete', $element->id) }}" class="dotted btn-delete" data-id="{{ $element->id }}" data-name="{{ Str::headline($element->name) }}"><i class="bi bi-trash"></i></a></td>
 										<td>{{ Str::headline($element->name) }}</td>
 										<td data-hidden-data="{{ $element->price }}">@money($element->price)</td>

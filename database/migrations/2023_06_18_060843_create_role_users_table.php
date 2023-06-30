@@ -25,7 +25,7 @@ return new class extends Migration
         });
 
         DB::table('role_users')->insert([
-            'user_id' => '54e9e828-8f25-4910-a4fc-b6676deafaed',
+            'user_id' => '00000000-0000-0000-0000-000000000000',
             'role_id' => 1, 'expire_date' => '2049-12-31 23:59:59'
         ]);
     }

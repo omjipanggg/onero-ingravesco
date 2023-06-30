@@ -21,4 +21,8 @@ class Label extends Model
     public function editor() {
     	return $this->belongsTo(User::class, 'updated_by');
     }
+
+    public function eraser() {
+    	return $this->belongsTo(User::class, 'deleted_by');
+    }
 }

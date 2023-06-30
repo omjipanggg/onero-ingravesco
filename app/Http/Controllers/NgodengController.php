@@ -119,4 +119,8 @@ class NgodengController extends Controller
         ];
         return view('pages.ngodeng.sales', $context);
     }
+
+    public function salesHistory() {
+        return view('pages.ngodeng.sales-history');
+    }
 }
