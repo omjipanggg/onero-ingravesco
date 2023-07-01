@@ -63,6 +63,7 @@
     <script src="{{ asset('js/dataTables.editor.min.js') }}" defer=""></script>
     <script src="{{ asset('js/select2.min.js') }}" defer=""></script>
     <script src="{{ asset('js/mixitup.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/chart.min.js') }}" defer=""></script>
     <script src="{{ asset('js/ngodeng-panel.js') }}" defer=""></script>
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}

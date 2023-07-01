@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->char('updated_by', 36)->default('00000000-0000-0000-0000-000000000000')->nullable();
             $table->softDeletes();
-            $table->char('deleted_by', 36)->default('00000000-0000-0000-0000-000000000000')->nullable();
+            $table->char('deleted_by', 36)->nullable();
         });
     }
 

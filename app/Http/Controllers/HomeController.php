@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spotify, SpotifySeed;
@@ -63,14 +62,17 @@ class HomeController extends Controller
         if (file_exists($path)) {
             return response()->file($path);
         }
-        abort(404);
+        return response()->file(public_path('img\\default.png'));
     }
+
     public function previewImage($directory, $image)
     {
-        // $path = public_path('storage\\' . $directory . '\\' . $image);
         $path = storage_path('app\\public\\' . $directory . '\\' . $image);
 
-        $response = ['code' => 301];
+        $response = [
+            'code' => 301,
+            'url' => asset('img/default.png')
+        ];
 
         if (file_exists($path)) {
             $response = [

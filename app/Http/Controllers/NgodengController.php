@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 
@@ -16,7 +20,7 @@ class NgodengController extends Controller
      * @return void
      */
 
-    private $filter = 7;
+    private $filter = 3;
 
     public function __construct()
     {
@@ -30,15 +34,19 @@ class NgodengController extends Controller
     {
         $filter = $this->filter;
 
-        $products = Product::whereHas('categories', function($query) use($filter) {
+        $products = Product::with('sales')->whereHas('categories', function($query) use($filter) {
                 $query->where('category_id', $filter);
             })->orderBy('name')->get();
 
-        $users = User::whereHas('roles', function($query) {
-            $query->where('role_id', 3);
-        })->get();
+        $orders = Order::all();
+
+        $users = User::all();
+        // $users = User::whereHas('roles', function($query) {
+            // $query->where('role_id', 3);
+        // })->get();
 
         $context = [
+            'orders' => $orders,
             'products' => $products,
             'users' => $users
         ];
@@ -58,7 +66,32 @@ class NgodengController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $path = 'public\\ngodeng\\order.json';
+
+        Storage::put($path, json_decode(json_encode($request->orders)), true);
+
+        $orderString = json_decode(Storage::get($path), true);
+
+        $order = new Order;
+        $order->count_sales = $orderString['count'];
+        $order->total_sales = $orderString['subtotal'];
+        $order->save();
+
+        foreach ($orderString['items'] as $key => $value) {
+            $order->details()->attach($value['id'], [
+                'quantity' => $value['count']
+            ]);
+        }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'code' => 200,
+                'success' => true
+            ]);
+        }
+
+        Alert::success('Completed', 'Checked out successfully.');
+        return back();
     }
 
     /**
@@ -122,5 +155,10 @@ class NgodengController extends Controller
 
     public function salesHistory() {
         return view('pages.ngodeng.sales-history');
+    }
+
+    public function fetchWeeklySales() {
+        $orderCounts = Order::weeklyOrderCounts($this->filter);
+        return response()->json($orderCounts);
     }
 }

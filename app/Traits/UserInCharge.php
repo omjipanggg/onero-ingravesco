@@ -23,11 +23,15 @@ trait UserInCharge
         });
 
         static::updating(function ($model) {
-            if (Schema::hasColumns($model->getTable(), ['updated_by'])) { $model->updated_by = Auth::id(); }
+            if (Schema::hasColumns($model->getTable(), ['updated_by'])) {
+                $model->updated_by = Auth::id();
+            }
         });
 
         static::deleting(function ($model) {
-            if (Schema::hasColumns($model->getTable(), ['deleted_by'])) { $model->deleted_by = Auth::id(); }
+            if (Schema::hasColumns($model->getTable(), ['deleted_by'])) {
+                $model->deleted_by = Auth::id();
+            }
         });
     }
 }

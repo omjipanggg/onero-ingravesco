@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             toggle.addEventListener('click', () => {
                    nav.classList.toggle('show-pd');
                   body.classList.toggle('body-pd');
-                header.classList.toggle('body-pd');
+                header.classList.toggle('header-pd');
                 toggle.classList.toggle('is-active');
             });
         }
@@ -308,7 +308,6 @@ document.addEventListener("DOMContentLoaded", function(handler) {
 
     $('.btn-delete').click(function(event) {
         event.preventDefault();
-        let id = $(this).data('id');
         let name = $(this).data('name');
         let href = $(this).attr('href');
 
@@ -412,11 +411,6 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                 return false;
             }
         }
-    });
-
-    // SAVE CURRENT SALES TO DATABASE
-    $('#saveToDatabase').click(() => {
-        $('#triggerToDatabase').trigger('click');
     });
 
     // FETCH TRANSACTION BY SUBMITTED DATE
@@ -581,9 +575,10 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             });
             $('.dataTables_length select').removeClass('form-select-sm');
             $('.dataTables_info').css({ paddingTop: 0 });
-        }
         $('.total-cart').html(shoppingCart.totalCart());
         $('.total-count').html(shoppingCart.totalCount());
+        getOrderAsJson();
+        }
     }
 
     $('.item-on-card').click((event) => {
@@ -609,7 +604,6 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             title: name +  ' added.'
         });
 
-        // setLink();
         displayCart();
     });
 
@@ -624,22 +618,23 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             if (result.isConfirmed) {
                 shoppingCart.clearCart();
                 displayCart();
-                Swal.fire('Cleared', 'Cart has been cleared.','success')
+                Swal.fire('Cleared', 'Cart has been cleared.', 'success')
                 .then((answer) => {
                     console.log('Clearing cart...');
                 });
-            } // else if (result.dismiss === Swal.DismissReason.cancel) { Swal.fire('Cancelled', 'Data is here.', 'error'); }
+            }
+            // else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Swal.fire('Cancelled', 'Data is here.', 'error');
+            // } else {
+                // Swal.fire('Failed', 'Unknown given parameters.', 'error');
+            // }
         });
-
-        // setLink();
-        // displayCart();
     });
 
     $('.cart-placeholder').on('click', '.btn-minus-cart', (event) => {
         event.preventDefault();
         let id = event.currentTarget.dataset.id;
         shoppingCart.removeItemFromCart(id);
-        // setLink();
         displayCart();
     });
 
@@ -647,7 +642,6 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         event.preventDefault();
         let id = event.currentTarget.dataset.id;
         shoppingCart.addItemToCart(id, null, null, null);
-        // setLink();
         displayCart();
     });
 
@@ -655,7 +649,6 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         let id = event.currentTarget.dataset.id;
         let count = Number(event.target.value);
         shoppingCart.setCountForItem(id, count);
-        // setLink();
         displayCart();
     });
 
@@ -683,35 +676,151 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             title: name +  ' removed.'
         });
 
-        // setLink();
         displayCart();
     });
 
-    function setLink() {
-        let jason = {};
-        let thisDate = new Date();
-        jason.id = new Date(thisDate.getFullYear(), (thisDate.getMonth()-1), thisDate.getDate()).getTime();
-        jason.user = document.querySelector('.btn-print').getAttribute('data-user');
-        jason.item = JSON.parse(localStorage.getItem('cart'));
-        jason.datetime = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
-        jason.count = shoppingCart.totalCount();
-        jason.subtotal = shoppingCart.totalCart();
+    let UUIDv4 = new function() {
+        function generateNumber(limit) {
+           let value = limit * Math.random();
+           return value | 0;
+        }
 
-        let header = "data:text/json;charset:utf-8," + encodeURIComponent(JSON.stringify(jason));
-        let anchor = document.querySelector('#saveToLocal');
-        anchor.setAttribute('href', header);
-        anchor.setAttribute('download', "data.json");
+        function generateX() {
+            let value = generateNumber(16);
+            return value.toString(16);
+        }
 
-        let context = document.querySelector('#context');
-        context.value = JSON.stringify(jason);
+        function generateXes(count) {
+            let result = '';
+            for(let i = 0; i < count; ++i) {
+                result += generateX();
+            }
+            return result;
+        }
+
+        function generateVariant() {
+            let value = generateNumber(16);
+            let variant =  (value & 0x3) | 0x8;
+            return variant.toString(16);
+        }
+
+        this.generate = function() {
+            let result = generateXes(8) + '-' +
+                generateXes(4) + '-' + '4' +
+                generateXes(3) + '-' +
+                generateVariant() + generateXes(3) + '-' +
+                generateXes(12)
+            return result;
+        };
+    };
+
+    if (document.querySelector('#saveToLocal')) {
+        function getOrderAsJson() {
+            let jason = {};
+            jason.id = UUIDv4.generate();
+            jason.timestamp = new Date();
+            // jason.timestamp = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+            jason.user = JSON.parse(document.querySelector('#toBeCheckedOut').dataset.user);
+            jason.items = JSON.parse(localStorage.getItem('cart'));
+            jason.subtotal = shoppingCart.totalCart();
+            jason.count = shoppingCart.totalCount();
+
+            let header = "data:text/json;charset:utf-8," + encodeURIComponent(JSON.stringify(jason));
+            let anchor = document.querySelector('#saveToLocal');
+            anchor.setAttribute('href', header);
+            anchor.setAttribute('download', "data.json");
+
+            $('#toBeCheckedOut').val(JSON.stringify(jason));
+            $('#itemsInCart').val(jason.items);
+        }
     }
 
-    const checkout = document.querySelector('#checkout');
-    if (checkout) {
-        // setLink();
-    }
+    // SAVE CURRENT SALES TO DATABASE
+    $('#saveToDatabase').click(function(event) {
+        let form = $('form#checkFormOut');
+        let formData = form.serialize();
+
+        if (form[0][2].value == '') {
+            Swal.fire(
+                'Warning',
+                'Cart is empty.',
+                'warning'
+            );
+            return;
+        }
+
+        Swal.fire({
+            title: 'Checkout?',
+            text: "Click OK to continue.",
+            icon: 'warning',
+            showCancelButton: true,
+            reverseButtons: true,
+            preConfirm: (confirm) => {
+                return new Promise((resolve) => {
+                    $.ajax({
+                        url: form[0].action,
+                        type: 'POST',
+                        data: formData,
+                        success: (response) => {
+                            if (response.success) {
+                                shoppingCart.clearCart();
+                                displayCart();
+                                resolve();
+                            } else {
+                                Swal.showValidationMessage('An error occurred.');
+                            }
+                        },
+                        error: (xhr, status, error) => {
+                            Swal.showValidationMessage('An error occurred.');
+                        }
+                    });
+                });
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Completed', 'Checked out successfully.', 'success')
+                .then((answer) => {
+                    console.log('Checking out successfully...');
+                });
+            }
+        });
+        // $('#saveDbTrigger').trigger('click');
+    });
 
     // IDK WHY DID THIS LINE IS HERE
     displayCart();
+
+    let ordersEl = document.querySelector('#orderChart');
+    if (ordersEl) {
+        $.ajax({
+            url: '/ngodeng/sales/fetch-weekly-order-to-chart',
+            type: 'GET',
+            success: function (response) {
+                console.log(response);
+                let labels = Object.keys(response);
+                let data = Object.values(response);
+
+                let ctx = ordersEl.getContext('2d');
+                let myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Transactions',
+                            data: data,
+                            backgroundColor: ['rgba(86, 90, 190, 0.5)'],
+                            borderColor: ['rgba(86, 90, 190, 1)'],
+                            // backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(75, 192, 192, 0.5)'],
+                            // borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+            }
+        });
+    }
 });
 </script>

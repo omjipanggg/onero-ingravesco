@@ -70,7 +70,10 @@ class ProductController extends Controller
                 if (is_numeric($cats)) {
                     $product->categories()->attach($cats);
                 } else {
-                    $category = Category::create(['name' => $cats]);
+                    $category = Category::create([
+                        'name' => Str::lower(Str::slug($cats, '-')),
+                        'slug' => Str::lower(Str::slug($cats, '-'))
+                    ]);
                     $product->categories()->attach($category);
                 }
             }
@@ -151,15 +154,24 @@ class ProductController extends Controller
     public function destroy(Request $request, $id)
     {
         ActivityLog::logging('Product deleted—' . $id);
-        Alert::success('Completed', 'Product deleted successfully.');
 
         $data = Product::findOrFail($id);
-        $data = $data->delete();
+        $path = storage_path('app\\public\\ngodeng\\products\\' . $data->image);
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        $data->active = false;
+        $data->deleted_by = $request->user()->id;
+        $data->save();
 
         $response = [
             'code' => 301,
             'success' => false
         ];
+
+        $data = $data->delete();
 
         if ($request->ajax()) {
             if ($data) {
@@ -174,6 +186,7 @@ class ProductController extends Controller
         if (!$data) {
             Alert::error('Failed', 'Product deleted.');
         }
+        Alert::success('Completed', 'Product deleted successfully.');
         return back();
     }
 }

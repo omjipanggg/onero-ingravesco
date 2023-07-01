@@ -56,6 +56,7 @@
     <script src="{{ asset('js/dataTables.editor.min.js') }}" defer=""></script>
     <script src="{{ asset('js/select2.min.js') }}" defer=""></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}" defer=""></script>
+    <script src="{{ asset('js/chart.min.js') }}" defer=""></script>
     <script src="{{ asset('js/predefined.js') }}" defer=""></script>
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}

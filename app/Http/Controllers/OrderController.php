@@ -62,4 +62,9 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function fetchToChart() {
+        $orderCounts = Order::weeklyOrderCounts();
+        return response()->json($orderCounts);
+    }
 }

@@ -13,6 +13,7 @@
         @if (Auth::user()->hasRole([1, 4]))
         <p class="mt-4 mb-0">Please select one of the available routes:</p>
         <ul class="m-0 px-3 square">
+            <li>Dashboard&mdash;<a href="{{ route('admin.index') }}" class="dotted">{{ route('admin.index') }}</a></li>
             <li>Lounge&mdash;<a href="{{ route('home.index') }}" class="dotted">{{ url()->current() }}/lounge</a></li>
             <li>Ngodeng&mdash;<a href="{{ route('home.ngodengIndex') }}" class="dotted">{{ route('home.ngodengIndex') }}</a></li>
             <li>Rock, Paper, Scissor&mdash;<a href="{{ route('home.index') }}" class="dotted">{{ url()->current() }}/rps</a></li>

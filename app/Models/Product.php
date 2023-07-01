@@ -23,7 +23,7 @@ class Product extends Model
         'active' => 'boolean'
     ];
 
-    public function orderDetails() {
+    public function sales() {
         return $this->belongsToMany(Order::class, 'order_products')->orderByDesc('created_at')->withPivot(['quantity']);
     }
 
@@ -32,7 +32,8 @@ class Product extends Model
     }
 
     public function hasCategory($id) {
-        return $this->categories()->where('category_id', $id)->exists();
+        if (!is_array($id)) { $id = [$id]; }
+        return $this->categories()->whereIn('category_id', $id)->exists();
     }
 
     public function creator() {

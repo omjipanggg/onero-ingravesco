@@ -55,6 +55,7 @@ Route::post('ngodeng/sales/store', [Ngodeng::class, 'store'])->name('ngodeng.sto
 Route::get('ngodeng/sales/edit/{id}', [Ngodeng::class, 'edit'])->name('ngodeng.edit');
 Route::put('ngodeng/sales/update/{id}', [Ngodeng::class, 'update'])->name('ngodeng.update');
 Route::delete('ngodeng/sales/delete/{id}', [Ngodeng::class, 'destroy'])->name('ngodeng.delete');
+Route::get('ngodeng/sales/fetch-weekly-order-to-chart', [Ngodeng::class, 'fetchWeeklySales'])->name('ngodeng.fetchWeeklySales');
 Route::get('ngodeng/sales/{id}', [Ngodeng::class, 'show'])->name('ngodeng.show');
 
 // PRODUCT

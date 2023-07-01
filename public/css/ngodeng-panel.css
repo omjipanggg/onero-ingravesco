@@ -85,7 +85,6 @@ a.dotted:hover {
     left: 5px;
     font-size: 11px;
     z-index: 1061;
-    background-color: var(--white-color);
     padding: 0 .5rem;
 }
 
@@ -404,6 +403,11 @@ ul.square {
     padding-left: calc(var(--nav-width) + 1rem);
 }
 
+
+.header-pd {
+    padding-left: calc(var(--nav-width) + 28px);
+}
+
 .active {
     color: var(--white-color);
 }
@@ -494,6 +498,11 @@ ul.square {
     .body-pd {
         padding-left: calc(var(--nav-width) + 188px);
     }
+
+    .header-pd {
+        padding-left: calc(var(--nav-width) + 200px);
+    }
+
     .card-container {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
