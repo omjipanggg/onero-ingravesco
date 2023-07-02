@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-12 col-lg-6 mt-4 mt-lg-0">
 				<div class="card">
-					<div class="card-header text-white bg-color"><i class="bi bi-database me-2"></i>Sales</div>
+					<div class="card-header bg-color"><i class="bi bi-database me-2"></i>Sales</div>
 					<div class="card-body px-3 pt-2 pb-3">
 						<div class="table-responsive">
 							<table class="table table-sm table-hover table-bordered fetchSales" id="itemList">
@@ -53,6 +53,8 @@
 								</tfoot>
 							</table>
 						</div>
+					</div>
+					<div class="card-footer bg-outline-color">
 						<div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
 							<div class="group">
 								<button class="btn btn-outline-color btn-clear-cart" type="button">Clear<i class="bi bi-cart-x ms-2"></i></button>

@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col mt-4 mt-lg-0">
 				<div class="card">
-					<div class="card-header text-white bg-color"><i class="bi bi-database me-2"></i>Sales</div>
+					<div class="card-header bg-color"><i class="bi bi-database me-2"></i>Sales</div>
 					<div class="card-body p-0">
 						<div class="table-responsive m-0 p-3">
 							<table class="table table-sm table-hover table-bordered m-0 table-order-ngodeng" data-target="{{ route('ajax.tableOrder', 3) }}">
@@ -30,7 +30,7 @@
 							</table>
 						</div>
 					</div>
-					<div class="card-footer">
+					<div class="card-footer bg-outline-color">
 						<i class="bi bi-info-circle me-2"></i>These records are shown after being filtered.
 					</div>
 				</div>

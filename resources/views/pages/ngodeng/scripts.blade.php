@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                     render: function(data, type, row) {
                         let date = new Date(row['created_at']);
                         let options = { year: 'numeric', month: 'long', day: '2-digit' };
-                        let formattedDate = date.toLocaleDateString('id-ID', options);
+                        let formattedDate = date.toLocaleDateString('en-US', options);
                         return '<a href="#" onclick="event.preventDefault();" data-bs-target="#modalBodyOnly" data-bs-route="{{ route('ngodeng.sales') }}/'+ data +'" data-bs-toggle="modal" data-bs-type="'+ formattedDate +'" data-bs-table="Transactions" class="dotted"><i class="bi bi-box-arrow-up-right"></i></a>';
                     },
                     orderable: false
@@ -533,6 +533,15 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             }
         }
     });
+
+    if (document.querySelector('.total-count')) {
+        let cartCopy = JSON.parse(localStorage.getItem('cart'));
+        let itemCountCopy = 0;
+        for (let item in cartCopy) {
+            itemCountCopy += cartCopy[item].count;
+        }
+        $('.total-count').html(itemCountCopy);
+    }
 
     // FETCH TRANSACTION BY SUBMITTED DATE
     function fetchSalesHistory(event) {
