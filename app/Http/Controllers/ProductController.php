@@ -57,7 +57,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $filename = Str::slug($request->name, '-') . '.' . $request->file('image')->getClientOriginalExtension();
             $product->image = $filename;
-            $uploaded = $request->file('image')->storeAs('ngodeng/products/', $filename, 'public');
+            $request->file('image')->storeAs('ngodeng/products/', $filename, 'public');
         }
 
         $product->name = $request->name;
