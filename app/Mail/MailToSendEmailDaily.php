@@ -2,57 +2,48 @@
 
 namespace App\Mail;
 
-use App\Models\User;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class UserVerificationMail extends Mailable
+class MailToSendEmailDaily extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-
-    protected $user;
+    public $user;
 
     public function __construct($user)
     {
         $this->user = $user;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verification',
+            subject: 'Daily Report',
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            markdown: 'mailer.verification',
+            markdown: 'mail.mail-to-send-email-daily',
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->subject('Daily reminder to start your day with.')
+                    ->markdown('mail.mail-to-send-email-daily')
+                    ->with(['user' => $this->user]);
     }
 }
