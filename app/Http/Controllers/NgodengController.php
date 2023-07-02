@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -99,7 +100,11 @@ class NgodengController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::byCategories(3)->where('id', $id)->first();
+        $context = [
+            'order' => $order
+        ];
+        return view('pages.ngodeng.sales-history-detail', $context);
     }
 
     /**
@@ -154,7 +159,10 @@ class NgodengController extends Controller
     }
 
     public function salesHistory() {
-        return view('pages.ngodeng.sales-history');
+        $context = [
+            'columns' => Schema::getColumnListing('orders')
+        ];
+        return view('pages.ngodeng.sales-history', $context);
     }
 
     public function fetchWeeklySales() {

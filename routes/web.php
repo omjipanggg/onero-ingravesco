@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Controllers
+use App\Http\Controllers\AjaxController as Ajax;
 use App\Http\Controllers\HomeController as Home;
 use App\Http\Controllers\AdminController as Admin;
 use App\Http\Controllers\NgodengController as Ngodeng;
@@ -22,6 +23,9 @@ use App\Http\Controllers\UserController as User;
 
 // AUTH
 Auth::routes(['verify' => true]);
+
+// AJAX
+Route::get('ajax/orders/{category}', [Ajax::class, 'tableOrderByCategories'])->name('ajax.tableOrder');
 
 // HOME
 Route::get('/', [Home::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
@@ -49,13 +53,13 @@ Route::get('ngodeng/products', [Ngodeng::class, 'products'])->name('ngodeng.prod
 Route::get('ngodeng/sales', [Ngodeng::class, 'sales'])->name('ngodeng.sales');
 
 // NGODENG——SALES
-Route::get('ngodeng/sales/history', [Ngodeng::class, 'salesHistory'])->name('ngodeng.salesHistory');
 Route::get('ngodeng/sales/create', [Ngodeng::class, 'create'])->name('ngodeng.create');
 Route::post('ngodeng/sales/store', [Ngodeng::class, 'store'])->name('ngodeng.store');
 Route::get('ngodeng/sales/edit/{id}', [Ngodeng::class, 'edit'])->name('ngodeng.edit');
 Route::put('ngodeng/sales/update/{id}', [Ngodeng::class, 'update'])->name('ngodeng.update');
 Route::delete('ngodeng/sales/delete/{id}', [Ngodeng::class, 'destroy'])->name('ngodeng.delete');
 Route::get('ngodeng/sales/fetch-weekly-order-to-chart', [Ngodeng::class, 'fetchWeeklySales'])->name('ngodeng.fetchWeeklySales');
+Route::get('ngodeng/sales/history', [Ngodeng::class, 'salesHistory'])->name('ngodeng.salesHistory');
 Route::get('ngodeng/sales/{id}', [Ngodeng::class, 'show'])->name('ngodeng.show');
 
 // PRODUCT

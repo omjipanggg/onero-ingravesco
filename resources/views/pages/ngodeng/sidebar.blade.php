@@ -20,6 +20,7 @@
                 <a href="{{ route('ngodeng.index') }}" data-title="NGODENG—Dashboard" class="nav_link active"><i class='bi bi-house nav_icon'></i><span class="nav_name">Dashboard</span></a>
                 <a href="{{ route('ngodeng.products') }}" data-title="NGODENG—Products" class="nav_link"><i class='bi bi-tags nav_icon'></i><span class="nav_name">Products</span></a>
                 <a href="{{ route('ngodeng.sales') }}" data-title="NGODENG—Sales" class="nav_link"><i class='bi bi-cart3 nav_icon'></i><span class="nav_name">Sales</span></a>
+                <a href="{{ route('ngodeng.salesHistory') }}" data-title="NGODENG—Sales" class="nav_link"><i class='bi bi-journals nav_icon'></i><span class="nav_name">Historical</span></a>
                 {{--
                 <a href="#" class="nav_link"><i class='bi bi-bookmark nav_icon'></i><span class="nav_name">Bookmark</span></a>
                 <a href="#" class="nav_link"><i class='bi bi-folder nav_icon'></i><span class="nav_name">Files</span></a>

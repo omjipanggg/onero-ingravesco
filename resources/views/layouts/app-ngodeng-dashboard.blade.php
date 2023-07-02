@@ -54,6 +54,7 @@
     --}}
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer=""></script>
     <script src="{{ asset('js/jquery.easing.min.js') }}" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
     <script src="{{ asset('js/bootstrap-5.3.0.bundle.min.js') }}" defer=""></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}" defer=""></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer=""></script>
@@ -71,6 +72,7 @@
 <body id="body-pd">
     @include('components.loader')
     @include('components.modal')
+    @include('components.modal-body-only')
     @include('sweetalert::alert')
     @include('pages.ngodeng.sidebar')
     @yield('content')

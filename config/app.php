@@ -161,6 +161,7 @@ return [
          * Package Service Providers...
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -186,6 +187,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'ActivityLog' => App\Helpers\ActivityLog::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];

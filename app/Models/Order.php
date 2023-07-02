@@ -49,30 +49,30 @@ class Order extends Model
         if (!is_array($categories)) { $categories = [$categories]; }
 
         return $query->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->with('details', function($query) use($categories) {
-                $query->with('categories', function($query) use($categories) {
-                    return $query->whereIn('category_id', $categories);
-                });
-            })
-            ->orderBy('created_at')->get()
-            ->groupBy(function ($order) {
-                return $order->created_at->format('l');
-            })->map(function ($groupedOrders) {
-            return $groupedOrders->count();
-        });
+            ->with(['details' => function($query) use($categories) {
+                return $query->with(['categories' => function($query) use($categories) {
+                   return $query->whereIn('category_id', $categories);
+                }]);
+            }])
+            ->orderBy('orders.created_at')->get()
+            ->groupBy(function ($order) { return $order->created_at->format('l'); })
+            ->map(function ($groupedOrders) { return $groupedOrders->count(); });
     }
 
-    public function scopeWeeklyAllOrderCounts($query) {
-        $startOfWeek = Carbon::now()->startOfWeek();
-        $endOfWeek = Carbon::now()->endOfWeek();
+    public function scopeByCategories($query, $categories) {
+        if ($categories === 'all') {
+            return $query->with(['details' => function($query) use($categories) {
+                $query->with(['categories']);
+            }])->orderByDesc('created_at');
+        }
 
-        return $query->whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->orderBy('created_at')->get()
-            ->groupBy(function ($order) {
-                return $order->created_at->format('l');
-            })->map(function ($groupedOrders) {
-            return $groupedOrders->count();
-        });
+        if (!is_array($categories)) { $categories = [$categories]; }
+
+        return $query->with(['details' => function($query) use($categories) {
+            $query->with(['categories' => function($query) use($categories) {
+                $query->whereIn('category_id', $categories);
+            }]);
+        }])->orderByDesc('created_at');
     }
 
     public function scopeLastWeek($query) {

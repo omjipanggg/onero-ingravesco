@@ -107,8 +107,6 @@ button {
 
 .dataTable {
     width: inherit!important;
-    white-space: nowrap;
-    vertical-align: middle;
     margin: 0;
 }
 

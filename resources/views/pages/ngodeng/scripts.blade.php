@@ -29,42 +29,26 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         }
     }
 
+    [...document.querySelectorAll('.btn-copy')].map((item) => {
+        let clipboard = new ClipboardJS(item);
+
+        clipboard.on('success', function(e) {
+            // console.log('Copied: ', e.text);
+            item.innerHTML = 'Copied<i class="bi bi-check2-all ms-2"></i>';
+            setTimeout(function() { item.innerHTML = 'Copy<i class="bi bi-stickies ms-2"></i>'; }, 2000);
+        });
+
+        clipboard.on('error', function(e) {
+            // console.error('Failed: ', e.text);
+        });
+    });
+
     linkColor.forEach((item) => {
         item.addEventListener('click', colorLink);
         item.addEventListener('click', function(event) {
-            // event.preventDefault();
             let title = this.dataset.title;
             let url = this.getAttribute('href');
             $('#loader').fadeIn();
-            // $.ajax({
-            //     url: url,
-            //     beforeSend: () => {
-            //         $('#loader').fadeIn();
-            //     },
-            //     success: (response) => {
-            //         document.title = title;
-            //         $('#content-placeholder .data').html(response);
-            //     },
-            //     complete: (result) => {
-            //         $('#loader').fadeOut();
-            //         [...document.querySelectorAll('table.fetch')].map((item) => {
-            //             $(item).dataTable({
-            //                 language: {
-            //                     paginate: {
-            //                         previous: '<i class="bi bi-chevron-left"></i>',
-            //                         next: '<i class="bi bi-chevron-right"></i>'
-            //                     },
-            //                     infoFiltered: '',
-            //                     emptyTable: "No records found"
-            //                 }
-            //             });
-            //         });
-            //     }
-            // });
-            // const data = {
-                // page: title,
-                // activeUri: url
-            // };
         });
     });
 
@@ -100,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                     previous: '<i class="bi bi-chevron-left"></i>',
                     next: '<i class="bi bi-chevron-right"></i>'
                 },
-                // infoFiltered: '',
+                infoFiltered: '',
                 lengthMenu: '_MENU_',
                 search: "",
                 searchPlaceholder: "Search...",
@@ -110,6 +94,105 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         $('.dataTables_length select').removeClass('form-select-sm');
         $('.dataTables_info').css({ paddingTop: 0 });
     });
+
+    [...document.querySelectorAll('table.table-order-ngodeng')].map((item) => {
+        let route = item.dataset.target;
+        $(item).DataTable({
+            ajax: route,
+            serverSide: true,
+            processing: true,
+            orderCellsTop: true,
+            columns: [
+                {
+                    data: 'id',
+                    name: 'id',
+                    render: function(data, type, row) {
+                        let date = new Date(row['created_at']);
+                        let options = { year: 'numeric', month: 'long', day: '2-digit' };
+                        let formattedDate = date.toLocaleDateString('id-ID', options);
+                        return '<a href="#" onclick="event.preventDefault();" data-bs-target="#modalBodyOnly" data-bs-route="{{ route('ngodeng.sales') }}/'+ data +'" data-bs-toggle="modal" data-bs-type="'+ formattedDate +'" data-bs-table="Transactions" class="dotted"><i class="bi bi-box-arrow-up-right"></i></a>';
+                    },
+                    orderable: false
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                    render: function(data, type, row) {
+                        let date = new Date(data);
+                        let options = { year: 'numeric', month: 'long', day: '2-digit' };
+                        let formattedDate = date.toLocaleDateString('en-US', options);
+                        return formattedDate;
+                    },
+                    searchable: true,
+                    orderable: true,
+                    search: function (data, searchData, dataIndex) {
+                        return data === searchData;
+                    }
+                },
+                {
+                    data: 'count_sales',
+                    name: 'count_sales',
+                    render: function(data, type, row) {
+                        return data + ' items';
+                    },
+                    searchable: true,
+                    orderable: true,
+                    search: function (data, searchData, dataIndex) {
+                        return data === searchData;
+                    }
+                },
+                {
+                    data: 'total_sales',
+                    name: 'total_sales',
+                    render: function(data, type, row) {
+                        let formattedMoney = parseFloat(data).toLocaleString('id-ID');
+                        // let formattedSalary = parseFloat(data).toLocaleString('id-ID', {
+                            // style: 'currency', currency: 'IDR'
+                        // });
+                        return formattedMoney;
+                    },
+                    searchable: true,
+                    orderable: true,
+                    search: function (data, searchData, dataIndex) {
+                        return data === searchData;
+                    }
+                }
+            ],
+            language: {
+                paginate: {
+                    previous: '<i class="bi bi-chevron-left"></i>',
+                    next: '<i class="bi bi-chevron-right"></i>'
+                },
+                // infoFiltered: '',
+                lengthMenu: '_MENU_',
+                search: '',
+                searchPlaceholder:'Search...',
+                emptyTable:'No records found'
+            }
+        });
+        $('.dataTables_length select').removeClass('form-select-sm');
+        $('.dataTables_info').css({ paddingTop: 0 });
+    });
+
+    // $(item).DataTable({
+    //     ajax: route,
+    //     language: {
+    //         paginate: {
+    //             previous: '<i class="bi bi-chevron-left"></i>',
+    //             next: '<i class="bi bi-chevron-right"></i>'
+    //         },
+    //         infoFiltered: '',
+    //         lengthMenu: '_MENU_',
+    //         search: '',
+    //         searchPlaceholder:'Search..',
+    //         emptyTable:'No records foun'
+    //     },
+    //     // paging: true,
+    //     // pagingType: 'first_last_numbers',
+    //     // pageLength: 10,
+    //     // lengthMenu: [10, 25, 50, 100],
+    //     // orderCellsTop: true
+    // });
 
     [...document.querySelectorAll('.nav_link')].map((item) => {
         if (window.location.href === item.href) {
@@ -284,6 +367,44 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             });
         });
     }
+
+    let modalBodyOnly = document.getElementById('modalBodyOnly');
+    if (modalBodyOnly) {
+        modalBodyOnly.addEventListener('show.bs.modal', function (event) {
+            let btn = event.relatedTarget;
+
+            let route = btn.getAttribute('data-bs-route');
+            let table = btn.getAttribute('data-bs-table');
+            let type = btn.getAttribute('data-bs-type');
+
+            modalBodyOnly.querySelector('.modal-title').textContent = table + '—' + type;
+
+            $.ajax({
+                url: route,
+                async: true,
+                type: 'GET',
+                beforeSend: () => {
+                    console.log('Fetching...');
+                },
+                success: (result) => {
+                    $('#modalBodyOnlyPlaceholders').html(result);
+                },
+                complete: () => {
+                    [...document.querySelectorAll('table.table-order-details-on-modal')].map((item) => {
+                        $(item).DataTable({
+                            paging: false,
+                            searching: false,
+                            info: false
+                        });
+                        $('.dataTables_length select').removeClass('form-select-sm');
+                        $('.dataTables_info').css({ paddingTop: 0 });
+                    });
+                },
+                timeout: 6270
+            });
+        });
+    }
+
 
     function moneyFormat(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
