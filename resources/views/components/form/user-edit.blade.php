@@ -6,11 +6,11 @@
 		<input type="text" name="idModal" value="{{ $user->id }}" disabled="" class="form-control">
 
 		<div class="form-floating">
-			<input type="text" name="name" placeholder="Name" class="form-control" required="" id="nameModal" value="{{ $user->name }}">
+			<input type="text" name="name" placeholder="Name" class="form-control" required="" id="nameModal" value="{{ $user->name }}" autocomplete="off">
 			<label for="nameModal">Name</label>
 		</div>
 
-		<div class="label-select position-relative">
+		<div class="label-select position-relative mb-2">
 			<select name="roles[]" id="rolesModal" class="form-control form-select select2multipleModal" multiple="" required="" aria-label="Floating roles has been initialized">
 				@foreach ($roles as $role)
 					@php($selected = false)

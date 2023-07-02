@@ -2,6 +2,7 @@
 	--turbid-color: hsla(0deg, 0%, 96%, 1);
 	--base-color: hsla(207deg, 43%, 49%, 1);
 	--base-border-color: hsla(207deg, 42%, 38%, .5);
+	--base-lighter-color: hsla(207deg, 47%, 91%, 1);
 	--base-active-color: hsla(207deg, 42%, 38%, 1);
 	--base-bright-color: hsla(0deg, 0%, 97%, 1);
 	--shadow-color: hsla(0deg, 8%, 10%, 1);
@@ -31,6 +32,11 @@ body {
     box-shadow: none;
 }
 
+.modal-header .btn-close {
+	background-color: var(--base-bright-color);
+	margin-right: 0;
+}
+
 .btn-shadow {
 	box-shadow: -3px 5px var(--shadow-color);
 }
@@ -39,6 +45,16 @@ body {
 .btn-shadow:active {
 	box-shadow: -3px 3px var(--shadow-color);
 	transform: translateY(2px);
+}
+
+.bg-color {
+	background-color: var(--base-color);
+	color: var(--base-bright-color);
+}
+
+.bg-outline-color {
+	background-color: var(--base-lighter-color);
+	color: var(--base-color);
 }
 
 .text-pinky {

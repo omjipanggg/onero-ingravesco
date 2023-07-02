@@ -69,6 +69,10 @@ a.dotted:hover {
     text-decoration-style: dotted;
 }
 
+.fs-15 {
+    font-size: 8rem;
+}
+
 .bg-color {
     background-color: var(--first-color);
     color: var(--white-color);
@@ -156,6 +160,11 @@ button {
 .modal {
     z-index: 1059!important;
     width: 100%;
+}
+
+.modal-header .btn-close {
+    background-color: var(--white-color);
+    margin-right: 0;
 }
 
 .text-pinky {

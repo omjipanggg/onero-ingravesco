@@ -5,8 +5,9 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
+				@if ($products->count() > 0)
 				<div class="card-container">
-					@forelse ($products as $product)
+					@foreach ($products as $product)
 					<div class="card pointer item-on-card" data-id="{{ $product->id }}" data-name="{{ Str::headline($product->name) }}" data-price="{{ $product->price }}">
 						<div class="card-body p-0">
 							<img src="{{ asset('storage\\ngodeng\\products\\' . $product->image) }}" alt="{{ $product->name }}" class="card-img">
@@ -19,14 +20,24 @@
 						</div>
 						--}}
 					</div>
-					@empty
-					<div class="card">
-						<div class="card-body">
-							Empty
+					@endforeach
+				</div>
+				@else
+				<div class="card">
+					<div class="card-header bg-color">
+						<i class="bi bi-database me-2"></i>Products
+					</div>
+					<div class="card-body">
+						<div class="text-center m-3 p-5">
+							<p class="fs-15"><i class="bi bi-question-octagon"></i></p>
+							No products are currently available, <a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.create') }}" data-bs-toggle="modal" data-bs-type="Create" data-bs-table="Product" class="dotted">click here</a> to insert a new product into database and start using this application, peace be upon you.
 						</div>
 					</div>
-					@endforelse
+					<div class="card-footer bg-outline-color">
+						Footer.
+					</div>
 				</div>
+				@endif
 			</div>
 			<div class="col-md-12 col-lg-6 mt-4 mt-lg-0">
 				<div class="card">
