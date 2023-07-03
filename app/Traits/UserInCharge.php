@@ -24,13 +24,27 @@ trait UserInCharge
 
         static::updating(function ($model) {
             if (Schema::hasColumns($model->getTable(), ['updated_by'])) {
-                $model->updated_by = Auth::id();
+                try {
+                    $user = Auth::user();
+                    if ($user) {
+                        $model->updated_by = $user->id;
+                    }
+                } catch (UnsatisfiedDependencyException $e) {
+                    abort(500, $e->getMessage());
+                }
             }
         });
 
         static::deleting(function ($model) {
             if (Schema::hasColumns($model->getTable(), ['deleted_by'])) {
-                $model->deleted_by = Auth::id();
+                try {
+                    $user = Auth::user();
+                    if ($user) {
+                        $model->deleted_by = $user->id;
+                    }
+                } catch (UnsatisfiedDependencyException $e) {
+                    abort(500, $e->getMessage());
+                }
             }
         });
     }

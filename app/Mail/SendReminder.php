@@ -24,14 +24,14 @@ class MailToSendEmailDaily extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Daily Report',
+            subject: 'Reminder',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.mail-to-send-email-daily',
+            markdown: 'mail.send-reminder',
         );
     }
 
@@ -42,8 +42,8 @@ class MailToSendEmailDaily extends Mailable
 
     public function build()
     {
-        return $this->subject('Daily reminder to start your day with.')
-                    ->markdown('mail.mail-to-send-email-daily')
+        return $this->subject('Reminder')
+                    ->markdown('mail.send-reminder')
                     ->with(['user' => $this->user]);
     }
 }

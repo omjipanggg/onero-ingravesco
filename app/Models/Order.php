@@ -24,7 +24,7 @@ class Order extends Model
     ];
 
     public function details() {
-    	return $this->belongsToMany(Product::class, 'order_products')->orderByDesc('created_at')->withPivot(['quantity']);
+    	return $this->belongsToMany(Product::class, 'order_products')->orderByDesc('created_at')->withPivot(['quantity'])->withTrashed();
     }
 
     public function creator() {

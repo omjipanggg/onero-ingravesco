@@ -28,7 +28,7 @@
 						<i class="bi bi-database me-2"></i>Products
 					</div>
 					<div class="card-body">
-						<div class="text-center m-3 p-5">
+						<div class="text-center m-3 p-3">
 							<p class="fs-15"><i class="bi bi-question-octagon"></i></p>
 							No products are currently available, <a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.create') }}" data-bs-toggle="modal" data-bs-type="Create" data-bs-table="Product" class="dotted">click here</a> to insert a new product into database and start using this application, peace be upon you.
 						</div>

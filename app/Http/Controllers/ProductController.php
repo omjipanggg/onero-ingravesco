@@ -56,8 +56,8 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $filename = Str::slug($request->name, '-') . '.' . $request->file('image')->getClientOriginalExtension();
-            $product->image = $filename;
             $request->file('image')->storeAs('ngodeng/products/', $filename, 'public');
+            $product->image = $filename;
         }
 
         $product->name = $request->name;
@@ -124,7 +124,7 @@ class ProductController extends Controller
                 unlink(storage_path('app\\public\\ngodeng\\products\\' . $product->image));
             }
             $product->image = $filename;
-            $uploaded = $request->file('image')->storeAs('ngodeng/products/', $filename, 'public');
+            $request->file('image')->storeAs('ngodeng/products/', $filename, 'public');
         }
 
         $product->name = $request->name;
@@ -138,7 +138,10 @@ class ProductController extends Controller
             if (is_numeric($cats)) {
                 $product->categories()->attach($cats);
             } else {
-                $category = Category::create(['name' => $cats]);
+                $category = Category::create([
+                    'name' => Str::lower(Str::slug($cats, '-')),
+                    'slug' => Str::lower(Str::slug($cats, '-'))
+                ]);
                 $product->categories()->attach($category);
             }
         }

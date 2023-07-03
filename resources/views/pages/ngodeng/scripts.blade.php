@@ -442,11 +442,11 @@ document.addEventListener("DOMContentLoaded", function(handler) {
 
         Swal.fire({
             title: name,
-            text: "Are you sure to delete this record?",
+            text: "Delete this record?",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, I am',
-            cancelButtonText: 'No, I changed my mind',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
             reverseButtons: true,
             preConfirm: (confirm) => {
                 return new Promise((resolve) => {
@@ -462,11 +462,11 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                             if (response.success) {
                                 resolve();
                             } else {
-                                Swal.showValidationMessage('An error occurred.');
+                                Swal.showValidationMessage('Code: 301');
                             }
                         },
                         error: function(xhr, status, error) {
-                            Swal.showValidationMessage('An error occurred.');
+                            Swal.showValidationMessage('Code: 403');
                         }
                     });
                 });
