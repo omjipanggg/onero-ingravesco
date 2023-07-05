@@ -848,8 +848,8 @@ document.addEventListener("DOMContentLoaded", function(handler) {
         function getOrderAsJson() {
             let jason = {};
             jason.id = UUIDv4.generate();
-            jason.timestamp = new Date();
-            // jason.timestamp = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+            // jason.timestamp = new Date();
+            jason.timestamp = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000));
             jason.user = JSON.parse(document.querySelector('#toBeCheckedOut').dataset.user);
             jason.items = JSON.parse(localStorage.getItem('cart'));
             jason.subtotal = shoppingCart.totalCart();

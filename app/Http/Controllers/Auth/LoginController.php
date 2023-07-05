@@ -36,7 +36,6 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         ActivityLog::logging('Login');
-        // if (Auth::user()->hasRole(1)) { return route('admin.index'); }
         return route('home.index');
     }
 

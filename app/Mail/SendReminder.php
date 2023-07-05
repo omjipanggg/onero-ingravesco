@@ -4,21 +4,20 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MailToSendEmailDaily extends Mailable
+class SendReminder extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    protected $data;
 
-    public function __construct($user)
+    public function __construct($data)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
 
     public function envelope(): Envelope
@@ -31,7 +30,7 @@ class MailToSendEmailDaily extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.send-reminder',
+            markdown: 'emails.send-reminder',
         );
     }
 
@@ -43,7 +42,7 @@ class MailToSendEmailDaily extends Mailable
     public function build()
     {
         return $this->subject('Reminder')
-                    ->markdown('mail.send-reminder')
-                    ->with(['user' => $this->user]);
+                    ->markdown('emails.send-reminder')
+                    ->with(['data' => $this->data]);
     }
 }

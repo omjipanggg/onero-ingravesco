@@ -7,7 +7,7 @@
 			<div class="col">
 				<div class="card">
 					<div class="card-header bg-color">
-						<a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.create') }}" data-bs-toggle="modal" data-bs-type="Create" data-bs-table="Product" class="btn btn-color">Add New Product<i class="bi bi-box-arrow-up-right ms-2"></i></a>
+						<a href="#" onclick="event.preventDefault();" data-bs-target="#modalControl" data-bs-route="{{ route('product.create') }}" data-bs-toggle="modal" data-bs-type="Create" data-bs-table="Product" class="btn btn-second-color">Add New Product<i class="bi bi-box-arrow-up-right ms-2"></i></a>
 					</div>
 					<div class="card-body p-0">
 						<div class="table-responsive m-0 p-3">
@@ -72,7 +72,7 @@
 					</div>
 					<div class="card-footer bg-outline-color">
 						<p class="m-0">
-							<i class="bi bi-info-circle me-2"></i>These records are shown after being filtered to be suitable with "NGODENG" name-space.
+							<i class="bi bi-info-circle me-2"></i>These records are shown after being filtered to be suitable with <i>NGODENG</i>.
 						</p>
 					</div>
 				</div>

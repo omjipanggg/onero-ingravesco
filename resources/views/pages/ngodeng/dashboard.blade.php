@@ -37,7 +37,7 @@
 											@php($quantity = $quantity + $sale->pivot->quantity)
 										@endif
 									@endforeach
-									<li>{{ Str::headline($product->name) }}&mdash;Sold <strong>{{ $quantity }}</strong> items</li>
+									<li>{{ Str::headline($product->name) }}&mdash;Sold <strong>{{ number_format($quantity, 0, ',', '.') }}</strong> items</li>
 								@empty
 								<li>No item listed</li>
 								@endforelse

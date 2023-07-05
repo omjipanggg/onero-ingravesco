@@ -2,15 +2,15 @@
 
 :root {
     --header-height: 3rem;
-    --header-color: hsla(252deg, 52%, 84%, 1);
     --first-color: hsla(252deg, 52%, 49%, 1);
     --first-darker-color: hsla(252deg, 52%, 34%, 0.8);
-    --first-light-color: #AFA5D9;
+    --second-color: hsla(250deg, 65%, 62%, 1);
+    --second-darker-color: hsla(250deg, 65%, 62%, 0.8);
     --box-shadow-color: hsla(252deg, 98%, 76%, .25);
     --input-border-color: hsla(252deg, 98%, 76%, 1);
-    --pink-color: #ff41ba;
-    --white-color: #F7F6FB;
-    --turbid-color: #DBD2FF;
+    --pink-color: hsla(321deg, 98%, 64%, 1);
+    --white-color: hsla(252deg, 38%, 97%, 1);
+    --turbid-color: hsla(252deg, 98%, 91%, 1);
     --body-font: 'Poppins', 'Nunito', 'Open Sans', sans-serif;
     --normal-font-size: 14px;
     --nav-width: 70px;
@@ -25,7 +25,7 @@
 }
 
 *::selection {
-    background-color: var(--first-color);
+    background-color: var(--turbid-color);
     color: var(--white-color)
 }
 ::-webkit-scrollbar {
@@ -261,6 +261,20 @@ ul.square {
     justify-content: flex-start;
 }
 
+.btn-second-color {
+    background-color: var(--second-color);
+    color: var(--white-color);
+    border: 1px solid var(--second-darker-color);
+}
+
+.btn-color:focus,
+.btn-color:hover {
+    outline: none;
+    box-shadow: none;
+    color: var(--white-color);
+    background-color: var(--second-darker-color);
+}
+
 .btn-color {
     background-color: var(--first-color);
     color: var(--white-color);
@@ -315,7 +329,7 @@ ul.square {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    background-color: var(--header-color);
+    background-color: var(--turbid-color);
     z-index: var(--z-fixed);
     transition: all 520ms ease-in-out;
 }
@@ -389,7 +403,7 @@ ul.square {
 .nav_lower,
 .nav_link {
     position: relative;
-    color: var(--first-light-color);
+    color: var(--turbid-color);
     transition: all 320ms ease-in-out;
 }
 

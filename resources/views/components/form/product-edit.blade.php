@@ -46,12 +46,12 @@
 		@php($image = 'img/default.png')
 	@endif
 
-	<img src="{{ asset($image) }}" alt="{{ Str::headline($record->name) }}" class="img-fluid w-99 mb-2" id="imgOnModal">
-
-	<div class="group d-flex flex-wrap justify-content-start align-items-center gap-2">
-		<label for="fileInputModal" class="btn btn-color">Picture<i class="bi bi-cloud-upload ms-2"></i></label>
+	<div class="group d-flex flex-wrap flex-column align-items-start justify-content-start">
+		<label for="fileInputModal" class="pointer">
+			<img src="{{ asset($image) }}" alt="{{ Str::headline($record->name) }}" class="img-fluid w-99" id="imgOnModal">
+		</label>
 		<input type="file" name="image" class="form-control d-none" id="fileInputModal" accept=".jpg, .jpeg, .png">
-		<small class="small form-text" id="fileNameModal">{{ $record->image ?? 'No file chosen' }}</small>
+		<small class="small form-text" id="fileNameModal">{{ $record->image }}</small>
 	</div>
 
 	<button type="submit" class="d-none" id="btnSubmitOnModal">Save</button>

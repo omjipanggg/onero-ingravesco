@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendReminder;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spotify, SpotifySeed;
@@ -82,5 +86,12 @@ class HomeController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    public function emailTest($email)
+    {
+        $user = User::where('email', $email)->first();
+        $sent = Mail::to($email)->send(new SendReminder($user));
+        dd($sent);
     }
 }

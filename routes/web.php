@@ -28,8 +28,9 @@ Auth::routes(['verify' => true]);
 Route::get('ajax/orders/{category}', [Ajax::class, 'tableOrderByCategories'])->name('ajax.tableOrder');
 
 // HOME
-Route::get('/', [Home::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
+Route::get('/', [Home::class, 'index'])->name('home.index');
 Route::post('search', [Home::class, 'search'])->name('home.search');
+Route::get('send/{email}', [Home::class, 'emailTest'])->name('home.emailTest');
 
 Route::get('preview/image/{directory}/{id}', [Home::class, 'previewImage'])->name('home.previewImage');
 Route::get('preview/files/{directory}/{id}', [Home::class, 'previewOnModal'])->name('home.previewOnModal');

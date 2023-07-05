@@ -65,6 +65,10 @@ body {
 	color: var(--base-color);
 }
 
+.text-justify {
+	text-align: justify;
+}
+
 ul.square {
 	list-style-type: square;
 }

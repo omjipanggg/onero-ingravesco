@@ -12,13 +12,10 @@
             <ul class="navbar-nav ms-auto">
                 @guest
                 @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Auth<i class="bi bi-box-arrow-in-right ms-1"></i></a>
                 </li>
+                @endif
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
