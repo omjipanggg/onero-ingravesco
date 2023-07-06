@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendReminder;
+use App\Models\Product;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -36,10 +37,14 @@ class HomeController extends Controller
 
     public function ngodengIndex()
     {
-        if (Auth::check() && Auth::user()->hasRole(3)) {
-            return redirect()->route('ngodeng.index');
-        }
-        return view('pages.ngodeng.index');
+        // if (Auth::check() && Auth::user()->hasRole(3)) {
+            // return redirect()->route('ngodeng.index');
+        // }
+        $products = Product::where('active', true)->get();
+        $context = [
+            'products' => $products
+        ];
+        return view('pages.ngodeng.index', $context);
     }
 
     public function search(Request $request) {
