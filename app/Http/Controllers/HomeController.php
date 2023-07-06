@@ -96,12 +96,14 @@ class HomeController extends Controller
     public function emailTest($email)
     {
         $user = User::where('email', $email)->first();
-        Mail::to($email)->send(new SendReminder($user));
-        if (Mail::failures()) {
+        $mail = Mail::to($email)->send(new SendReminder($user));
+
+        if (!$mail) {
             Alert::error('Failed', 'Message did not send.');
         } else {
             Alert::success('Completed', 'Message sent!');
         }
+
         return back();
     }
 }
