@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendReminder;
+use App\Jobs\SendReminder;
+// use App\Mail\SendReminder;
 use App\Models\Product;
 use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spotify, SpotifySeed;
@@ -96,14 +96,10 @@ class HomeController extends Controller
     public function emailTest($email)
     {
         $user = User::where('email', $email)->first();
-        $mail = Mail::to($email)->send(new SendReminder($user));
 
-        if (!$mail) {
-            Alert::error('Failed', 'Message did not send.');
-        } else {
-            Alert::success('Completed', 'Message sent!');
-        }
+        $jobs = SendReminder::dispatch($user)->onQueue('email');
 
-        return back();
+        Alert::success('Completed', 'Message sent!');
+        return response()->json($jobs);
     }
 }

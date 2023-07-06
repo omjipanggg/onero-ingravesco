@@ -7,6 +7,8 @@ Thank you for registering with {{ config('app.name') }}! In order to complete yo
 Verify
 @endcomponent
 
+### Welcome to the club!
+
 If you did not register for an account, no further action is required.
 
 Much thanks,<br>
