@@ -54,7 +54,7 @@ class LoginController extends Controller
             ActivityLog::logging('Logout');
             Session::flush();
             Auth::logout();
-            Alert::success('Mazeltov!', 'Your session has ended.');
+            Alert::success('Mazeltov', 'Your session has ended.');
         }
         return $this->loggedOut($request) ?: redirect()->route('login');
     }
