@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Request;
 
-use App\Models\UserActivityLog;
+use App\Models\Log as Log;
 
 class ActivityLog {
 	public static function logging($subject) {
@@ -15,23 +15,17 @@ class ActivityLog {
 		$log['method'] = Request::method();
 		$log['user_agent'] = Request::header('user-agent');
 		$log['user_id'] = auth()->check() ? auth()->user()->id : null;
-		UserActivityLog::create($log);
+		Log::create($log);
 	}
 
-	public static function getActivityLog() {
+	public static function latestLog() {
 		$data = [];
 		if (auth()->check()) {
-			$data = UserActivityLog::where([
-				['user_id', auth()->id()],
-				['subject', 'Login']
-			])->orderByDesc('created_at')
+			$data = Log::where(['user_id', auth()->id()])
 			->limit(1)
 			->offset(1)
+			->orderByDesc('created_at')
 			->first();
-			if (!$data) {
-				$data = UserActivityLog::where('user_id', auth()->id())
-				->orderByDesc('created_at')->first();
-			}
 		}
 		return $data;
 	}

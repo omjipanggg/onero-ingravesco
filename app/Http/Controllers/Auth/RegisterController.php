@@ -89,11 +89,10 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        event(new Registered($user));
+        Registered::dispatch($user);
 
         // $this->guard()->login($user);
 
-        ActivityLog::logging('Register');
         Alert::success('Completed', 'Check your email address for activation.')->autoClose(false);
         return redirect()->route('home.index');
     }

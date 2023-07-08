@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VerificationController extends Controller
@@ -56,14 +57,16 @@ class VerificationController extends Controller
         $user->email_verified_at = Carbon::now();
         $user->save();
 
-        Auth::logout();
+        if (Auth::check()) {
+            Auth::logout();
+        }
+
         Auth::login($user);
+        ActivityLog::logging('Register');
 
         SendReminder::dispatch($user);
 
-        ActivityLog::logging('Verified');
-
-        Alert::success('Sukses', 'Aktivasi akun berhasil.');
+        Alert::success('Completed', 'Account Activation successfully.');
         return redirect()->route('home.index');
     }
 }
