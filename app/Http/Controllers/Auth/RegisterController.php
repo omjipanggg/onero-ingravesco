@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Helpers\ActivityLog;
+use App\Jobs\SendReminder;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -93,7 +94,9 @@ class RegisterController extends Controller
 
         // $this->guard()->login($user);
 
-        Alert::success('Completed', 'Check your email address for activation.')->autoClose(false);
+        SendReminder::dispatch($user);
+
+        Alert::success('Registered', 'Check your email address for activation.')->autoClose(false);
         return redirect()->route('home.index');
     }
 }

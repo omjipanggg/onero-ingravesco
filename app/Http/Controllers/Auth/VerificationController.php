@@ -47,10 +47,10 @@ class VerificationController extends Controller
     }
 
     public function verify($id) {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
 
         if (!empty($user->email_verified_at)) {
-            Alert::warning('Attention', 'Your account has been activated.');
+            Alert::warning('Attention', 'Your account has already been activated.');
             return redirect()->route('home.index');
         }
 
@@ -62,11 +62,10 @@ class VerificationController extends Controller
         }
 
         Auth::login($user);
+
         ActivityLog::logging('Register');
 
-        SendReminder::dispatch($user);
-
-        Alert::success('Completed', 'Account Activation successfully.');
+        Alert::success('Done', 'Your accont activation is completed.');
         return redirect()->route('home.index');
     }
 }

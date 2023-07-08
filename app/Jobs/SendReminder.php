@@ -18,7 +18,8 @@ class SendReminder implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
-    protected $webmaster = 'astagawe@astaga.web.id';
+    protected $webmaster = 'maulana.ajie.pamungkas@gmail.com';
+    protected $supervisor = 'astagawe@astaga.web.id';
 
     public function __construct($user)
     {
