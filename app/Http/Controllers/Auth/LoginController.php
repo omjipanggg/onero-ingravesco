@@ -61,11 +61,11 @@ class LoginController extends Controller
 
     protected function logout(Request $request) {
         if (Auth::check()) {
+            ActivityLog::logging('Logout');
             Session::flush();
             Auth::logout();
             Alert::success('Mazeltov', 'Your session has ended.');
         }
-        ActivityLog::logging('Logout');
         return $this->loggedOut($request) ?: redirect()->route('login');
     }
 }
