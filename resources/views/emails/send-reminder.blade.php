@@ -1,7 +1,7 @@
 @component('mail::message')
 ### Henlo, Webmaster!
 
-This is a brief resume of a newly registered user at {{ config('app.name') }}:
+This is a brief resume of a newly registered user:
 
 @component('mail::table')
 | Columns | Records |

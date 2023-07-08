@@ -63,8 +63,6 @@ class VerificationController extends Controller
 
         Auth::login($user);
 
-        ActivityLog::logging('Register');
-
         Alert::success('Done', 'Your accont activation is completed.');
         return redirect()->route('home.index');
     }

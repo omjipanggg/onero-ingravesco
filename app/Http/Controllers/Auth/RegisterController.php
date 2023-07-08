@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -91,8 +92,6 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
 
         $registered = event(new Registered($user));
-
-        // $this->guard()->login($user);
 
         SendReminder::dispatch($user);
 
