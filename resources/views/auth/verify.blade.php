@@ -8,13 +8,12 @@
         <div class="group wrap-verify">
             @if (session('resent'))
                 <div class="alert alert-success py-2" role="alert">
-                    <i class="bi bi-check-circle me-2"></i><strong>Resent!</strong> Kindly check again.
+                    <i class="bi bi-check-circle me-2"></i><strong>Resent!</strong> Take your time to check again.
                 </div>
             @endif
 
             <div class="text-center">
-            {{ __('In order to continue your journey, please kindly check your email address for a verification link to activate your account, ') }}
-            {{ __('or ') }}
+            {{ __('In order to continue your journey, please check your email address for an activation link we already sent for your account, or ') }}
             <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                 @csrf
                 <button type="submit" class="btn btn-link p-0 m-0 align-baseline dotted" onclick="showLoading()">{{ __('click here') }}</button>

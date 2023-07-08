@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Helpers\ActivityLog;
-use App\Jobs\SendReminder;
-
 use App\Http\Controllers\Controller;
+use App\Jobs\SendReminder;
+use App\Models\User;
+use App\Notifications\VerifyEmailNotification;
 use App\Providers\RouteServiceProvider;
 
 use Illuminate\Auth\Events\Registered;
@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
@@ -61,7 +63,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -95,7 +98,7 @@ class RegisterController extends Controller
 
         SendReminder::dispatch($user);
 
-        Alert::success('Registered', 'Check your email address for activation.')->autoClose(false);
+        Alert::success('Registered', 'Kindly check your email address.')->autoClose(false);
         return redirect()->route('home.index');
     }
 }

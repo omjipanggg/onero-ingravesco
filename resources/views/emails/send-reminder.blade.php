@@ -1,18 +1,14 @@
 @component('mail::message')
 ### Henlo, Webmaster!
 
-This is a brief resume of a newly registered user:
+Here is a brief resume of a newly registered user:
 
 @component('mail::table')
-| Columns | Records |
-| :--- | :--------- |
-| **Name**       | {{ \Str::headline($data['name']) }} |
-| **Email**      | {{ \Str::lower($data['email']) }} |
-| **Registered** | {{ date('F d, Y', strtotime($data['created_at'])) }} |
-| **Verified**   | {{ date('F d, Y', strtotime($data['email_verified_at'])) ?? '**false**' }} |
+| Columns 			| Records 			|
+| :---------------- | :---------------- |
+| **Full name** 	| {{ \Str::headline($data['name']) }} |
+| **Email address** | {{ \Str::lower($data['email']) }} |
+| **Registered at** | {{ date('F d, Y H:i:s', strtotime($data['created_at'])) }} |
 @endcomponent
 
-Mucho gracias,
-<br>
-{{ config('app.name') }}
 @endcomponent

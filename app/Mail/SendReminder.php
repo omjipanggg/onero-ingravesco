@@ -23,7 +23,7 @@ class SendReminder extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Daily Reminder',
+            subject: 'NOTIFICATION',
         );
     }
 
