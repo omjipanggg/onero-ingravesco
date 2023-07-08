@@ -2,12 +2,14 @@
 {{-- Greeting --}}
 @if (! empty($greeting))
 # {{ $greeting }}
+{{--
 @else
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
 # @lang('Henlo!')
 @endif
+--}}
 @endif
 
 {{-- Intro Lines --}}
@@ -39,14 +41,14 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
+@lang("Sincerely"),<br>
 {{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 <x-slot:subcopy>
-<span>If you are having trouble activating your account, kindly use <a href="{{ $actionUrl }}">this link</a>.</span>
+<span>In case you are having a bad day, kindly use <a href="{{ $actionUrl }}">this link</a> instead.</span>
 {{-- @lang("If you are having trouble clicking the \":actionText\" button, kindly go to this following URL:", ['actionText' => $actionText]) <span style="word-break: break-all;">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span> --}}
 </x-slot:subcopy>
 @endisset

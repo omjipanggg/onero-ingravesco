@@ -47,11 +47,14 @@
             </div>
         </form>
         @guest
-            @if (Route::has('register'))
             <div class="text-center linen">
+            @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="dotted turbided">{{ __('Register') }}</a>
-            </div>
             @endif
+            @if (Route::has('password.request'))
+                <a href="{{ route('password.request') }}" class="dotted turbided">{{ __('Reset') }}</a>
+            @endif
+            </div>
         @endguest
         </div>
     </div>

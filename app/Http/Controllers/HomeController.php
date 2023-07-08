@@ -32,14 +32,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
+            if (empty(Auth::user()->email_verified_at)) {
+                return redirect()->route('verification.notice');
+            }
+        }
         return view('pages.homepage.index');
     }
 
     public function ngodengIndex()
     {
-        // if (Auth::check() && Auth::user()->hasRole(3)) {
-            // return redirect()->route('ngodeng.index');
-        // }
         $products = Product::where('active', true)->get();
         $context = [
             'products' => $products

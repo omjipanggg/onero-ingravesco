@@ -2,47 +2,49 @@
 @section('title', 'Reset Password')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<main class="position-relative register full-height">
+    <a href="{{ route('home.index') }}" class="position-absolute btn-auth-back"><i class="bi bi-arrow-left-circle"></i></a>
+    <div class="d-flex flex-wrap align-items-center justify-content-center flex-column">
+        <div class="group wrap-verify">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        @if ($errors->any())
+        <div class="alert alert-danger m-0 mb-2 py-1" role="alert">
+            <ul class="m-0 px-2">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send') }}<i class="bi bi-send ms-2"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        @if (session('status'))
+            <div class="alert alert-success mb-2" role="alert">
+                <i class="bi bi-info-circle me-2"></i><strong>Info!</strong> {{ session('status') }}
             </div>
+        @endif
+
+         <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+            <div class="d-flex flex-wrap gap-3">
+                <div class="form-floating flex-fill">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" autocomplete="email" autofocus="" placeholder="Email address">
+                    <label for="email">{{ __('Email address') }}</label>
+                </div>
+                <button type="submit" class="btn btn-color btn-sm px-3 py-2 btn-shadow" onclick="showLoading()">{{ __('Send') }}<i class="bi bi-envelope ms-3"></i></button>
+            </div>
+        </form>
+
+        @guest
+            <div class="text-center linen">
+            @if (Route::has('login'))
+                <a href="{{ route('login') }}" class="dotted turbided">{{ __('Login') }}</a>
+            @endif
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="dotted turbided">{{ __('Register') }}</a>
+            @endif
+            </div>
+        @endguest
         </div>
     </div>
-</div>
+</main>
 @endsection

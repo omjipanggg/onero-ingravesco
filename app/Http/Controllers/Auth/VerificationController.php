@@ -7,6 +7,7 @@ use App\Helpers\ActivityLog;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class VerificationController extends Controller
     }
 
     public function verify($id) {
+        dd($id, $user);
         $user = User::find($id);
 
         if (!empty($user->email_verified_at)) {
@@ -63,7 +65,9 @@ class VerificationController extends Controller
 
         Auth::login($user);
 
-        Alert::success('Done', 'Your accont activation is completed.');
+        $verified = event(new Verified($user));
+
+        Alert::success('Done', 'Your accont has been activated.');
         return redirect()->route('home.index');
     }
 }
