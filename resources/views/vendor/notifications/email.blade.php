@@ -46,10 +46,8 @@
 {{-- Subcopy --}}
 @isset($actionText)
 <x-slot:subcopy>
-@lang(
-    "If you are having trouble clicking the \":actionText\" button, kindly go to this following URL:",
-    ['actionText' => $actionText]
-) <span class="break-all" style="word-break: break-all;">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
+<span>If you are having trouble activating your account, kindly use <a href="{{ $actionUrl }}">this link</a>.</span>
+{{-- @lang("If you are having trouble clicking the \":actionText\" button, kindly go to this following URL:", ['actionText' => $actionText]) <span style="word-break: break-all;">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span> --}}
 </x-slot:subcopy>
 @endisset
 </x-mail::message>
