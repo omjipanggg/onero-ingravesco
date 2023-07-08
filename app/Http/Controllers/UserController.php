@@ -61,7 +61,7 @@ class UserController extends Controller {
     public function destroy($id) {
         ActivityLog::logging('User deleted—' . $id);
         $user = User::findOrFail($id);
-        $user->email = 'old_' . $user->email;
+        $user->email = strtotime("now") . '_' . $user->email;
         $user->save();
         // $user->roles()->detach();
         $user->delete();
