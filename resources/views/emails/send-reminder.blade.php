@@ -1,16 +1,14 @@
 @component('mail::message')
-# Henlo, {{ \Str::headline($data['name']) }}!
+### Henlo, Webmaster!
+### This is a brief resume of a newly registered user at {{ config('app.name') }}:
 
-Thank you for registering with {{ config('app.name') }}! In order to complete your account verification, please verify this email address by clicking the button below:
-
-@component('mail::button', ['url' => 'http://astaga.web.id'])
-Verify
+@component('mail::table')
+| **Name** | {{ \Str::headline($data['name']) }} |
+| **Email** | {{ \Str::lower($data['email']) }} |
+| **Verified** | {{ date('F d, Y', strtotime($data['email_verified_at'])) ?? '**false**' }} |
+| **Registered** | {{ date('F d, Y', strtotime($data['created_at'])) }} |
 @endcomponent
 
-### Welcome to the club!
-
-If you did not register for an account, no further action is required.
-
-Much thanks,<br>
+Mucho gracias,
 {{ config('app.name') }}
 @endcomponent

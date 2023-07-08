@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendReminder;
+use App\Jobs\SendReminder;
 use App\Models\Product;
 use App\Models\User;
 
@@ -96,7 +96,7 @@ class HomeController extends Controller
     public function emailTest($email)
     {
         $user = User::where('email', $email)->first();
-        $mail = Mail::to($email)->send(new SendReminder($user));
+        $mail =  SendReminder::dispatch($user);
 
         if (!$mail) {
             Alert::error('Failed', 'Message did not send.');

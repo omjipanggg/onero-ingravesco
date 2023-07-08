@@ -49,13 +49,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        if (!$user->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
+
+        return redirect()->intended($this->redirectPath());
+    }
+
+
     protected function logout(Request $request) {
         if (Auth::check()) {
-            ActivityLog::logging('Logout');
             Session::flush();
             Auth::logout();
             Alert::success('Mazeltov', 'Your session has ended.');
         }
+        ActivityLog::logging('Logout');
         return $this->loggedOut($request) ?: redirect()->route('login');
     }
 }

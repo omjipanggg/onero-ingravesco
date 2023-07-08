@@ -18,6 +18,7 @@ class SendReminder implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
+    protected $webmaster = 'astagawe@astaga.web.id';
 
     public function __construct($user)
     {
@@ -26,6 +27,6 @@ class SendReminder implements ShouldQueue
 
     public function handle(): void
     {
-        Mail::to($this->user->email)->queue(new SendMail($this->user));
+        Mail::to($this->webmaster)->send(new SendMail($this->user));
     }
 }

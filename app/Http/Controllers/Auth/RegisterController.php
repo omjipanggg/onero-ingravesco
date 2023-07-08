@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Helpers\ActivityLog;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -34,7 +37,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    // protected redirectTo() {}
+    // protected function redirectTo() {}
 
     /**
      * Create a new controller instance.
@@ -78,5 +81,20 @@ class RegisterController extends Controller
         $user->roles()->attach(2, ['expire_date' => Carbon::now()->addMonths(12)]);
 
         return $user;
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        event(new Registered($user));
+
+        // $this->guard()->login($user);
+
+        ActivityLog::logging('Register');
+        Alert::success('Completed', 'Check your email address for activation.')->autoClose(false);
+        return redirect()->route('home.index');
     }
 }

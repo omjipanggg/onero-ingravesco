@@ -43,7 +43,7 @@
                     <input type="checkbox" value="remember-me" id="checkPassword" onchange="showChar(event)">
                     <label for="checkPassword" class="pointered"><i class="bi bi-eye"></i></label>
                 </div>
-                <button type="submit" class="btn btn-color btn-sm px-3 btn-shadow" onclick="showLoading()">{{ __('Login') }}<i class="bi bi-key ms-3"></i></button>
+                <button type="submit" class="btn btn-color btn-sm px-3 py-2 btn-shadow" onclick="showLoading()">{{ __('Login') }}<i class="bi bi-key ms-3"></i></button>
             </div>
         </form>
         @guest
