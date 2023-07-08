@@ -66,6 +66,7 @@ class LoginController extends Controller
             Auth::logout();
             Alert::success('Mazeltov', 'Your session has ended.');
         }
-        return $this->loggedOut($request) ?: redirect()->route('login');
+        // return $this->loggedOut($request) ?: redirect()->route('login');
+        return $this->loggedOut($request) ?: redirect()->route('home.index');
     }
 }

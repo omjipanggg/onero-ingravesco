@@ -89,7 +89,7 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        Registered::dispatch($user);
+        $registered = event(new Registered($user));
 
         // $this->guard()->login($user);
 
