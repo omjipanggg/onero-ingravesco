@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Request;
 
-use App\Models\Log as Log;
+use App\Models\UserActivityLog as Log;
 
 class ActivityLog {
 	public static function logging($subject) {
