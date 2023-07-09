@@ -72,8 +72,10 @@ return [
     ],
 
     'verification' => [
+        'base_url' => env('APP_URL', 'https://astaga.web.id'),
         'enabled' => true,
         'expire' => 60,
+        'url' => env('APP_URL', 'https://astaga.web.id'),
     ],
 
     /*
