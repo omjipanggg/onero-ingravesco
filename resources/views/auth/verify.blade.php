@@ -5,7 +5,7 @@
 <main class="position-relative verify full-height">
     <a href="{{ route('home.index') }}" class="position-absolute btn-auth-back"><i class="bi bi-arrow-left-circle"></i></a>
     <div class="d-flex flex-wrap align-items-center justify-content-center flex-column">
-        <div class="group wrap-verify">
+        <div class="group wrap wrap-verify">
             @if (session('resent'))
                 <div class="alert alert-success py-2" role="alert">
                     <i class="bi bi-check-circle me-2"></i><strong>Resent!</strong> Take your time to check again.

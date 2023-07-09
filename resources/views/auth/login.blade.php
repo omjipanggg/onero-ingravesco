@@ -5,7 +5,7 @@
 <main class="login full-height position-relative">
     <a href="{{ route('home.index') }}" class="position-absolute btn-auth-back"><i class="bi bi-arrow-left-circle"></i></a>
     <div class="d-flex flex-wrap align-items-center justify-content-center flex-column">
-        <div class="group wrap-login">
+        <div class="group wrap wrap-login">
 
         @if ($errors->any())
         <div class="alert alert-danger m-0 mb-2 py-2" role="alert">

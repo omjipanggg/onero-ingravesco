@@ -8,19 +8,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class SendVerification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     protected $data;
-    protected $url;
 
     public function __construct($data)
     {
         $this->data = $data;
     }
 
+    /*
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -39,22 +40,17 @@ class SendVerification extends Mailable implements ShouldQueue
     {
         return [];
     }
+    */
 
     public function build()
     {
+        $url = URL::temporarySignedRoute('verification.verify', now()->addMinutes(60), ['id' => $this->data->getKey(), 'hash' => sha1($this->data->getEmailForVerification())]);
+
         return $this->subject('VERIFICATION')
             ->markdown('emails.send-verification')
-            ->with(['data' => $this->data, 'url' => url()->temporarySignedRoute('verification.verify', now()->addMinutes(config('auth.verification.expire', 60)), ['id' => $this->data->getKey(), 'hash' => sha1($this->data->getEmailForVerification())]
-                )
-            ]
-        );
-    }
-
-    protected function temporaryUrl() {
-        return url()->temporarySignedRoute('verification.verify',
-            now()->addMinutes(config('auth.verification.expire', 60)), [
-                'id' => $this->data->getKey(),
-                'hash' => sha1($this->data->getEmailForVerification())
+            ->with([
+                'data' => $this->data,
+                'url' => $url
             ]
         );
     }

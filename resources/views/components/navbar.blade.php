@@ -25,7 +25,7 @@
                             @if (Auth::user()->hasRole(1))
                                 <a class="dropdown-item text-start text-md-end" href="{{ route('admin.index') }}">Dashboard</a>
                             @endif
-                            <a href="#" class="dropdown-item text-start text-md-end" onclick="event.preventDefault();">Partners</a>
+                            <a href="#" class="dropdown-item text-start text-md-end" onclick="event.preventDefault();">Settings</a>
                             <hr class="navbar-divider my-1">
                             <a class="dropdown-item text-start text-md-end" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

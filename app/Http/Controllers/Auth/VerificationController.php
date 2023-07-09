@@ -48,11 +48,10 @@ class VerificationController extends Controller
     }
 
     public function verify($id) {
-        dd($id, $user);
         $user = User::find($id);
 
         if (!empty($user->email_verified_at)) {
-            Alert::warning('Attention', 'Your account has already been activated.');
+            Alert::warning('Warning', 'Your account has already been activated.');
             return redirect()->route('home.index');
         }
 
@@ -63,11 +62,11 @@ class VerificationController extends Controller
             Auth::logout();
         }
 
-        Auth::login($user);
+        // Auth::login($user);
 
         $verified = event(new Verified($user));
 
-        Alert::success('Done', 'Your accont has been activated.');
+        Alert::success('Activated', 'Thank you for activating!');
         return redirect()->route('home.index');
     }
 }

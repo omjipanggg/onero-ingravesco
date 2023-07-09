@@ -20,6 +20,7 @@ class SendReminder extends Mailable implements ShouldQueue
         $this->data = $data;
     }
 
+    /*
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -38,6 +39,7 @@ class SendReminder extends Mailable implements ShouldQueue
     {
         return [];
     }
+    */
 
     public function build()
     {
