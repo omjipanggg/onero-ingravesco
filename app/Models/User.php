@@ -59,6 +59,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function sendEmailVerificationNotification() {
-        SendVerification::dispatch($this);
+        $url = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            [
+                'id' => $this->getKey(),
+                'hash' => sha1($this->getEmailForVerification())
+            ],
+            false
+        );
+        SendVerification::dispatch($this, $url);
     }
 }

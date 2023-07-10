@@ -18,14 +18,16 @@ class SendVerification implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
+    protected $url;
 
-    public function __construct(User $user)
+    public function __construct(User $user, $url)
     {
         $this->user = $user;
+        $this->url = $url;
     }
 
     public function handle(): void
     {
-        Mail::to($this->user->email)->send(new SendMail($this->user));
+        Mail::to($this->user->email)->send(new SendMail($this->user, $this->url));
     }
 }

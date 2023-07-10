@@ -9,7 +9,7 @@ Verify Now
 @endcomponent
 
 If you did not create an account, no further action is required. <br>
-Either way, welcome to the club! <br><br>
+Either way, welcome to the club! <br>
 
 Sincerely, <br>
 {{ config('app.name') }}

@@ -15,10 +15,12 @@ class SendVerification extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     protected $data;
+    protected $url;
 
-    public function __construct($data)
+    public function __construct($data, $url)
     {
         $this->data = $data;
+        $this->url = $url;
     }
 
     /*
@@ -44,21 +46,11 @@ class SendVerification extends Mailable implements ShouldQueue
 
     public function build()
     {
-        $url = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addMinutes(60),
-            [
-                'id' => $this->data->getKey(),
-                'hash' => sha1($this->data->getEmailForVerification())
-            ],
-            false
-        );
-
         return $this->subject('VERIFICATION')
             ->markdown('emails.send-verification')
             ->with([
                 'data' => $this->data,
-                'url' => $url
+                'url' => $this->url
             ]
         );
     }
