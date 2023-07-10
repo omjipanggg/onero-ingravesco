@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasUuids;
-use App\Jobs\SendVerification;
+// use App\Jobs\SendVerification;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\URL;
+// use Illuminate\Support\Facades\URL;
 
 use Laravel\Sanctum\HasApiTokens;
 
@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if (!is_array($id)) { $id = [$id]; }
         return $this->roles()->whereIn('role_id', $id)->exists();
     }
-
+    /*
     public function sendEmailVerificationNotification() {
         $url = URL::temporarySignedRoute(
             'verification.verify',
@@ -71,4 +71,5 @@ class User extends Authenticatable implements MustVerifyEmail
         );
         SendVerification::dispatch($this, $url);
     }
+    */
 }
