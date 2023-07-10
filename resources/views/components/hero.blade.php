@@ -1,7 +1,7 @@
 <div class="container my-5 px-4">
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-start rounded-3 shadow-lg">
         <div class="col-lg-6 p-0 pb-4 p-lg-5 pt-lg-3">
-        <p class="m-0 mb-2"><i class="bi bi-clock me-2"></i><span id="clock">{{ date('d F Y H:i:s') }}</span></p>
+        <p class="m-0 mb-2"><i class="bi bi-clock me-2"></i><span id="clock">{{ date('F d, Y H:i:s') }}</span></p>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">{{ session('status') }}</div>

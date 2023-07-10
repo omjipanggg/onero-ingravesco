@@ -44,8 +44,15 @@ class SendVerification extends Mailable implements ShouldQueue
 
     public function build()
     {
-
-        $url = URL::forceRootUrl(config('app.url', 'astaga.web.id'))->temporarySignedRoute('verification.verify', now()->addMinutes(60), ['id' => $this->data->getKey(), 'hash' => sha1($this->data->getEmailForVerification())], false);
+        $url = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            [
+                'id' => $this->data->getKey(),
+                'hash' => sha1($this->data->getEmailForVerification())
+            ],
+            false
+        );
 
         return $this->subject('VERIFICATION')
             ->markdown('emails.send-verification')

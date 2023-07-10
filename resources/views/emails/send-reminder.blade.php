@@ -9,6 +9,6 @@ Here is a brief resume of a newly registered user:
 | **Registered at** | {{ date('F d, Y H:i:s', strtotime($data['created_at'])) }} |
 @endcomponent
 
-That is a wrap, <br>
+That is all, <br>
 Thanks a lot
 @endcomponent

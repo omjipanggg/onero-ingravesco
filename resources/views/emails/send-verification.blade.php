@@ -2,17 +2,19 @@
 # Warm greetings,
 ### To the owner of {{ \Str::lower($data['email']) }}!
 
-Thank you for signing up! <br>
-You are only one step away to enjoy all the pleasure at {{ config('app.name') }}, all you need to do is activate your account by clicking the button below:
+You are only one step away to complete the verification process, all you need to do is verify your email address by clicking the button below:
 
 @component('mail::button', ['url' => $url])
-Activate
+Verify Now
 @endcomponent
 
 If you did not create an account, no further action is required. <br>
-Either way, welcome to the club!
+Either way, welcome to the club! <br><br>
+
+Sincerely, <br>
+{{ config('app.name') }}
 
 @component('mail::subcopy')
-If you are having a bad day, kindly use [this link]({{ $url }}) instead.
+In case you are having a bad day, kindly use [this link]({{ $url }}) instead.
 @endcomponent
 @endcomponent

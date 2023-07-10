@@ -45,7 +45,7 @@ function clock() {
     }
 
     let time = new Date(),
-        theDate = harold(time.getDate()) + ' ' + (month[time.getMonth()]) + ' ' + time.getFullYear(), hours = time.getHours(),
+        theDate = harold((month[time.getMonth()]) + ' ' + time.getDate()) + ', ' + time.getFullYear(), hours = time.getHours(),
         minutes = time.getMinutes(), seconds = time.getSeconds();
 
     document.querySelector('#clock').innerHTML = theDate + ' ' + harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
