@@ -30,6 +30,7 @@ Route::get('ajax/orders/{category}', [Ajax::class, 'tableOrderByCategories'])->n
 // HOME
 Route::get('/', [Home::class, 'index'])->name('home.index');
 Route::post('search', [Home::class, 'search'])->name('home.search');
+Route::get('settings', [Home::class, 'settings'])->name('home.settings')->middleware(['auth', 'verified']);
 Route::get('send/{email}', [Home::class, 'emailTest'])->name('home.emailTest');
 
 Route::get('preview/image/{directory}/{id}', [Home::class, 'previewImage'])->name('home.previewImage');

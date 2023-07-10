@@ -59,9 +59,9 @@ class VerificationController extends Controller
         $user->email_verified_at = Carbon::now();
         $user->save();
 
-        if (Auth::check()) {
-            Auth::logout();
-        }
+        // if (Auth::check()) {
+        //     Auth::logout();
+        // }
 
         // Auth::login($user);
 

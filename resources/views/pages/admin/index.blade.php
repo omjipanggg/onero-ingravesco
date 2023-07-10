@@ -30,7 +30,7 @@
                         </form>
                     @endforeach
                     <div class="table-responsive">
-                        <table class="table table-sm table-hover table-bordered m-0" id="fetchUser">
+                        <table class="table table-sm table-hover table-bordered m-0 fetch" id="fetchUser">
                             <thead>
                                 <tr>
                                     <th colspan="2">Action</th>

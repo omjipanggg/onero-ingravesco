@@ -65,8 +65,8 @@ function showChar(event) {
     });
 }
 
-if (document.querySelector('table#fetchUser')) {
-    let objDataTable = $('table#fetchUser').dataTable({
+if (document.querySelector('table.fetch')) {
+    let objDataTable = $('table.fetch').dataTable({
         language: {
             paginate: {
                 previous: '<i class="bi bi-chevron-left"></i>',

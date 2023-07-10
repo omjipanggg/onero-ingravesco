@@ -19,13 +19,13 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            {{ '@' . Str::lower(Str::of(Auth::user()->name)->explode(' ')->first()) }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (Auth::user()->hasRole(1))
                                 <a class="dropdown-item text-start text-md-end" href="{{ route('admin.index') }}">Dashboard</a>
                             @endif
-                            <a href="#" class="dropdown-item text-start text-md-end" onclick="event.preventDefault();">Settings</a>
+                            <a href="{{ route('home.settings') }}" class="dropdown-item text-start text-md-end">Settings</a>
                             <hr class="navbar-divider my-1">
                             <a class="dropdown-item text-start text-md-end" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

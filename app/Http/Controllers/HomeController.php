@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ActivityLog as Log;
 use App\Jobs\SendReminder;
 use App\Models\Product;
 use App\Models\User;
@@ -107,5 +108,12 @@ class HomeController extends Controller
         }
 
         return back();
+    }
+
+    public function settings() {
+        $context = [
+            'log' => Log::latestLog()
+        ];
+        return view('pages.homepage.settings', $context);
     }
 }

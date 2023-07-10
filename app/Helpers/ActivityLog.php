@@ -21,7 +21,7 @@ class ActivityLog {
 	public static function latestLog() {
 		$data = [];
 		if (auth()->check()) {
-			$data = Log::where(['user_id', auth()->id()])
+			$data = Log::where(['user_id' => auth()->user()->id])
 			->limit(1)
 			->offset(1)
 			->orderByDesc('created_at')
