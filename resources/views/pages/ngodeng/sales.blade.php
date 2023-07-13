@@ -69,7 +69,7 @@
 						<div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
 							<div class="group">
 								<button class="btn btn-outline-color btn-clear-cart" type="button">Clear<i class="bi bi-cart-x ms-2"></i></button>
-								{{-- <a href="#" id="saveToLocal" class="btn btn-outline-color">Save<i class="bi bi-save ms-2"></i></a> --}}
+								<a href="#" id="saveToLocal" class="btn btn-outline-color">Save<i class="bi bi-save ms-2"></i></a>
 							</div>
 							<form action="{{ route('ngodeng.store') }}" method="POST" id="checkFormOut">
 								@csrf
@@ -77,7 +77,7 @@
 								<input type="hidden" name="items" id="itemsInCart" class="form-control">
 								<button type="submit" id="saveDbTrigger" class="btn btn-color d-none">Checkout<i class="bi bi-cart-check ms-2"></i></button>
 							</form>
-							<button type="button" id="saveToDatabase" class="btn btn-color">Save<i class="bi bi-cart-check ms-2"></i></button>
+							<button type="button" id="saveToDatabase" class="btn btn-color">Checkout<i class="bi bi-cart-check ms-2"></i></button>
 						</div>
 					</div>
 				</div>
