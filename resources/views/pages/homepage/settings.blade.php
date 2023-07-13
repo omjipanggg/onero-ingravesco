@@ -33,7 +33,7 @@
     					</div>
     				</div>
     				<div class="card-footer">
-    					<i class="bi bi-info-circle me-2"></i>This response is auto-generated and fetched specifically for you.
+    					<i class="bi bi-info-circle me-2"></i>This response is auto-generated.
     				</div>
     			</div>
     		</div>

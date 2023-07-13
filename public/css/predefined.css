@@ -96,6 +96,10 @@ ul.square {
 	list-style-type: square;
 }
 
+ul.two-columns {
+	columns: 2;
+}
+
 a.dotted {
 	color: steelblue;
 	text-decoration: none;
@@ -319,4 +323,8 @@ img {
 	.wrap-verify {
 		padding: 0 1.5rem;
 	}
+}
+
+@media all and (max-width: 575.98px) {
+	ul.two-columns { columns: 1; }
 }

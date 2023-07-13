@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
+
 
 use App\Models\User;
 
@@ -24,8 +26,10 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all();
+        $tables = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
         $context = [
-            'users' => $users
+            'users' => $users,
+            'tables' => $tables
         ];
         return view('pages.admin.index', $context);
     }

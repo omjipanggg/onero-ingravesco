@@ -5,9 +5,9 @@
 @include('components.navbar')
 <div class="container">
     <div class="row gap-0 row-gap-4">
-        <div class="col-lg-5 mt-4">
+        <div class="col-lg-4 mt-3 mt-sm-4">
             <div class="card shadow">
-                <div class="card-header"><i class="bi bi-speedometer me-3"></i>{{ __('Dashboard') }}</div>
+                <div class="card-header"><i class="bi bi-speedometer me-2"></i>{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,13 +15,24 @@
                             <i class="bi bi-check-circle me-2"></i><strong>Nicely done!</strong> {{ session('status') }}
                         </div>
                     @endif
-                    <p class="m-0 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, magni iure nisi suscipit possimus dolores! Cupiditate itaque similique, consectetur ratione, quos totam neque at hic quibusdam perspiciatis dolorem provident minima optio, dolor officiis iure? Ipsam totam id excepturi, corrupti eligendi, temporibus architecto minus quam, numquam culpa nostrum dolore ipsum quo sunt illum maxime laudantium voluptatem fuga. Iure eum dolorem iusto laudantium, minus voluptates nam. Porro blanditiis, corrupti asperiores ipsum dolor nihil in, sed rem, unde nemo cupiditate itaque earum sequi voluptatibus sint! Aliquam asperiores autem, nihil quaerat deserunt neque architecto. Nostrum sit aliquam rem possimus. Officiis, officia. Dicta quam, impedit!</p>
+
+                    <p class="mb-2">Available tables:</p>
+
+                    <div class="d-flex flex-wrap align-items-center justify-content-start gap-2">
+                    @foreach ($tables as $element)
+                        <span class="badge bg-dark">{{ $element }}</span>
+                    @endforeach
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <i class="bi bi-info-circle me-2"></i>These tables are unique.
                 </div>
             </div>
         </div>
-        <div class="col-lg-7 mt-4">
+        <div class="col-lg-8 mt-3 mt-sm-4">
             <div class="card shadow">
-                <div class="card-header"><i class="bi bi-people me-3"></i>{{ __('Users') }}</div>
+                <div class="card-header"><i class="bi bi-people me-2"></i>{{ __('Users') }}</div>
                 <div class="card-body">
                     @foreach ($users as $user)
                         <form action="{{ route('user.delete', $user->id) }}" id="delete-form-{{ $user->id }}" method="POST">
@@ -86,6 +97,9 @@
                             </tfoot>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <i class="bi bi-info-circle me-2"></i>These records have been filtered.
                 </div>
             </div>
         </div>

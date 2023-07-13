@@ -10,7 +10,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VerificationController extends Controller
@@ -52,22 +52,20 @@ class VerificationController extends Controller
         $user = User::find($id);
 
         if (!empty($user->email_verified_at)) {
-            Alert::warning('Warning', 'Your account has already been activated.');
+            Alert::warning('Warning', 'Your account has already been verified.');
             return redirect()->route('home.index');
         }
 
         $user->email_verified_at = Carbon::now();
         $user->save();
 
-        // if (Auth::check()) {
-        //     Auth::logout();
-        // }
+        // if (\Auth::check()) {}
+        \Auth::logout();
+        \Auth::login($user);
 
-        // Auth::login($user);
+        // $verified = event(new Verified($user));
 
-        $verified = event(new Verified($user));
-
-        Alert::success('Activated', 'Thank you for activating!');
+        Alert::success('Verified', 'Verification has completed.');
         return redirect()->route('home.index');
     }
 }
