@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
                     });
                 }
             }
-        })
+        });
     });
 
     let modalControl = document.getElementById('modalControl');

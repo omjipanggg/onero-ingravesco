@@ -25,7 +25,7 @@
 				@else
 				<div class="card">
 					<div class="card-header bg-color">
-						<i class="bi bi-database me-2"></i>Products
+						<i class="bi bi-database me-3"></i>Products
 					</div>
 					<div class="card-body">
 						<div class="text-center m-3 p-3">
@@ -41,7 +41,7 @@
 			</div>
 			<div class="col-md-12 col-lg-6 mt-4 mt-lg-0">
 				<div class="card">
-					<div class="card-header bg-color"><i class="bi bi-database me-2"></i>Sales</div>
+					<div class="card-header bg-color"><i class="bi bi-database me-3"></i>Sales</div>
 					<div class="card-body px-3 py-2">
 						<div class="table-responsive">
 							<table class="table table-sm table-hover table-bordered fetchSales" id="itemList">

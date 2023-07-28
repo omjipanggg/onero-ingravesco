@@ -15,6 +15,6 @@ class Role extends Model
     protected $guarded = [];
 
     public function users() {
-    	return $this->belongsToMany(User::class, 'role_users')->withPivot(['expire_date']);
+    	return $this->belongsToMany(User::class, 'role_users')->orderBy('roles.name')->withPivot(['expire_date']);
     }
 }
