@@ -27,7 +27,7 @@
         <p class="lead mt-4 mb-0">Lorem, ipsum dolor, sit amet consectetur adipisicing elit. Rerum, fuga veniam sapiente eligendi quas dolore reiciendis, provident vitae odit distinctio labore laborum quod eos quis maxime et, molestiae quos laboriosam in ab voluptatum deleniti. Earum id quas a doloribus praesentium aliquam dignissimos.</p>
         @endif
         @else
-        <p><a href="{{ route('login') }}" class="dotted">Login/Register</a> to start using this application.</p>
+        <p class="m-0"><a href="{{ route('login') }}" class="dotted">Login/Register</a> to start using this application.</p>
         <p><a href="{{ route('ngodeng.index') }}" class="dotted">Dashboard</a>, for testing and other purposes.</p>
         @endauth
 
