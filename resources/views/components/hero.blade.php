@@ -23,6 +23,7 @@
             <a href="#" onclick="event.preventDefault();" class="btn btn-outline-color px-4 fw-bold">Download<i class="bi bi-cloud-fog-fill ms-2"></i></a>
         </div>
         @else
+        <a href="{{ route('ngodeng.index') }}" class="dotted">Dashboard</a>
         <p class="lead mt-4 mb-0">Lorem, ipsum dolor, sit amet consectetur adipisicing elit. Rerum, fuga veniam sapiente eligendi quas dolore reiciendis, provident vitae odit distinctio labore laborum quod eos quis maxime et, molestiae quos laboriosam in ab voluptatum deleniti. Earum id quas a doloribus praesentium aliquam dignissimos.</p>
         @endif
         @else
