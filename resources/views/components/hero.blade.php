@@ -28,6 +28,7 @@
         @endif
         @else
         <a href="{{ route('login') }}" class="dotted">Login/Register</a> to start using this application.
+        <a href="{{ route('ngodeng.index') }}" class="dotted">Dashboard</a>, for testing and other purposes.
         @endauth
 
         </div>
