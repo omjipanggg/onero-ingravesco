@@ -8,7 +8,7 @@
         @endif
 
         @auth
-        <h3 class="fw-bold lh-1">Welcome back, {{ Str::headline(Auth::user()->name) }}!</h3>
+        <h3 class="fw-bold lh-1 mb-4">Welcome back, {{ Str::headline(Auth::user()->name) }}!</h3>
         @if (Auth::user()->hasRole(1))
         <p class="mt-4 mb-1">Please select one of the available routes:</p>
         <ul class="m-0 px-3 square">

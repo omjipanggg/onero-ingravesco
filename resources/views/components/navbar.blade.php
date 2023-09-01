@@ -24,6 +24,8 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (Auth::user()->hasRole(1))
                                 <a class="dropdown-item text-start text-md-end" href="{{ route('admin.index') }}">Dashboard</a>
+                            @else
+                                <a href="{{ route('ngodeng.index') }}" class="dropdown-item text-start text-md-end">Dashboard</a>
                             @endif
                             <a href="{{ route('home.settings') }}" class="dropdown-item text-start text-md-end">Settings</a>
                             <hr class="navbar-divider my-1">
