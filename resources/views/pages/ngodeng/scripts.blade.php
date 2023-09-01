@@ -850,7 +850,7 @@ document.addEventListener("DOMContentLoaded", function(handler) {
             jason.id = UUIDv4.generate();
             // jason.timestamp = new Date();
             jason.timestamp = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000));
-            jason.user = JSON.parse(document.querySelector('#toBeCheckedOut').dataset.user);
+            // jason.user = JSON.parse(document.querySelector('#toBeCheckedOut').dataset.user);
             jason.items = JSON.parse(localStorage.getItem('cart'));
             jason.subtotal = shoppingCart.totalCart();
             jason.count = shoppingCart.totalCount();
