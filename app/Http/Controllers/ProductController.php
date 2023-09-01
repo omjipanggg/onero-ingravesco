@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'partners']);
+        // $this->middleware(['auth', 'verified', 'partners']);
     }
 
     /**
