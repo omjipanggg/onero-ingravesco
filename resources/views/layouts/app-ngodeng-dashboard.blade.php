@@ -50,6 +50,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js" defer="" integrity="sha256-2Dbg51yxfa7qZ8CSKqsNxHtph8UHdgbzxXF9ANtyJHo=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     --}}
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXJ01683PL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZXJ01683PL');
+    </script>
+
     {{-- OFFLINE
     --}}
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer=""></script>

@@ -31,6 +31,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU=" crossorigin="anonymous" referrerpolicy="no-referrer">
     --}}
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXJ01683PL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZXJ01683PL');
+    </script>
+
     {{-- OFFLINE
     --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap-5.3.0.min.css') }}">
