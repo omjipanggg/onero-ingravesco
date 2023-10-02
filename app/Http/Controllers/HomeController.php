@@ -116,4 +116,9 @@ class HomeController extends Controller
         ];
         return view('pages.homepage.settings', $context);
     }
+
+    public function links() {
+        $context = [];
+        return view('pages.homepage.links', $context);
+    }
 }

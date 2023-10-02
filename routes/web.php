@@ -36,6 +36,8 @@ Route::get('send/{email}', [Home::class, 'emailTest'])->name('home.emailTest');
 Route::get('preview/image/{directory}/{id}', [Home::class, 'previewImage'])->name('home.previewImage');
 Route::get('preview/files/{directory}/{id}', [Home::class, 'previewOnModal'])->name('home.previewOnModal');
 
+Route::get('links', [Home::class, 'links'])->name('home.links');
+
 // ADMIN
 Route::get('dashboard', [Admin::class, 'index'])->name('admin.index');
 
