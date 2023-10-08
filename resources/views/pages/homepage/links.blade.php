@@ -29,6 +29,14 @@
     									</td>
     									<td>www.yasir252.com</td>
     								</tr>
+                                    <tr>
+                                        <td>{{ $i++ }}</td>
+                                        <td>SPSS-25</td>
+                                        <td>
+                                            <a href="https://www.mediafire.com/file/2jo331gvrq4zoj9/spstat25_instll64bit.rar/file" target="_blank" class="dotted">Buka</a>
+                                        </td>
+                                        <td>www.alex71.com</td>
+                                    </tr>
     							</tbody>
     						</table>
     					</div>
