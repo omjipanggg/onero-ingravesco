@@ -7,6 +7,10 @@
 	--base-bright-color: hsla(0deg, 0%, 97%, 1);
 	--shadow-color: hsla(0deg, 8%, 10%, 1);
 	--text-color: hsla(0deg, 0%, 10%, 1);
+
+	--base-dark-color: hsla(207deg, 43%, 29%, 1);
+	--base-dark-active-color: hsla(207deg, 42%, 28%, 1);
+	--base-dark-bright-color: hsla(0deg, 0%, 97%, 1);
 }
 
 *,
@@ -35,7 +39,7 @@
 body {
 	/*letter-spacing: -2px;*/
 	font-family: 'Poppins', 'Open Sans', sans-serif;
-	font-size: 13px;
+	font-size: 11.8px;
 }
 
 .dropdown-item:focus,
@@ -125,10 +129,17 @@ a.dotted:hover {
 	color: var(--base-bright-color);
 }
 .btn-color:focus,
-.btn-color:hover {
+.btn-color:hover,
+.btn-color-dark:focus,
+.btn-color-dark:hover {
 	background-color: var(--base-active-color);
 	color: var(--base-bright-color);
 }
+.btn-color-dark {
+	background-color: var(--base-dark-color);
+	color: var(--base-dark-bright-color);
+}
+
 .btn-outline-color {
 	background-color: var(--base-bright-color);
 	border: 1px solid var(--base-color);
@@ -265,12 +276,12 @@ a.dotted:hover {
 
 /* FORM */
 .form-control.is-invalid {
-	box-shadow: 0px 7px #dc3545;
+	box-shadow: 0px 8px #dc3545;
 }
 .form-control.is-invalid:focus {
 	box-shadow: none;
 	transform: translateY(4px);
-	box-shadow: 0px 3px #b22e3b;
+	box-shadow: 0px 4px #b22e3b;
 }
 
 .select2-container--bootstrap-5.select2-container--focus .select2-selection,
@@ -278,7 +289,7 @@ a.dotted:hover {
 .select2-selection.select2-selection--multiple,
 .form-control,
 .input-shadow {
-	box-shadow: 0px 7px var(--base-color);
+	box-shadow: 0px 8px var(--base-color);
 }
 
 .select2-container--bootstrap-5.select2-container--focus .select2-selection:focus,
@@ -287,7 +298,12 @@ a.dotted:hover {
 .input-shadow:focus {
 	box-shadow: none;
 	transform: translateY(4px);
-	box-shadow: 0px 3px var(--base-active-color);
+	box-shadow: 0px 4px var(--base-active-color);
+}
+
+.btn,
+.form-control {
+	font-size: 11.8px;
 }
 
 .img-hero-container {

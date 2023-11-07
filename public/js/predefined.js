@@ -33,6 +33,11 @@ function swalToCart(event) {
     });
 }
 
+function triggerClick(event, element) {
+    event.preventDefault();
+    $(element).trigger('click');
+}
+
 function clock() {
     const month = [ "January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October",

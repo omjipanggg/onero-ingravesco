@@ -9,6 +9,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,6 +39,7 @@ class HomeController extends Controller
                 return redirect()->route('verification.notice');
             }
         }
+
         return view('pages.homepage.index');
     }
 
@@ -118,7 +120,6 @@ class HomeController extends Controller
     }
 
     public function links() {
-        $context = [];
-        return view('pages.homepage.links', $context);
+        //
     }
 }

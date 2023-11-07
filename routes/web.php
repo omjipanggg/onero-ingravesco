@@ -7,6 +7,7 @@ use App\Http\Controllers\AjaxController as Ajax;
 use App\Http\Controllers\HomeController as Home;
 use App\Http\Controllers\AdminController as Admin;
 use App\Http\Controllers\NgodengController as Ngodeng;
+use App\Http\Controllers\PermalinkController as Permalink;
 use App\Http\Controllers\ProductController as Product;
 use App\Http\Controllers\UserController as User;
 
@@ -36,7 +37,9 @@ Route::get('send/{email}', [Home::class, 'emailTest'])->name('home.emailTest');
 Route::get('preview/image/{directory}/{id}', [Home::class, 'previewImage'])->name('home.previewImage');
 Route::get('preview/files/{directory}/{id}', [Home::class, 'previewOnModal'])->name('home.previewOnModal');
 
-Route::get('links', [Home::class, 'links'])->name('home.links');
+Route::prefix('/')->group(function() {});
+
+Route::resource('link', Permalink::class);
 
 // ADMIN
 Route::get('dashboard', [Admin::class, 'index'])->name('admin.index');
