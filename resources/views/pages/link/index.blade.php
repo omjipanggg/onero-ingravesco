@@ -30,7 +30,7 @@
                         @endif
 
     					<div class="table-responsive">
-    						<table class="table table-bordered table-hover fetch table-sm responsive">
+    						<table class="table table-bordered table-hover link table-sm responsive">
     							<thead>
     								<tr>
     									<th>Permalink</th>
@@ -56,6 +56,13 @@
     								</tr>
                                     @endforeach
     							</tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Permalink</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </tfoot>
     						</table>
     					</div>
     				</div>

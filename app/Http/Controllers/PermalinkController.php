@@ -15,7 +15,7 @@ class PermalinkController extends Controller
      */
     public function index()
     {
-        $links = Permalink::all();
+        $links = Permalink::orderBy('name')->get();
 
         $context = [
             'links' => $links

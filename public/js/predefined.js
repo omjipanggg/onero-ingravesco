@@ -71,7 +71,7 @@ function showChar(event) {
 }
 
 if (document.querySelector('table.fetch')) {
-    let objDataTable = $('table.fetch').dataTable({
+    let fetchTable = $('table.fetch').dataTable({
         language: {
             paginate: {
                 previous: '<i class="bi bi-chevron-left"></i>',
@@ -83,6 +83,26 @@ if (document.querySelector('table.fetch')) {
             searchPlaceholder: "Search...",
             emptyTable: "No records found"
         }
+    });
+    $('.dataTables_length select').addClass('input-shadow mb-2');
+    $('.dataTables_filter').addClass('mb-2');
+    $('.dataTables_info').css({ paddingTop: 0 });
+}
+
+if (document.querySelector('table.link')) {
+    let dataLink = $('table.link').dataTable({
+        language: {
+            paginate: {
+                previous: '<i class="bi bi-chevron-left"></i>',
+                next: '<i class="bi bi-chevron-right"></i>'
+            },
+            infoFiltered: '',
+            lengthMenu: '_MENU_',
+            search: "",
+            searchPlaceholder: "Search...",
+            emptyTable: "No records found"
+        },
+        order: [[1, 'asc']]
     });
     $('.dataTables_length select').addClass('input-shadow mb-2');
     $('.dataTables_filter').addClass('mb-2');

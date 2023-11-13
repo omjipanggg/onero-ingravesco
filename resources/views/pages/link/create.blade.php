@@ -25,7 +25,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <input type="text" id="name" name="name" placeholder="Name" class="form-control @error('name') is-invalid @enderror">
+                                    <input type="text" id="name" autocomplete="off" name="name" placeholder="Name" class="form-control @error('name') is-invalid @enderror">
                                 </div>
 
                                 <div class="form-group">
@@ -34,9 +34,9 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <input type="text" id="path" name="path" placeholder="Path" class="form-control @error('path') is-invalid @enderror">
+                                    <input type="text" id="path" autocomplete="off" name="path" placeholder="Path" class="form-control @error('path') is-invalid @enderror">
                                 </div>
-                                <input type="text" id="description" name="description" placeholder="Description" class="form-control">
+                                <input type="text" id="description" autocomplete="off" name="description" placeholder="Description" class="form-control">
                                 <input type="hidden" id="active" value="{{ true }}" name="active" placeholder="Active" class="form-control">
                             </div>
 
