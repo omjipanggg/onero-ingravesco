@@ -18,7 +18,7 @@ class AjaxController extends Controller
     public function storeVisitor(Request $request) {
     	$visitor = Visitor::create([
     		'name' => $request->input('name') ?? null,
-    		'agent' => $request->input('agent') ?? null
+    		'user_agent' => $request->input('agent') ?? null
     	]);
 
     	return response()->json([
