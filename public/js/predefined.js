@@ -1,5 +1,56 @@
 $(document).ready(function() {
 	$('#loader').fadeOut();
+
+    let agent = navigator.userAgent;
+
+    const names = [
+        'Austin', 'Caesar',
+        'Emily', 'Lucia', 'Eva',
+        'Linda', 'Felix', 'Derek',
+        'Diego', 'Georgia', 'Percy'
+    ];
+
+    let name = document.getElementById('name');
+    if (name) {
+        Swal.fire({
+            icon: 'question',
+            title: 'Your name please',
+            iconColor: 'rgba(112, 102, 224, 1)',
+            backdrop: 'rgba(58, 52, 124, .96)',
+            confirmButtonText: 'Submit',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            input: 'text',
+            inputPlaceholder: names[Math.floor(Math.random() * names.length)],
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value != '') { resolve(); }
+                    else { resolve('Do not leave me blank'); }
+                });
+            }
+        }).then((result) => {
+
+            $.ajax({
+                url: '/ajax/visitors/store',
+                type: 'GET',
+                data: {
+                    name: result.value,
+                    agent: agent
+                },
+                success: (response) => {
+                    // console.log(response);
+                }
+            });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Hi, ' + result.value + '!',
+                iconColor: 'rgba(112, 102, 224, 1)',
+                backdrop: 'rgba(58, 52, 124, .96)',
+                text: 'Thank you for visiting!'
+            });
+        });
+    }
 });
 
 let swalStack = null;

@@ -27,6 +27,7 @@ Auth::routes(['verify' => true]);
 
 // AJAX
 Route::get('ajax/orders/{category}', [Ajax::class, 'tableOrderByCategories'])->name('ajax.tableOrder');
+Route::get('ajax/visitors/store', [Ajax::class, 'storeVisitor'])->name('ajax.storeVisitor');
 
 // HOME
 Route::get('/', [Home::class, 'index'])->name('home.index');

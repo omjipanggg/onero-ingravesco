@@ -6,14 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Permalink extends Model
+class Visitor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'permalinks';
+    protected $table = 'visitors';
     protected $guarded = [];
 
-    protected $casts = [
-    	'active' => 'boolean'
-    ];
+    protected $casts = [];
 }

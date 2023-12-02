@@ -2,6 +2,9 @@
 @section('title', 'Permalink')
 
 @section('content')
+
+    <div id="name"></div>
+
     @include('components.navbar')
 
     <div class="container py-5">
