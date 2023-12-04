@@ -7,6 +7,7 @@
     <div class="container py-5">
     	<div class="row">
     		<div class="col">
+                <input type="hidden" name="visitor" id="visitor">
     			<div class="card">
                     <div class="card-header">
                         Links
@@ -16,6 +17,7 @@
                         <form action="{{ route('link.store') }}" method="POST">
                             @method('POST')
                             @csrf
+
 
                             <div class="d-flex flex-column gap-3 mb-2">
 

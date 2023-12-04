@@ -10,7 +10,7 @@ $(document).ready(function() {
         'Diego', 'Georgia', 'Percy'
     ];
 
-    let name = document.getElementById('name');
+    let name = document.getElementById('visitor');
     if (name) {
         Swal.fire({
             icon: 'question',
